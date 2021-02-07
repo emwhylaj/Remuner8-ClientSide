@@ -21,10 +21,8 @@ const AdminNavbar = () => {
           <NavbarBrand to="/" tag={Link}>
             <img
               alt="..."
-              src={
-                require('../../assets/img/brand/argon-react-white.png').default
-              }
-              />
+              src={require('../../assets/img/brand/profile3.png').default}
+            />
           </NavbarBrand>
           <button className="navbar-toggler" id="navbar-collapse-main">
             <span className="navbar-toggler-icon" />
@@ -37,10 +35,9 @@ const AdminNavbar = () => {
                     <img
                       alt="..."
                       src={
-                        require('../../assets/img/brand/argon-react.png')
-                        .default
+                        require('../../assets/img/brand/profile3.png').default
                       }
-                      />
+                    />
                   </Link>
                 </Col>
                 <Col className="collapse-close" xs="6">
@@ -63,7 +60,7 @@ const AdminNavbar = () => {
                   className="nav-link-icon"
                   to="/auth/register"
                   tag={Link}
-                  >
+                >
                   <i className="ni ni-circle-08" />
                   <span className="nav-link-inner--text">Register</span>
                 </NavLink>
@@ -79,7 +76,7 @@ const AdminNavbar = () => {
                   className="nav-link-icon"
                   to="/admin/user-profile"
                   tag={Link}
-                  >
+                >
                   <i className="ni ni-single-02" />
                   <span className="nav-link-inner--text">Profile</span>
                 </NavLink>

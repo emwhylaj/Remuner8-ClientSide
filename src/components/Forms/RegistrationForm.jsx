@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Button,
-  Form,
-  FormGroup,
-  FormFeedback,
-  Input,
-} from 'reactstrap';
+import { Button, Form, FormGroup, FormFeedback, Input } from 'reactstrap';
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -50,7 +44,7 @@ class RegistrationForm extends Component {
       errors: {
         ...this.state.errors,
         [e.target.name]: '',
-      }
+      },
     });
   };
 
@@ -100,16 +94,20 @@ class RegistrationForm extends Component {
       data: { password, confirmPassword },
       errors,
     } = this.state;
+    
     if (password.length < 8 || password.length > 32)
       errors.password = 'Password must be 8 - 32 characters long.';
-      if (confirmPassword !== password)
-        errors.confirmPassword = 'Passwords must match.';
-    if (Object.keys(errors).length === 0) {
-      console.log('You are logged in');
-      // Call an api here
-    } else {
+    if (confirmPassword !== password)
+      errors.confirmPassword = 'Passwords must match.';
+    if (!errors.password) {
+      errors.passwordState = 'valid';
       this.setState({ errors });
-    }
+      if (!errors.confirmPassword) {
+        errors.confirmPasswordState = 'valid';
+        console.log('You are logged in');
+        // Call an api here
+      }
+    } else this.setState({ errors });
   };
 
   handleSubmit = e => {
@@ -129,7 +127,7 @@ class RegistrationForm extends Component {
     // const values = data;
     return (
       <>
-        <h5 className="text-center text-muted mb-4">Access your dashboard</h5>
+        <p className="text-center mb-4">Access your dashboard</p>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup className="mb-3">
             <Input
@@ -154,7 +152,7 @@ class RegistrationForm extends Component {
               type="password"
               required
               value={data.password}
-              valid={errors.none ? true : false}
+              valid={errors.passwordState === 'valid' ? true : false}
               invalid={errors.password ? true : false}
               placeholder="Enter Password"
               onChange={e => this.handleChange(e)}
@@ -169,7 +167,7 @@ class RegistrationForm extends Component {
               type="password"
               required
               value={data.confirmPassword}
-              valid={errors.none ? true : false}
+              valid={errors.confirmPasswordState === 'valid' ? true : false}
               invalid={errors.confirmPassword ? true : false}
               placeholder="Confirm Password"
               onChange={e => this.handleChange(e)}

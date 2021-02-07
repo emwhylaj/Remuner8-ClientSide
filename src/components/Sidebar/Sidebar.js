@@ -1,8 +1,8 @@
 /*eslint-disable*/
-import React, { useState } from "react";
-import { NavLink as NavLinkRRD, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { NavLink as NavLinkRRD, Link } from 'react-router-dom';
 // nodejs library to set properties for components
-import { PropTypes } from "prop-types";
+import { PropTypes } from 'prop-types';
 
 // reactstrap components
 import {
@@ -33,24 +33,24 @@ import {
   Container,
   Row,
   Col,
-} from "reactstrap";
+} from 'reactstrap';
 
-const Sidebar = (props) => {
+const Sidebar = props => {
   const [collapseOpen, setCollapseOpen] = useState();
   // verifies if routeName is the one active (in browser input)
-  const activeRoute = (routeName) => {
-    return props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
+  const activeRoute = routeName => {
+    return props.location.pathname.indexOf(routeName) > -1 ? 'active' : '';
   };
   // toggles collapse between opened and closed (true/false)
   const toggleCollapse = () => {
-    setCollapseOpen((data) => !data);
+    setCollapseOpen(data => !data);
   };
   // closes the collapse
   const closeCollapse = () => {
     setCollapseOpen(false);
   };
   // creates the links that appear in the left menu / Sidebar
-  const createLinks = (routes) => {
+  const createLinks = routes => {
     return routes.map((prop, key) => {
       return (
         <NavItem key={key}>
@@ -59,7 +59,7 @@ const Sidebar = (props) => {
             tag={NavLinkRRD}
             onClick={closeCollapse}
             activeClassName="active"
-            >
+          >
             <i className={prop.icon} />
             {prop.name}
           </NavLink>
@@ -67,7 +67,7 @@ const Sidebar = (props) => {
       );
     });
   };
-  
+
   const { bgColor, routes, logo } = props;
   let navbarBrandProps;
   if (logo && logo.innerLink) {
@@ -78,15 +78,15 @@ const Sidebar = (props) => {
   } else if (logo && logo.outerLink) {
     navbarBrandProps = {
       href: logo.outerLink,
-      target: "_blank",
+      target: '_blank',
     };
   }
-  
+
   return (
     <Navbar
-    className="navbar-vertical fixed-left navbar-light bg-white"
-    expand="md"
-    id="sidenav-main"
+      className="navbar-vertical fixed-left navbar-light bg-white"
+      expand="md"
+      id="sidenav-main"
     >
       <Container fluid>
         {/* Toggler */}
@@ -98,13 +98,16 @@ const Sidebar = (props) => {
           <span className="navbar-toggler-icon" />
         </button>
         {/* Brand */}
-        {logo ? (<NavbarBrand className="pt-0" {...navbarBrandProps}>
+        {logo ? (
+          <NavbarBrand className="pt-0" {...navbarBrandProps}>
             <img
               alt={logo.imgAlt}
               className="navbar-brand-img"
               src={logo.imgSrc}
-              />
-          </NavbarBrand>) : null}
+              width="115"
+            />
+          </NavbarBrand>
+        ) : null}
         {/* User */}
         <Nav className="align-items-center d-md-none">
           <UncontrolledDropdown nav>
@@ -115,7 +118,7 @@ const Sidebar = (props) => {
               aria-labelledby="navbar-default_dropdown_1"
               className="dropdown-menu-arrow"
               right
-              >
+            >
               <DropdownItem>Action</DropdownItem>
               <DropdownItem>Another action</DropdownItem>
               <DropdownItem divider />
@@ -129,10 +132,10 @@ const Sidebar = (props) => {
                   <img
                     alt="..."
                     src={
-                      require("../../assets/img/theme/team-1-800x800.jpg")
-                      .default
+                      require('../../assets/img/theme/team-1-800x800.jpg')
+                        .default
                     }
-                    />
+                  />
                 </span>
               </Media>
             </DropdownToggle>
@@ -157,7 +160,7 @@ const Sidebar = (props) => {
                 <span>Support</span>
               </DropdownItem>
               <DropdownItem divider />
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                 <i className="ni ni-user-run" />
                 <span>Logout</span>
               </DropdownItem>
@@ -176,7 +179,7 @@ const Sidebar = (props) => {
                       <img alt={logo.imgAlt} src={logo.imgSrc} />
                     </Link>
                   ) : (
-                    <a href={logo.outterLink}>
+                    <a href={logo.outerLink}>
                       <img alt={logo.imgAlt} src={logo.imgSrc} />
                     </a>
                   )}
@@ -187,7 +190,7 @@ const Sidebar = (props) => {
                   className="navbar-toggler"
                   type="button"
                   onClick={toggleCollapse}
-                  >
+                >
                   <span />
                   <span />
                 </button>
@@ -202,7 +205,7 @@ const Sidebar = (props) => {
                 className="form-control-rounded form-control-prepended"
                 placeholder="Search"
                 type="search"
-                />
+              />
               <InputGroupAddon addonType="prepend">
                 <InputGroupText>
                   <span className="fa fa-search" />
@@ -215,33 +218,91 @@ const Sidebar = (props) => {
           {/* Divider */}
           <hr className="my-3" />
           {/* Heading */}
-          <h6 className="navbar-heading text-muted">Documentation</h6>
+          <h6 className="navbar-heading text-muted">Employees</h6>
           {/* Navigation */}
           <Nav className="mb-md-3" navbar>
             <NavItem>
-              <NavLink href="https://demos.creative-tim.com/argon-dashboard-react/#/documentation/overview?ref=adr-admin-sidebar">
-                <i className="ni ni-spaceship" />
-                Getting started
+              <NavLink href="">
+                <i className="fas fa-users text-blue" />
+                Employees
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://demos.creative-tim.com/argon-dashboard-react/#/documentation/colors?ref=adr-admin-sidebar">
-                <i className="ni ni-palette" />
-                Foundation
+              <NavLink href="">
+                <i className="ni ni-user-run text-blue" />
+                Leaves
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://demos.creative-tim.com/argon-dashboard-react/#/documentation/alerts?ref=adr-admin-sidebar">
-                <i className="ni ni-ui-04" />
-                Components
+              <NavLink href="">
+                <i className="ni ni-time-alarm text-blue" />
+                Attendance
               </NavLink>
             </NavItem>
           </Nav>
+          {/* Divider */}
+          <hr className="my-3" />
+          {/* Heading */}
+          <h6 className="navbar-heading text-muted">HR</h6>
           <Nav className="mb-md-3" navbar>
-            <NavItem className="active-pro active">
-              <NavLink href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adr-admin-sidebar">
-                <i className="ni ni-spaceship" />
-                Upgrade to PRO
+            <NavItem>
+              <NavLink href="">
+                <i class="fas fa-file-invoice-dollar text-blue" />
+                Accounts
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">
+                <i className="ni ni-spaceship text-blue" />
+                Taxes
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">
+                <i className="fas fa-hand-holding-usd text-blue" />
+                Payroll
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">
+                <i className="ni ni-money-coins text-blue" />
+                Employee Salary
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">
+                <i className="ni ni-spaceship text-blue" />
+                Payslip
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">
+                <i className="ni ni-spaceship text-blue" />
+                Payroll Items
+              </NavLink>
+            </NavItem>
+          </Nav>
+          {/* Divider */}
+          <hr className="my-3" />
+          {/* Heading */}
+          <h6 className="navbar-heading text-muted">Administration</h6>
+          <Nav className="mb-md-3" navbar>
+            <NavItem>
+              <NavLink href="">
+                <i className="ni ni-spaceship text-blue" />
+                Activities
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">
+                <i className="fas fa-user text-blue" />
+                Users
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">
+                <i className="ni ni-settings-gear-65 text-blue" />
+                Settings
               </NavLink>
             </NavItem>
           </Nav>
@@ -262,9 +323,9 @@ Sidebar.propTypes = {
     // innerLink is for links that will direct the user within the app
     // it will be rendered as <Link to="...">...</Link> tag
     innerLink: PropTypes.string,
-    // outterLink is for links that will direct the user outside the app
+    // outerLink is for links that will direct the user outside the app
     // it will be rendered as simple <a href="...">...</a> tag
-    outterLink: PropTypes.string,
+    outerLink: PropTypes.string,
     // the image src of the logo
     imgSrc: PropTypes.string.isRequired,
     // the alt for the img
