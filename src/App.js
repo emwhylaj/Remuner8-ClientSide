@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router';
 import Home from './pages/Home';
 import LoginPage from './pages/Login';
 import RegistrationPage from './pages/Register';
-import './custom.css';
+import './custom.scss';
 import Dashboard from './pages/Dashboard';
 
 export default class App extends Component {

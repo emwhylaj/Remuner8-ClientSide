@@ -1,15 +1,22 @@
+$selectionColor: rgb(62, 121, 247);
+$white: rgb(255, 255, 255);
+
+@mixin centerEverything {
+  display: grid;
+  place-items: center;
+}
+
 .background {
   background-image: url(/images/loginBackgroundImg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
-  display: grid;
-  place-items: center;
+  @include centerEverything();
 }
 
 .formBody::selection {
-  color: rgb(255, 255, 255);
-  background: rgb(62, 121, 247);
+  color: $white;
+  background: $selectionColor;
 }
 
 .rounded {
@@ -19,5 +26,5 @@
   line-height: 1.5715;
   list-style: none;
   position: relative;
-  background: #fff;
+  background: $white;
 }

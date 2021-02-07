@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Button, Form, FormGroup, FormFeedback, FormText, Input } from 'reactstrap';
+import {
+  Button,
+  Form,
+  FormGroup,
+  FormFeedback,
+  Input,
+} from 'reactstrap';
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -29,17 +35,13 @@ class RegistrationForm extends Component {
         confirmPassword: '',
       },
       errors: {},
-      messageEmail: '',
-      messagePassword: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleOnBlurEmail = this.handleOnBlurEmail.bind(this);
-    //   initialState = () => ({  });
   }
 
   // handle data fields state change
   handleChange = e => {
-    console.log(e.target.value);
     this.setState({
       data: {
         ...this.state.data,
@@ -48,7 +50,7 @@ class RegistrationForm extends Component {
       errors: {
         ...this.state.errors,
         [e.target.name]: '',
-      },
+      }
     });
   };
 
@@ -67,8 +69,10 @@ class RegistrationForm extends Component {
   };
 
   validate = () => {
-    const { email, password, confirmPassword, errors } = this.state;
-    if (email === '') errors.email = 'Email cannot be blank';
+    const {
+      data: { password, confirmPassword },
+      errors,
+    } = this.state;
     if (password.length < 8 || password.length > 32)
       errors.password = 'Password must be 8 - 32 characters long.';
     if (confirmPassword !== password)
@@ -76,15 +80,36 @@ class RegistrationForm extends Component {
     return errors;
   };
 
-  handleOnBlurEmail = event => {
-    //const { email, password, confirmPassword, errors } = this.state;
-    const errors = this.validate();
-     if (Object.keys(errors).length === 0) {
-       console.log('You are logged in');
-       // Call an api here
-     } else {
-       this.setState({ errors });
-     }
+  handleOnBlurEmail = () => {
+    const {
+      data: { email },
+      errors,
+    } = this.state;
+    if (email === '') errors.email = 'Email cannot be blank';
+    if (!errors.email) {
+      errors.emailState = 'valid';
+      this.setState({ errors });
+      // Call an api here
+    } else {
+      this.setState({ errors });
+    }
+  };
+
+  handleOnBlurPassword = () => {
+    const {
+      data: { password, confirmPassword },
+      errors,
+    } = this.state;
+    if (password.length < 8 || password.length > 32)
+      errors.password = 'Password must be 8 - 32 characters long.';
+      if (confirmPassword !== password)
+        errors.confirmPassword = 'Passwords must match.';
+    if (Object.keys(errors).length === 0) {
+      console.log('You are logged in');
+      // Call an api here
+    } else {
+      this.setState({ errors });
+    }
   };
 
   handleSubmit = e => {
@@ -113,15 +138,13 @@ class RegistrationForm extends Component {
               type="email"
               placeholder="Enter Email Address"
               required
-              valid={errors.email ? true : false}
+              valid={errors.emailState === 'valid' ? true : false}
               invalid={errors.email ? true : false}
               value={data.email}
               onChange={e => this.handleChange(e)}
               onBlur={e => this.handleOnBlurEmail(e)}
             />
-            {/* <FormText>{messageEmail}</FormText> */}
             <FormFeedback>{errors.email}</FormFeedback>
-            <FormFeedback valid>Yay!</FormFeedback>
           </FormGroup>
 
           <FormGroup className="mb-3">
@@ -131,10 +154,11 @@ class RegistrationForm extends Component {
               type="password"
               required
               value={data.password}
-              valid={errors.password ? true : false}
+              valid={errors.none ? true : false}
               invalid={errors.password ? true : false}
               placeholder="Enter Password"
               onChange={e => this.handleChange(e)}
+              onBlur={e => this.handleOnBlurPassword(e)}
             />
             <FormFeedback>{errors.password}</FormFeedback>
           </FormGroup>
@@ -145,24 +169,22 @@ class RegistrationForm extends Component {
               type="password"
               required
               value={data.confirmPassword}
-              valid={errors.confirmPassword ? true : false}
+              valid={errors.none ? true : false}
               invalid={errors.confirmPassword ? true : false}
               placeholder="Confirm Password"
               onChange={e => this.handleChange(e)}
+              onBlur={e => this.handleOnBlurPassword(e)}
             />
             <FormFeedback>{errors.confirmPassword}</FormFeedback>
           </FormGroup>
-          <Row className="px-3">
-            <Button color="primary" block>
-              SIGN UP
-            </Button>
-          </Row>
+          <Button color="primary" block>
+            SIGN UP
+          </Button>
         </Form>
         <p className="text-muted text-center mt-4">
           Already have an account?
           <Link to="/login"> Sign In</Link>
         </p>
-        
       </>
     );
 

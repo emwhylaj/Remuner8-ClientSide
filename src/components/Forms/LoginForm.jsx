@@ -6,12 +6,11 @@ import {
   FormText,
   FormFeedback,
   Input,
-  Row
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export default class LoginForm extends Component {
-  static displayName = LoginForm.name; 
+  static displayName = LoginForm.name;
   constructor(props) {
     super(props);
 
@@ -104,9 +103,10 @@ export default class LoginForm extends Component {
             />
             <FormFeedback invalid>Invalid Password</FormFeedback>
           </FormGroup>
-          <Row className="mt-4 px-3">
-            <Button color="primary">SIGN IN</Button>
-          </Row>
+
+          <Button className="mt-4" color="primary" block>
+            SIGN IN
+          </Button>
         </Form>
         <div className="d-grid gap-2 mt-4 text-center">
           <Link to="/resetPassword">Forgot password?</Link>

@@ -17,32 +17,23 @@ a {
   text-decoration: none;
   cursor: pointer;
   transition: color 0.3s ease 0s;
+  &:hover {
+    color: rgb(105, 157, 255);
+  }
+  &:active {
+    color: rgb(42, 89, 209);
+  }
+  &:active,
+  &:hover {
+    text-decoration: none;
+    outline: 0px;
+  }
 }
  
-a:hover {
-  color: rgb(105, 157, 255);
-}
-
-a:active {
-  color: rgb(42, 89, 209);
-}
-a:active,
-a:hover {
-  text-decoration: none;
-  outline: 0px;
-}
-
 html,
 body {
   min-height: 100%;
   width: 100%;
-}
-
-.btn-primary {
-  /* color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-  background-color: royalblue; */
 }
 
 .App {
