@@ -6,17 +6,11 @@ import { PropTypes } from 'prop-types';
 
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
   Collapse,
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
   DropdownToggle,
-  FormGroup,
   Form,
   Input,
   InputGroupAddon,
@@ -28,8 +22,6 @@ import {
   NavItem,
   NavLink,
   Nav,
-  Progress,
-  Table,
   Container,
   Row,
   Col,
@@ -235,7 +227,7 @@ const Sidebar = props => {
             </NavItem>
             <NavItem>
               <NavLink href="">
-                <i className="ni ni-time-alarm text-blue" />
+                <i className="fas fa-calendar-check text-blue" />
                 Attendance
               </NavLink>
             </NavItem>
@@ -247,7 +239,7 @@ const Sidebar = props => {
           <Nav className="mb-md-3" navbar>
             <NavItem>
               <NavLink href="">
-                <i class="fas fa-file-invoice-dollar text-blue" />
+                <i className="fas fa-file-invoice-dollar text-blue" />
                 Accounts
               </NavLink>
             </NavItem>
@@ -271,13 +263,13 @@ const Sidebar = props => {
             </NavItem>
             <NavItem>
               <NavLink href="">
-                <i className="ni ni-spaceship text-blue" />
+                <i className="ni ni-book-bookmark text-blue" />
                 Payslip
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="">
-                <i className="ni ni-spaceship text-blue" />
+                <i className="fas fa-money-bill-alt text-blue" />
                 Payroll Items
               </NavLink>
             </NavItem>

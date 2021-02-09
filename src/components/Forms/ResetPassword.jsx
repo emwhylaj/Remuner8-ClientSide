@@ -1,17 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Form, FormGroup, FormFeedback, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
 
 const ResetPassword = () => {
   const handleSubmit = e => {
     e.preventDefault();
-    const errors = this.validate();
-    if (Object.keys(errors).length === 0) {
-      console.log('You are logged in');
-      // Call an api here
-    } else {
-      this.setState({ errors });
-    }
   };
 
   return (
@@ -20,7 +13,7 @@ const ResetPassword = () => {
       <p className="subtitle mt-3 text-center">
         Enter your email to get a password reset link
       </p>
-      <Form>
+      <Form onSubmit={(e) => handleSubmit(e)}>
         <FormGroup>
           <Input type="email" placeholder="Email Address" required />
         </FormGroup>

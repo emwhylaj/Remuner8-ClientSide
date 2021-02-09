@@ -53,7 +53,7 @@ const Dashboard = props => {
         {...props}
         routes={routes}
         logo={{
-          innerLink: '/admin/index',
+          innerLink: '/',
           imgSrc: require('../assets/img/brand/profile3.png').default,
           imgAlt: 'Remuner8 Logo',
         }}
