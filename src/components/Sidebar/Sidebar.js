@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { NavLink as NavLinkRRD, Link } from 'react-router-dom';
 // nodejs library to set properties for components
 import { PropTypes } from 'prop-types';
+import SimpleBar from 'simplebar-react';
+// import 'simplebar/dist/simplebar';
 
 // reactstrap components
 import {
@@ -76,7 +78,7 @@ const Sidebar = props => {
 
   return (
     <Navbar
-      className="navbar-vertical fixed-left navbar-light bg-white"
+      className="navbar-vertical fixed-left navbar-light bg-white data-simplebar"
       expand="md"
       id="sidenav-main"
     >
@@ -221,6 +223,18 @@ const Sidebar = props => {
             </NavItem>
             <NavItem>
               <NavLink href="">
+                <i className="ni ni-building text-blue" />
+                Departments
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">
+                <i className="ni ni-chart-bar-32 text-blue" />
+                Salary Structure
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">
                 <i className="ni ni-user-run text-blue" />
                 Leaves
               </NavLink>
@@ -229,6 +243,18 @@ const Sidebar = props => {
               <NavLink href="">
                 <i className="fas fa-calendar-check text-blue" />
                 Attendance
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">
+                <i className="fas fa-hourglass-end text-blue" />
+                Overtime and Bonuses
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">
+                <i className="fas fa-thumbs-up text-blue" />
+                Approvals
               </NavLink>
             </NavItem>
           </Nav>
@@ -251,7 +277,7 @@ const Sidebar = props => {
             </NavItem>
             <NavItem>
               <NavLink href="">
-                <i className="fas fa-hand-holding-usd text-blue" />
+                <i className="fas fa-funnel-dollar text-blue" />
                 Payroll
               </NavLink>
             </NavItem>
@@ -259,6 +285,12 @@ const Sidebar = props => {
               <NavLink href="">
                 <i className="ni ni-money-coins text-blue" />
                 Employee Salary
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">
+                <i className="ni ni-support-16 text-blue" />
+                Arrears
               </NavLink>
             </NavItem>
             <NavItem>
@@ -271,6 +303,12 @@ const Sidebar = props => {
               <NavLink href="">
                 <i className="fas fa-money-bill-alt text-blue" />
                 Payroll Items
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">
+                <i className="fas fa-hand-holding-usd text-blue" />
+                Loan Deduction
               </NavLink>
             </NavItem>
           </Nav>
@@ -287,6 +325,12 @@ const Sidebar = props => {
             </NavItem>
             <NavItem>
               <NavLink href="">
+                <i className="ni ni-key-25 text-blue" />
+                Authentication
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">
                 <i className="fas fa-user text-blue" />
                 Users
               </NavLink>
@@ -295,6 +339,12 @@ const Sidebar = props => {
               <NavLink href="">
                 <i className="ni ni-settings-gear-65 text-blue" />
                 Settings
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">
+                <i className="ni ni-curved-next text-blue" />
+                Log Out
               </NavLink>
             </NavItem>
           </Nav>

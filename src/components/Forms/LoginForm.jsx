@@ -77,7 +77,7 @@ export default class LoginForm extends Component {
       validate: { isValid, isValidPassword },
     } = this.state;
     if (isValid && isValidPassword) {
-      <Redirect from="/login" to="/admin" />;
+      // <Redirect from="/login" to="/admin" />;
     }
   };
 
