@@ -6,16 +6,16 @@
 
 ### Setup and Configuration ###
 
-* Clone this repo to your local machine, preferably in VSCode
+* Clone this repo to your local machine, preferably in Visual Studio Code
 * Open the folder, then the terminal with Ctrl + `
-* Run `npm install` to install dependencies
+* Run `npm install` to install dependencies (first time only)
 * Run `npm start` to launch the application in your browser
-* Add `/admin` to localhost in the address bar to open the admin dashboard, there are links within the dashboard to navigate back to the homepage and login pages
+* Add `/admin` to the end of localhost in the address bar to open the admin dashboard, there are links within the dashboard to navigate back to the homepage and login pages
 
 
 ### Contribution guidelines ###
 
-* Create a new branch from this branch by running `git fetch && git checkout -b (feature/your-branch-name)`
+* Create a new branch from this branch by running `git fetch && git checkout -b (feature/branch-name)`
 * Add your new files and commit your changes to your branch
 * Push the branch to the repo by running `git push origin (the branch name here)`
 
