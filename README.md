@@ -10,12 +10,12 @@ This README would normally document whatever steps are necessary to get your app
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Clone this repo to your local machine, preferably in VSCode
+* Open the folder, then the terminal with Ctrl + `
+* Run `npm install` to install dependencies
+* Run `npm start` to launch the application in your browser
+* Add `/admin` to localhost in the address bar to open the admin dashboard, there are links within the dashboard to navigate back to the homepage and login pages
+
 
 ### Contribution guidelines ###
 
