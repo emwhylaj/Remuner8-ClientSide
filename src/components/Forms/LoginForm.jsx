@@ -7,7 +7,7 @@ import {
   FormFeedback,
   Input,
 } from 'reactstrap';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default class LoginForm extends Component {
   static displayName = LoginForm.name;
@@ -77,7 +77,7 @@ export default class LoginForm extends Component {
       validate: { isValid, isValidPassword },
     } = this.state;
     if (isValid && isValidPassword) {
-      // <Redirect from="/login" to="/admin" />;
+
     }
   };
 

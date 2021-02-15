@@ -1,10 +1,12 @@
-/*eslint-disable*/
-import React, { useState } from 'react';
-import { NavLink as NavLinkRRD, Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 // nodejs library to set properties for components
-import { PropTypes } from 'prop-types';
-import SimpleBar from 'simplebar-react';
+import { PropTypes } from "prop-types";
+import SimpleBar from "simplebar-react";
 // import 'simplebar/dist/simplebar';
+
+// Profile Image
+import AdminImg from "../../assets/img/theme/team-1-800x800.jpg";
 
 // reactstrap components
 import {
@@ -27,24 +29,24 @@ import {
   Container,
   Row,
   Col,
-} from 'reactstrap';
+} from "reactstrap";
 
-const Sidebar = props => {
+const Sidebar = (props) => {
   const [collapseOpen, setCollapseOpen] = useState();
   // verifies if routeName is the one active (in browser input)
-  const activeRoute = routeName => {
-    return props.location.pathname.indexOf(routeName) > -1 ? 'active' : '';
+  const activeRoute = (routeName) => {
+    return props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
   };
   // toggles collapse between opened and closed (true/false)
   const toggleCollapse = () => {
-    setCollapseOpen(data => !data);
+    setCollapseOpen((data) => !data);
   };
   // closes the collapse
   const closeCollapse = () => {
     setCollapseOpen(false);
   };
   // creates the links that appear in the left menu / Sidebar
-  const createLinks = routes => {
+  const createLinks = (routes) => {
     return routes.map((prop, key) => {
       return (
         <NavItem key={key}>
@@ -72,7 +74,7 @@ const Sidebar = props => {
   } else if (logo && logo.outerLink) {
     navbarBrandProps = {
       href: logo.outerLink,
-      target: '_blank',
+      target: "_blank",
     };
   }
 
@@ -123,13 +125,7 @@ const Sidebar = props => {
             <DropdownToggle nav>
               <Media className="align-items-center">
                 <span className="avatar avatar-sm rounded-circle">
-                  <img
-                    alt="..."
-                    src={
-                      require('../../assets/img/theme/team-1-800x800.jpg')
-                        .default
-                    }
-                  />
+                  <img alt="..." src={AdminImg} />
                 </span>
               </Media>
             </DropdownToggle>
@@ -154,7 +150,7 @@ const Sidebar = props => {
                 <span>Support</span>
               </DropdownItem>
               <DropdownItem divider />
-              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
                 <i className="ni ni-user-run" />
                 <span>Logout</span>
               </DropdownItem>
@@ -294,7 +290,7 @@ const Sidebar = props => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/payslip">
                 <i className="ni ni-book-bookmark text-blue" />
                 Payslip
               </NavLink>
