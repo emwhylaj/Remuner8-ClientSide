@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import RegistrationForm from '../components/Forms/RegistrationForm';
-import Styles from './forms.module.scss';
+import Styles from '../assets/scss/forms.module.scss';
 
 const RegistrationPage = (props) => {
   return (
