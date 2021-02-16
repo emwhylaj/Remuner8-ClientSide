@@ -4,7 +4,8 @@ import { Container, Row, Col } from 'reactstrap';
 import LoginForm from '../components/Forms/LoginForm';
 import Styles from './forms.module.scss';
 
-const Login = () => {
+const Login = (props) => {
+  console.log(props);
   return (
     <div className={Styles.background}>
       <Container className="d-flex flex-column justify-content-center h-100">
