@@ -28,13 +28,8 @@ import {
   Nav,
   Container,
   Row,
-<<<<<<< HEAD
-  Col,
-} from "reactstrap";
-=======
   Col
 } from 'reactstrap';
->>>>>>> 46e76f99c5b9db8d2910febb57f13ba3474eba2e
 
 const Sidebar = (props) => {
   const [collapseOpen, setCollapseOpen] = useState();
@@ -79,11 +74,7 @@ const Sidebar = (props) => {
   } else if (logo && logo.outerLink) {
     navbarBrandProps = {
       href: logo.outerLink,
-<<<<<<< HEAD
-      target: "_blank",
-=======
       target: '_blank'
->>>>>>> 46e76f99c5b9db8d2910febb57f13ba3474eba2e
     };
   }
 

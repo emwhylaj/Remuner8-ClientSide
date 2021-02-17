@@ -23,11 +23,8 @@
     "bootstrap": "^4.6.0",
     "chart.js": "2.9.4",
     "classnames": "2.2.6",
-<<<<<<< HEAD
     "eslint-plugin-flowtype": "5.2.0",
     "jquery": "3.5.1",
-=======
->>>>>>> 46e76f99c5b9db8d2910febb57f13ba3474eba2e
     "merge": "^1.2.1",
     "moment": "2.29.1",
     "node-sass": "^4.14.1",

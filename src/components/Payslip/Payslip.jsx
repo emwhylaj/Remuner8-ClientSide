@@ -4,6 +4,18 @@ import "./payslip.css";
 import Logo from "../../assets/img/brand/croppedcover.png";
 
 export default class Payslip extends Component {
+    constructor(props) {
+        super(props);
+        this.printContent = this.printContent.bind(this);
+    }
+    printContent() {
+        const restorePage = document.body.innerHTML;
+        const printcontent = document.getElementsByClassName('card-body');
+        document.body.innerHTML = printcontent;
+        window.print();
+        document.body.innerHTML = restorePage;
+    }
+
     render() {
         return (
             <div className="page-wrapper">
@@ -21,7 +33,7 @@ export default class Payslip extends Component {
                                 <div className="btn-group btn-group-sm">
                                     <button className="btn btn-white">CSV</button>
                                     <button className="btn btn-white">PDF</button>
-                                    <button className="btn btn-white"><i className="fa fa-print fa-lg"></i> Print</button>
+                                    <button className="btn btn-white" onClick={this.printContent} ><i className="fa fa-print fa-lg"></i> Print</button>
                                 </div>
                             </div>
                         </div>
@@ -35,7 +47,7 @@ export default class Payslip extends Component {
                                     <h4 className="payslip-title">Payslip for the month of Feb 2021</h4>
                                     <div className="row">
                                         <div className="col-sm-6 m-b-20">
-                                            <img src={Logo} className="inv-logo" alt="Remuner8" width="150"/>
+                                            <img src={Logo} className="inv-logo" alt="Remuner8" width="150" />
                                             <ul className="list-unstyled mb-0">
                                                 <li>Remuner8</li>
                                                 <li>39 Ikorodu Road,</li>

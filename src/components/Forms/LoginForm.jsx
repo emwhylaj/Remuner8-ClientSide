@@ -77,11 +77,7 @@ export default class LoginForm extends Component {
       validate: { isValid, isValidPassword }
     } = this.state;
     if (isValid && isValidPassword) {
-<<<<<<< HEAD
-
-=======
       // Call api to redirect to dashboard
->>>>>>> 46e76f99c5b9db8d2910febb57f13ba3474eba2e
     }
   };
 
