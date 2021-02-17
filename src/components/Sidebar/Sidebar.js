@@ -28,8 +28,13 @@ import {
   Nav,
   Container,
   Row,
+<<<<<<< HEAD
   Col,
 } from "reactstrap";
+=======
+  Col
+} from 'reactstrap';
+>>>>>>> 46e76f99c5b9db8d2910febb57f13ba3474eba2e
 
 const Sidebar = (props) => {
   const [collapseOpen, setCollapseOpen] = useState();
@@ -69,12 +74,16 @@ const Sidebar = (props) => {
   if (logo && logo.innerLink) {
     navbarBrandProps = {
       to: logo.innerLink,
-      tag: Link,
+      tag: Link
     };
   } else if (logo && logo.outerLink) {
     navbarBrandProps = {
       href: logo.outerLink,
+<<<<<<< HEAD
       target: "_blank",
+=======
+      target: '_blank'
+>>>>>>> 46e76f99c5b9db8d2910febb57f13ba3474eba2e
     };
   }
 
@@ -212,43 +221,43 @@ const Sidebar = (props) => {
           {/* Navigation */}
           <Nav className="mb-md-3" navbar>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/employees">
                 <i className="fas fa-users text-blue" />
                 Employees
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="ni ni-building text-blue" />
                 Departments
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="ni ni-chart-bar-32 text-blue" />
                 Salary Structure
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="ni ni-user-run text-blue" />
                 Leaves
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="fas fa-calendar-check text-blue" />
                 Attendance
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="fas fa-hourglass-end text-blue" />
                 Overtime and Bonuses
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="fas fa-thumbs-up text-blue" />
                 Approvals
               </NavLink>
@@ -260,31 +269,31 @@ const Sidebar = (props) => {
           <h6 className="navbar-heading text-muted">HR</h6>
           <Nav className="mb-md-3" navbar>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="fas fa-file-invoice-dollar text-blue" />
                 Accounts
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="ni ni-spaceship text-blue" />
                 Taxes
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="fas fa-funnel-dollar text-blue" />
                 Payroll
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="ni ni-money-coins text-blue" />
                 Employee Salary
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="ni ni-support-16 text-blue" />
                 Arrears
               </NavLink>
@@ -296,13 +305,13 @@ const Sidebar = (props) => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="fas fa-money-bill-alt text-blue" />
                 Payroll Items
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="fas fa-hand-holding-usd text-blue" />
                 Loan Deduction
               </NavLink>
@@ -314,31 +323,31 @@ const Sidebar = (props) => {
           <h6 className="navbar-heading text-muted">Administration</h6>
           <Nav className="mb-md-3" navbar>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="ni ni-spaceship text-blue" />
                 Activities
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="ni ni-key-25 text-blue" />
                 Authentication
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="fas fa-user text-blue" />
                 Users
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/admin/departments">
                 <i className="ni ni-settings-gear-65 text-blue" />
                 Settings
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">
+              <NavLink href="/login">
                 <i className="ni ni-curved-next text-blue" />
                 Log Out
               </NavLink>
@@ -351,7 +360,7 @@ const Sidebar = (props) => {
 };
 
 Sidebar.defaultProps = {
-  routes: [{}],
+  routes: [{}]
 };
 
 Sidebar.propTypes = {
@@ -367,8 +376,8 @@ Sidebar.propTypes = {
     // the image src of the logo
     imgSrc: PropTypes.string.isRequired,
     // the alt for the img
-    imgAlt: PropTypes.string.isRequired,
-  }),
+    imgAlt: PropTypes.string.isRequired
+  })
 };
 
 export default Sidebar;

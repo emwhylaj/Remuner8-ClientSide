@@ -5,7 +5,7 @@ import {
   FormGroup,
   FormText,
   FormFeedback,
-  Input,
+  Input
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -22,15 +22,15 @@ export default class LoginForm extends Component {
         emailState: '',
         isValid: false,
         password: '',
-        isValidPassword: false,
-      },
+        isValidPassword: false
+      }
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange = event => {
     const {
-      target: { name, value },
+      target: { name, value }
     } = event;
     const { validate } = this.state;
     if (!value) {
@@ -38,12 +38,12 @@ export default class LoginForm extends Component {
       validate.isValid = false;
       this.setState({
         formText: 'Your username is most likely your email address',
-        validate,
+        validate
       });
     }
     this.setState({
       [name]: value,
-      formText: '',
+      formText: ''
     });
   };
 
@@ -74,10 +74,14 @@ export default class LoginForm extends Component {
     this.validateEmail();
     this.validatePassword();
     const {
-      validate: { isValid, isValidPassword },
+      validate: { isValid, isValidPassword }
     } = this.state;
     if (isValid && isValidPassword) {
+<<<<<<< HEAD
 
+=======
+      // Call api to redirect to dashboard
+>>>>>>> 46e76f99c5b9db8d2910febb57f13ba3474eba2e
     }
   };
 

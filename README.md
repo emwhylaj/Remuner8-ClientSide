@@ -1,29 +1,28 @@
-# README #
-
-This README would normally document whatever steps are necessary to get your application up and running.
-
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Code files for the client side of the Remuner8 payroll application written in React.js
+* Version 1.0.0
+* Click here to [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
-### How do I get set up? ###
+### Setup and Configuration ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Clone this repo to your local machine, preferably in Visual Studio Code
+* Open the folder, then the terminal with Ctrl + `
+* Run `npm install` to install dependencies (first time only)
+* Run `npm start` to launch the application in your browser
+* Add `/admin` to the end of localhost in the address bar to open the admin dashboard, there are links within the dashboard to navigate back to the homepage and login pages
+
 
 ### Contribution guidelines ###
 
-* Writing tests
-* Code review
-* Other guidelines
+* Create a new branch from this branch by running `git fetch && git checkout -b (feature/branch-name)`
+* Add your new files and commit your changes to your branch
+* Push the branch to the repo by running `git push origin (the branch name here)`
 
-### Who do I talk to? ###
+### Have questions or comments, reach out to us 👇  ###
 
-* Repo owner or admin
-* Other community or team contact
+* James Morgan (james.morgan@thebulb.africa) - admin
+* Abidemi Soetan
+* Muyiwa Olalekan
+* Muiz Mabamidu
+* Matthew Igbo

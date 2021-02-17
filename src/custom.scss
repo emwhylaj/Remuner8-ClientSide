@@ -1,10 +1,5 @@
 /* Provide sufficient contrast against white background */
 
-@mixin centerEverything {
-  display: grid;
-  place-items: center;
-}
-
 *,
 ::after,
 ::before {

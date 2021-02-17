@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import RegistrationForm from '../components/Forms/RegistrationForm';
-import Styles from './forms.module.scss';
+import Styles from '../assets/scss/forms.module.scss';
 
-const RegistrationPage = () => {
+const RegistrationPage = (props) => {
   return (
     <div className={Styles.background}>
       <Container className="d-flex flex-column justify-content-center h-100 py-3">
@@ -25,7 +25,7 @@ const RegistrationPage = () => {
                   </div>
                   <Row className="justify-content-center">
                     <Col xs={11} sm={10} md={10} lg={10}>
-                      <RegistrationForm />
+                      <RegistrationForm props={props} />
                     </Col>
                   </Row>
                 </div>

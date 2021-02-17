@@ -26,9 +26,9 @@ class RegistrationForm extends Component {
         accountNumber: '',
         role: '',
         password: '',
-        confirmPassword: '',
+        confirmPassword: ''
       },
-      errors: {},
+      errors: {}
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleOnBlurEmail = this.handleOnBlurEmail.bind(this);
@@ -39,33 +39,19 @@ class RegistrationForm extends Component {
     this.setState({
       data: {
         ...this.state.data,
-        [e.target.name]: e.target.value,
+        [e.target.name]: e.target.value
       },
       errors: {
         ...this.state.errors,
-        [e.target.name]: '',
-      },
-    });
-  };
-
-  previousStep = () => {
-    const { step } = this.state;
-    this.setState({
-      step: step - 1,
-    });
-  };
-
-  nextStep = () => {
-    const { step } = this.state;
-    this.setState({
-      step: step + 1,
+        [e.target.name]: ''
+      }
     });
   };
 
   validate = () => {
     const {
       data: { password, confirmPassword },
-      errors,
+      errors
     } = this.state;
     if (password.length < 8 || password.length > 32)
       errors.password = 'Password must be 8 - 32 characters long.';
@@ -77,7 +63,7 @@ class RegistrationForm extends Component {
   handleOnBlurEmail = () => {
     const {
       data: { email },
-      errors,
+      errors
     } = this.state;
     if (email === '') errors.email = 'Email cannot be blank';
     if (!errors.email) {
@@ -92,9 +78,9 @@ class RegistrationForm extends Component {
   handleOnBlurPassword = () => {
     const {
       data: { password, confirmPassword },
-      errors,
+      errors
     } = this.state;
-    
+
     if (password.length < 8 || password.length > 32)
       errors.password = 'Password must be 8 - 32 characters long.';
     if (confirmPassword !== password)
@@ -104,27 +90,61 @@ class RegistrationForm extends Component {
       this.setState({ errors });
       if (!errors.confirmPassword) {
         errors.confirmPasswordState = 'valid';
-        console.log('You are logged in');
         // Call an api here
       }
     } else this.setState({ errors });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    const errors = this.validate();
-    if (Object.keys(errors).length === 0) {
-      console.log('You are logged in');
-      // Call an api here
+    const formErrors = this.validate();
+    const {
+      data: { email, confirmPassword },
+      errors: { emailState, confirmPasswordState }
+    } = this.state;
+    if (emailState && confirmPasswordState) {
+      //Call an api here
+
+      // const response = fetch('https://localhost:44333/api/Register', {
+      //   method: 'POST',
+      //   headers: {
+      //     Accept: 'application/json',
+      //     'Content-type': 'application/json'
+      //   },
+      //   body: JSON.stringify({
+      //     Email: email,
+      //     Password1: confirmPassword
+      //   })
+      // });
+      // console.log(response);
+
+      //const backendResponse = await response.json(); // wait for data to reach database
+      //console.log(backendResponse);
+      // fetch('https://localhost:44333/api/Register', {
+      //   method: 'post',
+      //   headers: {
+      //     Accept: 'application/json',
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify({
+      //     Email: email,
+      //     Password1: confirmPassword
+      //   })
+      // })
+      //   .then(Response => Response.json())
+      //   .then(Result => {
+      //     if (Result.Status === 'Ok') this.props.history.push('/admin');
+      //     else alert('Sorrrrrry !!!! Un-authenticated User !!!!!');
+      //   });
     } else {
-      this.setState({ errors });
+      console.log('errors are around');
+      this.setState({ formErrors });
     }
   };
 
   render() {
     // eslint-disable-next-line
-    const { data, errors, messageEmail, messagePassword, step } = this.state;
-    // const values = data;
+    const { data, errors } = this.state;
     return (
       <>
         <p className="text-center mb-4">Access your dashboard</p>
@@ -175,7 +195,7 @@ class RegistrationForm extends Component {
             />
             <FormFeedback>{errors.confirmPassword}</FormFeedback>
           </FormGroup>
-          <Button color="primary" block>
+          <Button type="submit" color="primary" block>
             SIGN UP
           </Button>
         </Form>
@@ -185,82 +205,6 @@ class RegistrationForm extends Component {
         </p>
       </>
     );
-
-    // switch (step) {
-    //   case 1:
-    //     return (
-    //       <UserDetailsForm
-    //         nextStep={this.nextStep}
-    //         handleChange={this.handleChange}
-    //         data={values}
-    //         errors={errors}
-    //       />
-    //     );
-
-    //   case 2:
-    //     return (
-    //       <PersonalDetailsForm
-    //         previousStep={this.previousStep}
-    //         nextStep={this.nextStep}
-    //         handleChange={this.handleChange}
-    //         data={values}
-    //         errors={errors}
-    //       />
-    //     );
-
-    //   case 3:
-    //     return (
-    //       <ContactDetailsForm
-    //         previousStep={this.previousStep}
-    //         nextStep={this.nextStep}
-    //         handleChange={this.handleChange}
-    //         data={values}
-    //         errors={errors}
-    //       />
-    //     );
-
-    //   case 4:
-    //     return (
-    //       <BankDetailsForm
-    //         previousStep={this.previousStep}
-    //         nextStep={this.nextStep}
-    //         handleChange={this.handleChange}
-    //         data={values}
-    //         errors={errors}
-    //       />
-    //     );
-
-    //   case 5:
-    //     return (
-    //       <PasswordSetup
-    //         previousStep={this.previousStep}
-    //         nextStep={this.nextStep}
-    //         handleChange={this.handleChange}
-    //         data={values}
-    //         errors={errors}
-    //       />
-    //     );
-
-    //   case 6:
-    //     return (
-    //       <ConfirmationPage
-    //         previousStep={this.previousStep}
-    //         nextStep={this.nextStep}
-    //         data={values}
-    //       />
-    //     );
-
-    //   case 7:
-    //     return (
-    //       <SuccessPage
-    //         handleChange={this.handleChange}
-    //         data={values}
-    //         errors={errors}
-    //       />
-    //     );
-    //   default:
-    //     return <h1>ERROR 403 Forbidden</h1>
-    // }
   }
 }
 

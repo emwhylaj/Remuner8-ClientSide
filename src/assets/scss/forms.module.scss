@@ -1,7 +1,10 @@
 $selectionColor: rgb(62, 121, 247);
 $white: rgb(255, 255, 255);
-$background: '../assets/img/theme/loginBackgroundImg.jpg';
-@import '../custom';
+$background: '../img/theme/loginBackgroundImg.jpg';
+@mixin centerEverything {
+  display: grid;
+  place-items: center;
+}
 
 .background {
   background-image: url($background);

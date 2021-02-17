@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import LoginForm from '../components/Forms/LoginForm';
-import Styles from './forms.module.scss';
+import Styles from '../assets/scss/forms.module.scss';
 
-const Login = () => {
+const Login = props => {
+  console.log(props);
   return (
     <div className={Styles.background}>
       <Container className="d-flex flex-column justify-content-center h-100">
