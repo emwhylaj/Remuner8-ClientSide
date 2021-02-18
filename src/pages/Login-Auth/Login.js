@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
-import ResetPassword from '../components/Forms/ResetPassword';
-import Styles from '../assets/scss/forms.module.scss';
+import LoginForm from '../../components/Forms/Login-Auth/LoginForm';
+import '../../assets/scss/forms.styles.scss';
 
-const ResetPasswordPage = () => {
+const Login = () => {
   return (
-    <div className={Styles.background}>
-      <Container className="d-flex flex-column justify-content-center h-100 py-3">
-        <Row className={`justify-content-center ${Styles.formBody}`}>
-          <Col xs={10} sm={10} md={7} lg={5} xl={5}>
-            <div className={Styles.rounded}>
+    <div className="background">
+      <Container className="d-flex flex-column justify-content-center h-100">
+        <Row className="justify-content-center formBody">
+          <Col xs={10} sm={9} md={7} lg={5} xl={5}>
+            <div className="rounded">
               <div className="card-body">
                 <div className="mb-4">
                   <div className="text-center">
@@ -24,8 +24,8 @@ const ResetPasswordPage = () => {
                     </Link>
                   </div>
                   <Row className="justify-content-center">
-                    <Col xs={11} sm={11} md={11} lg={11}>
-                      <ResetPassword />
+                    <Col xs={11} sm={10} md={10} lg={10}>
+                      <LoginForm />
                     </Col>
                   </Row>
                 </div>
@@ -38,4 +38,4 @@ const ResetPasswordPage = () => {
   );
 };
 
-export default ResetPasswordPage;
+export default Login;

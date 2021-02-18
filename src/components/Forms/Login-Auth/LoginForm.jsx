@@ -5,17 +5,20 @@ import {
   FormGroup,
   FormText,
   FormFeedback,
-  Input
+  Input,
+  Label
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-export default class LoginForm extends Component {
+import '../../../assets/scss/forms.styles.scss';
+
+class LoginForm extends Component {
   static displayName = LoginForm.name;
   constructor(props) {
     super(props);
 
     this.state = {
-      userName: '',
+      email: '',
       password: '',
       formText: 'Your username is most likely your email address',
       validate: {
@@ -23,15 +26,13 @@ export default class LoginForm extends Component {
         isValid: false,
         password: '',
         isValidPassword: false
-      }
+      },
+      disableButton: false
     };
-    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange = event => {
-    const {
-      target: { name, value }
-    } = event;
+    const { name, value } = event.target;
     const { validate } = this.state;
     if (!value) {
       validate.emailState = '';
@@ -47,74 +48,77 @@ export default class LoginForm extends Component {
     });
   };
 
-  validateEmail() {
+  validateEmail = () => {
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const { userName, validate } = this.state;
-    if (emailRegex.test(userName)) {
+    const { email, validate } = this.state;
+    if (emailRegex.test(email)) {
       validate.emailState = 'has-success';
       validate.isValid = true;
     } else {
       validate.emailState = 'has-danger';
     }
     this.setState({ validate });
-  }
+  };
 
-  validatePassword() {
-    const defPassword = '12345678';
-    const { password, validate } = this.state;
-    if (password === defPassword) {
-      validate.isValidPassword = true;
-      validate.password = 'has-success';
-    } else validate.password = 'has-danger';
-    this.setState({ validate });
-  }
+  validatePassword = () => {
+    // const { password, validate } = this.state;
+    // if (password === defPassword) {
+    //   validate.isValidPassword = true;
+    //   validate.password = 'has-success';
+    // } else validate.password = 'has-danger';
+    // this.setState({ validate });
+  };
 
   handleSubmit = e => {
     e.preventDefault();
     this.validateEmail();
     this.validatePassword();
-    const {
-      validate: { isValid, isValidPassword }
+    const { validate: { isValid, isValidPassword }, disableButton
     } = this.state;
     if (isValid && isValidPassword) {
+      this.setState({ disableButton: !disableButton });
       // Call api to redirect to dashboard
     }
   };
 
   render() {
-    const { userName, validate, formText, password } = this.state;
+    const { email, validate, formText, password } = this.state;
     return (
       <>
         <p className="text-muted text-center mb-4">
           Don't have an account yet?
           <Link to="/register"> Sign Up</Link>
         </p>
-        <Form action="" id="login-form" onSubmit={e => this.handleSubmit(e)}>
+        <Form id="login-form" onSubmit={this.handleSubmit}>
           <FormGroup className="mb-4">
+            <Label htmlFor="email">Username</Label>
             <Input
               type="email"
-              name="userName"
-              id="loginFormEmail"
+              name="email"
+              id="email"
               title="Username"
               placeholder="Username"
+              autoComplete="username"
               required
-              value={userName}
+              autoFocus
+              value={email}
               valid={validate.emailState === 'has-success'}
               invalid={validate.emailState === 'has-danger'}
-              onChange={e => {
-                this.handleChange(e);
-              }}
+              onChange={e => this.handleChange(e)}
             />
             <FormFeedback>Invalid Username/Email Address</FormFeedback>
             <FormText>{formText}</FormText>
           </FormGroup>
+
           <FormGroup>
+            <Label htmlFor="current-password">Password</Label>
             <Input
               type="password"
               name="password"
-              id="loginFormPassword"
+              id="password"
               title="Password"
-              placeholder="Password"
+              pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,33}$"
+              autoComplete="current-password"
               required
               value={password}
               valid={validate.password === 'has-success'}
@@ -125,7 +129,7 @@ export default class LoginForm extends Component {
           </FormGroup>
 
           <FormGroup>
-            <Button className="mt-4" color="primary" block>
+            <Button id="sign-in" className="mt-4" color="primary" block>
               SIGN IN
             </Button>
           </FormGroup>
@@ -137,3 +141,5 @@ export default class LoginForm extends Component {
     );
   }
 }
+
+export default withRouter(LoginForm);

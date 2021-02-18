@@ -1,0 +1,108 @@
+$selectionColor: rgb(62, 121, 247);
+$white: rgb(255, 255, 255);
+$background: '../img/theme/loginBackgroundImg.jpg';
+@mixin centerEverything {
+  display: grid;
+  place-items: center;
+}
+
+@mixin shrinkLabel {
+  transform: translateY(-30px) translateX(-5px);
+  font-size: 14px;
+  color: black;
+}
+
+.background {
+  background-image: url($background);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  @include centerEverything();
+}
+
+.form-body{
+
+  .instruction{
+    height: 110px;
+  }
+
+  &::selection{
+    color: $white;
+  background: $selectionColor;
+  }
+}
+
+.rounded {
+  border-radius: 1rem;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 1.5715;
+  list-style: none;
+  position: relative;
+  background: $white;
+
+  .card-body {
+    padding: 0 1.5rem 0.5rem;
+  }
+}
+
+.form-group {
+  position: relative;
+
+  .form-control {
+    display: block;
+
+    &:focus,
+    &:valid {
+      ~ .label {
+        @include shrinkLabel();
+      }
+    }
+  }
+
+  .label {
+    font-size: 16px;
+    color: grey;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 12px;
+    top: 10px;
+    transition: 300ms ease all;
+
+    &.shrink {
+      @include shrinkLabel();
+    }
+  }
+
+  #toggle-password {
+    all: unset;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 300;
+    padding: 0;
+    position: absolute;
+    top: -23px;
+    right: 2px;
+    outline: none;
+  }
+
+  #password-constraints {
+    margin: 5px 0 0 0;
+    font-size: 13px;
+  }
+}
+
+.registration{
+  .form-group:first-child{
+    margin-bottom: 2.5rem;
+  }
+  .form-group:last-child{
+    margin-bottom: 2rem;
+  }
+}
+
+.danger{
+  color: red;
+}

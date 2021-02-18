@@ -1,38 +1,37 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Form, FormGroup, FormFeedback, Input } from 'reactstrap';
+import { Link, withRouter } from 'react-router-dom';
+import {
+  Label,
+  Button,
+  Form,
+  FormGroup,
+  FormFeedback,
+  FormText,
+  Input
+} from 'reactstrap';
+
+import '../../../assets/scss/forms.styles.scss';
 
 class RegistrationForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      step: 1,
       data: {
         email: '',
-        firstName: '',
-        otherName: '',
-        lastName: '',
-        dateOfBirth: '',
-        maritalStatus: '',
-        gender: '',
-        state: '',
-        country: '',
-        phoneNumber: '',
-        phoneNumberPrefix: '+234',
-        address: '',
-        dateEmployed: '',
-        bank: '',
-        accountNumber: '',
-        role: '',
         password: '',
         confirmPassword: ''
       },
-      errors: {}
+      errors: {},
+      showPassword: false,
+      disableButton: false
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleOnBlurEmail = this.handleOnBlurEmail.bind(this);
   }
+
+  togglePassword = () => {
+    const { showPassword } = this.state;
+    this.setState({ showPassword: !showPassword });
+  };
 
   // handle data fields state change
   handleChange = e => {
@@ -61,18 +60,13 @@ class RegistrationForm extends Component {
   };
 
   handleOnBlurEmail = () => {
-    const {
-      data: { email },
-      errors
-    } = this.state;
+    const { data: { email }, errors } = this.state;
     if (email === '') errors.email = 'Email cannot be blank';
     if (!errors.email) {
       errors.emailState = 'valid';
       this.setState({ errors });
       // Call an api here
-    } else {
-      this.setState({ errors });
-    }
+    } else this.setState({ errors });
   };
 
   handleOnBlurPassword = () => {
@@ -80,7 +74,6 @@ class RegistrationForm extends Component {
       data: { password, confirmPassword },
       errors
     } = this.state;
-
     if (password.length < 8 || password.length > 32)
       errors.password = 'Password must be 8 - 32 characters long.';
     if (confirmPassword !== password)
@@ -88,10 +81,7 @@ class RegistrationForm extends Component {
     if (!errors.password) {
       errors.passwordState = 'valid';
       this.setState({ errors });
-      if (!errors.confirmPassword) {
-        errors.confirmPasswordState = 'valid';
-        // Call an api here
-      }
+      if (!errors.confirmPassword) errors.confirmPasswordState = 'valid';
     } else this.setState({ errors });
   };
 
@@ -100,61 +90,50 @@ class RegistrationForm extends Component {
     const formErrors = this.validate();
     const {
       data: { email, confirmPassword },
-      errors: { emailState, confirmPasswordState }
+      errors: { emailState, confirmPasswordState },
+      disableButton
     } = this.state;
     if (emailState && confirmPasswordState) {
-      //Call an api here
+      this.setState({ disableButton: !disableButton });
+      const response = await fetch('https://localhost:44333/api/Register', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          Email: email,
+          Password1: confirmPassword
+        })
+      });
+      console.log(response);
 
-      // const response = fetch('https://localhost:44333/api/Register', {
-      //   method: 'POST',
-      //   headers: {
-      //     Accept: 'application/json',
-      //     'Content-type': 'application/json'
-      //   },
-      //   body: JSON.stringify({
-      //     Email: email,
-      //     Password1: confirmPassword
-      //   })
-      // });
-      // console.log(response);
-
-      //const backendResponse = await response.json(); // wait for data to reach database
-      //console.log(backendResponse);
-      // fetch('https://localhost:44333/api/Register', {
-      //   method: 'post',
-      //   headers: {
-      //     Accept: 'application/json',
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify({
-      //     Email: email,
-      //     Password1: confirmPassword
-      //   })
-      // })
-      //   .then(Response => Response.json())
+      const backendResponse = await response.json(); // wait for data to reach database
+      console.log(backendResponse);
+      //   .then(Response => {
+      //     console.log(Response);
+      //     Response.json()})
       //   .then(Result => {
       //     if (Result.Status === 'Ok') this.props.history.push('/admin');
       //     else alert('Sorrrrrry !!!! Un-authenticated User !!!!!');
       //   });
-    } else {
-      console.log('errors are around');
-      this.setState({ formErrors });
-    }
+    } else this.setState({ formErrors });
   };
 
   render() {
     // eslint-disable-next-line
-    const { data, errors } = this.state;
+    const { data, errors, showPassword, disableButton } = this.state;
     return (
       <>
         <p className="text-center mb-4">Access your dashboard</p>
-        <Form onSubmit={this.handleSubmit}>
-          <FormGroup className="mb-3">
+        <Form onSubmit={this.handleSubmit} className="registration">
+          <FormGroup>
             <Input
               id="email"
               name="email"
               type="email"
-              placeholder="Enter Email Address"
+              className={errors.email ? 'has-danger' : null}
+              autoFocus
               required
               valid={errors.emailState === 'valid' ? true : false}
               invalid={errors.email ? true : false}
@@ -162,41 +141,69 @@ class RegistrationForm extends Component {
               onChange={e => this.handleChange(e)}
               onBlur={e => this.handleOnBlurEmail(e)}
             />
-            <FormFeedback>{errors.email}</FormFeedback>
+            <Label htmlFor="email" className="label">
+              Enter Email Address
+            </Label>
           </FormGroup>
 
-          <FormGroup className="mb-3">
+          <FormGroup>
+            <Button
+              id="toggle-password"
+              type="button"
+              onClick={this.togglePassword}
+              aria-label={
+                showPassword
+                  ? 'Hide password.'
+                  : 'Show password as plain text. Warning: this will display your password on the screen.'
+              }
+            >
+              {showPassword ? 'Hide' : 'Show'} password
+            </Button>
             <Input
               id="password"
               name="password"
-              type="password"
-              required
+              type={showPassword ? 'text' : 'password'}
+              autoComplete="new-password"
+              aria-describedby="password-constraints"
+              pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,33}$"
               value={data.password}
+              required
               valid={errors.passwordState === 'valid' ? true : false}
               invalid={errors.password ? true : false}
-              placeholder="Enter Password"
               onChange={e => this.handleChange(e)}
               onBlur={e => this.handleOnBlurPassword(e)}
             />
-            <FormFeedback>{errors.password}</FormFeedback>
+            <Label htmlFor="password" className="label">
+              Enter Password
+            </Label>
+            <FormText
+              id="password-constraints"
+              className={errors.password ? 'text-red' : null}
+            >
+              8 - 32 characters long, with at least one lowercase and uppercase
+              letter, a number and a special character
+            </FormText>
           </FormGroup>
-          <FormGroup className="mb-3">
+          <FormGroup>
             <Input
               id="confirmPassword"
               name="confirmPassword"
               type="password"
+              pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,33}$"
               required
               value={data.confirmPassword}
               valid={errors.confirmPasswordState === 'valid' ? true : false}
               invalid={errors.confirmPassword ? true : false}
-              placeholder="Confirm Password"
               onChange={e => this.handleChange(e)}
               onBlur={e => this.handleOnBlurPassword(e)}
             />
+            <Label htmlFor="confirmPassword" className="label">
+              Confirm Password
+            </Label>
             <FormFeedback>{errors.confirmPassword}</FormFeedback>
           </FormGroup>
-          <Button type="submit" color="primary" block>
-            SIGN UP
+          <Button type="submit" color="primary" disabled={disableButton} block>
+            CREATE ACCOUNT
           </Button>
         </Form>
         <p className="text-muted text-center mt-4">
@@ -208,4 +215,4 @@ class RegistrationForm extends Component {
   }
 }
 
-export default RegistrationForm;
+export default withRouter(RegistrationForm);

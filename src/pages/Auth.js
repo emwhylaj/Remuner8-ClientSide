@@ -26,7 +26,7 @@ import AuthFooter from "components/Footers/AuthFooter.js";
 
 import routes from "routes.js";
 
-const Auth = (props) => {
+const Auth = () => {
   const mainContent = React.useRef(null);
   const location = useLocation();
 
@@ -36,6 +36,7 @@ const Auth = (props) => {
       document.body.classList.remove("bg-default");
     };
   }, []);
+
   React.useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;

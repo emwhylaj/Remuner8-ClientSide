@@ -1,20 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
-import LoginForm from '../components/Forms/LoginForm';
-import Styles from '../assets/scss/forms.module.scss';
+import RegistrationForm from '../../components/Forms/Login-Auth/RegistrationForm';
+import '../../assets/scss/forms.styles.scss';
 
-const Login = props => {
-  console.log(props);
+const RegistrationPage = () => {
   return (
-    <div className={Styles.background}>
-      <Container className="d-flex flex-column justify-content-center h-100">
-        <Row className={`justify-content-center  ${Styles.formBody}`}>
+    <div className="background">
+      <Container className="d-flex flex-column justify-content-center h-100 py-3">
+        <Row className="justify-content-center form-body">
           <Col xs={10} sm={9} md={7} lg={5} xl={5}>
-            <div className={Styles.rounded}>
+            <div className="rounded">
               <div className="card-body">
                 <div className="mb-4">
-                  <div className="text-center">
+                  <div className="text-center instruction">
                     <Link to="/">
                       <img
                         src="/images/default.png"
@@ -26,7 +25,7 @@ const Login = props => {
                   </div>
                   <Row className="justify-content-center">
                     <Col xs={11} sm={10} md={10} lg={10}>
-                      <LoginForm />
+                      <RegistrationForm />
                     </Col>
                   </Row>
                 </div>
@@ -39,4 +38,4 @@ const Login = props => {
   );
 };
 
-export default Login;
+export default RegistrationPage;

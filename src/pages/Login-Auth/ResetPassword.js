@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { Container, Row, Col } from 'reactstrap';
-import RegistrationForm from '../components/Forms/RegistrationForm';
-import Styles from '../assets/scss/forms.module.scss';
+import ResetPassword from '../../components/Forms/Login-Auth/ResetPassword';
+import '../../assets/scss/forms.styles.scss';
 
-const RegistrationPage = (props) => {
+const ResetPasswordPage = () => {
   return (
-    <div className={Styles.background}>
+    <div className="background">
       <Container className="d-flex flex-column justify-content-center h-100 py-3">
-        <Row className={`justify-content-center ${Styles.formBody}`}>
-          <Col xs={10} sm={9} md={7} lg={5} xl={5}>
-            <div className={Styles.rounded}>
+        <Row className="justify-content-center formBody">
+          <Col xs={10} sm={10} md={7} lg={5} xl={5}>
+            <div className="rounded">
               <div className="card-body">
                 <div className="mb-4">
                   <div className="text-center">
@@ -24,8 +24,8 @@ const RegistrationPage = (props) => {
                     </Link>
                   </div>
                   <Row className="justify-content-center">
-                    <Col xs={11} sm={10} md={10} lg={10}>
-                      <RegistrationForm props={props} />
+                    <Col xs={11} sm={11} md={11} lg={11}>
+                      <ResetPassword />
                     </Col>
                   </Row>
                 </div>
@@ -38,4 +38,4 @@ const RegistrationPage = (props) => {
   );
 };
 
-export default RegistrationPage;
+export default ResetPasswordPage;
