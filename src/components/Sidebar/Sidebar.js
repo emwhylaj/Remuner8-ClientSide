@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { NavLink as NavLinkRRD, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { NavLink as NavLinkRRD, Link } from 'react-router-dom';
 // nodejs library to set properties for components
-import { PropTypes } from "prop-types";
-import SimpleBar from "simplebar-react";
+import { PropTypes } from 'prop-types';
+import SimpleBar from 'simplebar-react';
 // import 'simplebar/dist/simplebar';
 
 // Profile Image
-import AdminImg from "../../assets/img/theme/team-1-800x800.jpg";
+import AdminImg from '../../assets/img/theme/adminImage.jfif';
 
 // reactstrap components
 import {
@@ -31,22 +31,22 @@ import {
   Col
 } from 'reactstrap';
 
-const Sidebar = (props) => {
+const Sidebar = props => {
   const [collapseOpen, setCollapseOpen] = useState();
   // verifies if routeName is the one active (in browser input)
-  const activeRoute = (routeName) => {
-    return props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
+  const activeRoute = routeName => {
+    return props.location.pathname.indexOf(routeName) > -1 ? 'active' : '';
   };
   // toggles collapse between opened and closed (true/false)
   const toggleCollapse = () => {
-    setCollapseOpen((data) => !data);
+    setCollapseOpen(data => !data);
   };
   // closes the collapse
   const closeCollapse = () => {
     setCollapseOpen(false);
   };
   // creates the links that appear in the left menu / Sidebar
-  const createLinks = (routes) => {
+  const createLinks = routes => {
     return routes.map((prop, key) => {
       return (
         <NavItem key={key}>
@@ -150,7 +150,7 @@ const Sidebar = (props) => {
                 <span>Support</span>
               </DropdownItem>
               <DropdownItem divider />
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+              <DropdownItem href="/login" onClick={e => e.preventDefault()}>
                 <i className="ni ni-user-run" />
                 <span>Logout</span>
               </DropdownItem>

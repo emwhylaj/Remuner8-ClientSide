@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import "./payslip.css";
 import Logo from "../../assets/img/brand/croppedcover.png";
 
-export default class Payslip extends Component {
+class Payslip extends Component {
     constructor(props) {
         super(props);
         this.printContent = this.printContent.bind(this);
@@ -135,3 +135,5 @@ export default class Payslip extends Component {
         );
     }
 }
+
+export default Payslip;
