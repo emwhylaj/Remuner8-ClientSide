@@ -21,9 +21,6 @@ export default class App extends Component {
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegistrationPage} />
           <Route path="/resetPassword" component={ResetPasswordPage} />
-        </Switch>
-        
-        <Switch>
           <Route path="/admin" component={Dashboard} />
         </Switch>
       </div>

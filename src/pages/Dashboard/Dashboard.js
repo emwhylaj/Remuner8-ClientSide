@@ -8,7 +8,7 @@ import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import Payslip from "components/Payslip/Payslip";
 // image
-import Remuner8Logo from '../assets/img/brand/profile3.png';
+import Remuner8Logo from '../../assets/img/brand/profile3.png';
 
 import routes from "routes.js";
 

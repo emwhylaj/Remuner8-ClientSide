@@ -35,6 +35,8 @@ import {
   Media,
 } from "reactstrap";
 
+import AdminImage from '../../assets/img/theme/adminImage.jfif';
+
 const AdminNavbar = (props) => {
   return (
     <>
@@ -65,10 +67,7 @@ const AdminNavbar = (props) => {
                   <span className="avatar avatar-sm rounded-circle">
                     <img
                       alt="..."
-                      src={
-                        require("../../assets/img/theme/team-4-800x800.jpg")
-                          .default
-                      }
+                      src={AdminImage}
                     />
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
@@ -95,7 +94,7 @@ const AdminNavbar = (props) => {
                   <span>Support</span>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+                <DropdownItem href="/login" onClick={(e) => e.preventDefault()}>
                   <i className="ni ni-user-run" />
                   <span>Logout</span>
                 </DropdownItem>
