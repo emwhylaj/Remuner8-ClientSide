@@ -27,9 +27,15 @@ class LoginForm extends Component {
         password: '',
         isValidPassword: false
       },
-      disableButton: false
+      showPassword: false,
+      loading: false
     };
   }
+
+  togglePassword = () => {
+    const { showPassword } = this.state;
+    this.setState({ showPassword: !showPassword });
+  };
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -48,60 +54,50 @@ class LoginForm extends Component {
     });
   };
 
-  validateEmail = () => {
-    const { email, validate } = this.state;
-    // if (emailRegex.test(email)) {
-    //   validate.emailState = 'has-success';
-    //   validate.isValid = true;
-    // } else {
-    //   validate.emailState = 'has-danger';
-    // }
-    this.setState({ validate });
-  };
-
   handleSubmit = async e => {
     e.preventDefault();
-    // this.validateEmail();
-   // this.validatePassword();
-    const { validate: { isValid, isValidPassword }, email, password, disableButton } = this.state;
-    console.log(this.state);
-    if (isValid && isValidPassword) {
-      this.setState({ disableButton: !disableButton });
-      // Call api to redirect to dashboard
-      const response = await fetch('https://localhost:44333/api/Login', {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          Email: email,
-          Password: password
-        })
-      });
-      console.log(response);
-      const backendResponse = await response.json(); // wait for data to reach database
-      console.log(backendResponse);
+    const { email, password, loading } = this.state;
+    this.setState({ loading: !loading });
+    const response = await fetch('https://localhost:44333/api/Login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        Email: email,
+        Password: password
+      })
+    });
+    const backendResponse = await response.json();
+    if (backendResponse.status === 'Success') this.props.history.push('/admin');
+    else {
+      this.setState({ loading: false });
+      alert(backendResponse.message);
     }
-    else console.log("oga commot");
   };
 
   render() {
-    const { email, validate, formText, password } = this.state;
+    const {
+      email,
+      validate,
+      formText,
+      password,
+      showPassword,
+      loading
+    } = this.state;
     return (
       <>
-        <p className="text-muted text-center mb-4">
-          Don't have an account yet?
+        <p className="text-muted text-center mb-5">
+          Don't have an account yet? <Link to="/register"> Sign Up</Link>
         </p>
-        <Form id="login-form" onSubmit={this.handleSubmit}>
-          <FormGroup className="mb-4">
-            <Label htmlFor="email">Username</Label>
+        <Form className="login" onSubmit={this.handleSubmit}>
+          <FormGroup>
             <Input
               type="email"
               name="email"
               id="email"
               title="Username"
-              placeholder="Username"
               autoComplete="username"
               required
               autoFocus
@@ -110,14 +106,28 @@ class LoginForm extends Component {
               invalid={validate.emailState === 'has-danger'}
               onChange={e => this.handleChange(e)}
             />
+            <Label htmlFor="email" className="label">
+              Username
+            </Label>
             <FormFeedback>Invalid Username/Email Address</FormFeedback>
             <FormText>{formText}</FormText>
           </FormGroup>
 
           <FormGroup>
-            <Label htmlFor="current-password">Password</Label>
+            <Button
+              id="toggle-password"
+              type="button"
+              onClick={this.togglePassword}
+              aria-label={
+                showPassword
+                  ? 'Hide password.'
+                  : 'Show password as plain text. Warning: this will display your password on the screen.'
+              }
+            >
+              {showPassword ? 'Hide' : 'Show'} password
+            </Button>
             <Input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               name="password"
               id="password"
               title="Password"
@@ -129,17 +139,34 @@ class LoginForm extends Component {
               invalid={validate.password === 'has-danger'}
               onChange={e => this.handleChange(e)}
             />
+            <Label htmlFor="current-password" className="label">
+              Password
+            </Label>
             <FormFeedback>Invalid Password</FormFeedback>
           </FormGroup>
 
           <FormGroup>
-            <Button type="submit" id="sign-in" className="mt-4" color="primary" block>
-              SIGN IN
+            <Button
+              type="submit"
+              id="sign-in"
+              color="primary"
+              className={loading ? 'onload' : null}
+              block
+            >
+              {loading ? (
+                <span>
+                  <i className="fas fa-circle-o-notch fa-spin"></i> Loading
+                </span>
+              ) : (
+                'LOG IN'
+              )}
             </Button>
           </FormGroup>
         </Form>
         <div className="d-grid gap-2 mt-4 text-center">
-          <Link to="/resetPassword">Forgot password?</Link>
+          <Link to="/resetPassword" className="forgot-text">
+            Forgot password?
+          </Link>
         </div>
       </>
     );

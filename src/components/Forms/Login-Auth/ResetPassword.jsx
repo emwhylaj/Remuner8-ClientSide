@@ -1,26 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState} from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
 
 const ResetPassword = () => {
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = e => {
     e.preventDefault();
+    setLoading(!loading);
   };
 
   return (
     <>
-      <h3 className="title text-center text-muted">Forgot Password?</h3>
-      <p className="subtitle mt-3 text-center">
+      <p className="title text-center text-muted">Forgot Password?</p>
+      <h4 className="subtitle mt-2 mb-4 text-center">
         Enter your email to get a password reset link
-      </p>
-      <Form onSubmit={(e) => handleSubmit(e)}>
+      </h4>
+      <Form onSubmit={handleSubmit}>
         <FormGroup>
-          <Input type="email" placeholder="Email Address" required />
+          <Input id="email" name="email" type="email" autoComplete="username" autoFocus required />
         </FormGroup>
 
         <FormGroup>
           <Button type="submit" color="primary" block>
-            RESET PASSWORD
+            {loading ? (
+              <span>
+                <i className="fas fa-circle-o-notch fa-spin"></i> LOADING
+              </span>
+            ) : (
+              'RESET PASSWORD'
+            )}
           </Button>
         </FormGroup>
       </Form>
@@ -31,4 +40,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default withRouter(ResetPassword);

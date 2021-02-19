@@ -1,11 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
 .home {
+  font-family: 'Montserrat', sans-serif;
+
   .caption-heading {
     font-size: 60px;
     font-weight: 700;
   }
 
   .caption-text {
-    font-size: 1.5rem;
+    font-size: 1rem;
+  }
+
+  .btn {
+    width: max-content;
+    height: max-content;
   }
 
   .btn-login {

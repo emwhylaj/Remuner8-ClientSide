@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink as NavLinkRRD, Link } from 'react-router-dom';
 // nodejs library to set properties for components
 import { PropTypes } from 'prop-types';
-import SimpleBar from 'simplebar-react';
+//import SimpleBar from 'simplebar-react';
 // import 'simplebar/dist/simplebar';
 
 // Profile Image
@@ -34,9 +34,9 @@ import {
 const Sidebar = props => {
   const [collapseOpen, setCollapseOpen] = useState();
   // verifies if routeName is the one active (in browser input)
-  const activeRoute = routeName => {
-    return props.location.pathname.indexOf(routeName) > -1 ? 'active' : '';
-  };
+  // const activeRoute = routeName => {
+  //   return props.location.pathname.indexOf(routeName) > -1 ? 'active' : '';
+  // };
   // toggles collapse between opened and closed (true/false)
   const toggleCollapse = () => {
     setCollapseOpen(data => !data);
@@ -64,7 +64,7 @@ const Sidebar = props => {
     });
   };
 
-  const { bgColor, routes, logo } = props;
+  const { routes, logo } = props;
   let navbarBrandProps;
   if (logo && logo.innerLink) {
     navbarBrandProps = {

@@ -66,7 +66,7 @@ const AdminNavbar = (props) => {
                 <Media className="align-items-center">
                   <span className="avatar avatar-sm rounded-circle">
                     <img
-                      alt="..."
+                      alt="Admin Img"
                       src={AdminImage}
                     />
                   </span>
@@ -94,7 +94,7 @@ const AdminNavbar = (props) => {
                   <span>Support</span>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem href="/login" onClick={(e) => e.preventDefault()}>
+                <DropdownItem to="/login" tag={Link}>
                   <i className="ni ni-user-run" />
                   <span>Logout</span>
                 </DropdownItem>

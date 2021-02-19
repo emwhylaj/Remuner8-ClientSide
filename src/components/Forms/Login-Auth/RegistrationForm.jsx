@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import {
   Label,
-  Button,
+Button,
   Form,
   FormGroup,
   FormFeedback,
@@ -24,13 +24,19 @@ class RegistrationForm extends Component {
       },
       errors: {},
       showPassword: false,
-      disableButton: false
+      showConfirmPassword: false,
+      loading: false
     };
   }
 
   togglePassword = () => {
     const { showPassword } = this.state;
     this.setState({ showPassword: !showPassword });
+  };
+
+  toggleConfirmPassword = () => {
+    const { showConfirmPassword } = this.state;
+    this.setState({ showConfirmPassword: !showConfirmPassword });
   };
 
   // handle data fields state change
@@ -60,7 +66,10 @@ class RegistrationForm extends Component {
   };
 
   handleOnBlurEmail = () => {
-    const { data: { email }, errors } = this.state;
+    const {
+      data: { email },
+      errors
+    } = this.state;
     if (email === '') errors.email = 'Email cannot be blank';
     if (!errors.email) {
       errors.emailState = 'valid';
@@ -76,6 +85,14 @@ class RegistrationForm extends Component {
     } = this.state;
     if (password.length < 8 || password.length > 32)
       errors.password = 'Password must be 8 - 32 characters long.';
+    if (
+      !password.match(
+        "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-`~()_=+{}\\|'.<>;:,/]).{8,33}$"
+      )
+    ) {
+      errors.password =
+        'Password must be contain at least one lowercase and uppercase letter, a number and a special character';
+    }
     if (confirmPassword !== password)
       errors.confirmPassword = 'Passwords must match.';
     if (!errors.password) {
@@ -90,11 +107,10 @@ class RegistrationForm extends Component {
     const formErrors = this.validate();
     const {
       data: { email, confirmPassword },
-      errors: { emailState, confirmPasswordState },
-      disableButton
+      errors: { emailState, confirmPasswordState }, loading
     } = this.state;
     if (emailState && confirmPasswordState) {
-      this.setState({ disableButton: !disableButton });
+      this.setState({ loading: !loading });
       const response = await fetch('https://localhost:44333/api/Register', {
         method: 'POST',
         headers: {
@@ -106,7 +122,6 @@ class RegistrationForm extends Component {
           Password1: confirmPassword
         })
       });
-      console.log(response);
 
       const backendResponse = await response.json(); // wait for data to reach database
       console.log(backendResponse);
@@ -121,11 +136,17 @@ class RegistrationForm extends Component {
   };
 
   render() {
-    // eslint-disable-next-line
-    const { data, errors, showPassword, disableButton } = this.state;
+    const {
+      data,
+      errors,
+      showPassword,
+      showConfirmPassword,
+      loading
+    } = this.state;
+
     return (
       <>
-        <p className="text-center mb-4">Access your dashboard</p>
+        <p className="text-center text-muted mb-5">Access your dashboard</p>
         <Form onSubmit={this.handleSubmit} className="registration">
           <FormGroup>
             <Input
@@ -144,6 +165,7 @@ class RegistrationForm extends Component {
             <Label htmlFor="email" className="label">
               Enter Email Address
             </Label>
+            <FormFeedback>{errors.email}</FormFeedback>
           </FormGroup>
 
           <FormGroup>
@@ -162,10 +184,12 @@ class RegistrationForm extends Component {
             <Input
               id="password"
               name="password"
+              placeholder="Password"
               type={showPassword ? 'text' : 'password'}
               autoComplete="new-password"
+              title="Enter a password that's 8 - 32 characters long, with at least one lowercase and uppercase letter, a number and a special character"
               aria-describedby="password-constraints"
-              pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,33}$"
+              pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-`~()_=+{}\|'.<>;:,/]).{8,33}$"
               value={data.password}
               required
               valid={errors.passwordState === 'valid' ? true : false}
@@ -184,12 +208,25 @@ class RegistrationForm extends Component {
               letter, a number and a special character
             </FormText>
           </FormGroup>
+
           <FormGroup>
+            <Button
+              id="toggle-confirm-password"
+              type="button"
+              onClick={this.toggleConfirmPassword}
+              aria-label={
+                showConfirmPassword
+                  ? 'Hide password.'
+                  : 'Show password as plain text. Warning: this will display your password on the screen.'
+              }
+            >
+              {showConfirmPassword ? 'Hide' : 'Show'} password
+            </Button>
             <Input
               id="confirmPassword"
               name="confirmPassword"
-              type="password"
-              pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,33}$"
+              type={showConfirmPassword ? 'text' : 'password'}
+              placeholder="confirm"
               required
               value={data.confirmPassword}
               valid={errors.confirmPasswordState === 'valid' ? true : false}
@@ -202,8 +239,13 @@ class RegistrationForm extends Component {
             </Label>
             <FormFeedback>{errors.confirmPassword}</FormFeedback>
           </FormGroup>
-          <Button type="submit" color="primary" block>
-            CREATE ACCOUNT
+          <Button
+            type="submit"
+            color="primary"
+            className={loading ? 'onload' : null}
+            block
+          >
+            {loading ? ( <span><i className="fas fa-circle-o-notch fa-spin"></i> LOADING</span> ) : ( 'CREATE ACCOUNT' )}
           </Button>
         </Form>
         <p className="text-muted text-center mt-4">

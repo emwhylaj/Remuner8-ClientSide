@@ -20,15 +20,14 @@ $background: '../img/theme/loginBackgroundImg.jpg';
   @include centerEverything();
 }
 
-.form-body{
-
-  .instruction{
+.form-body {
+  .instruction {
     height: 110px;
   }
 
-  &::selection{
+  &::selection {
     color: $white;
-  background: $selectionColor;
+    background: $selectionColor;
   }
 }
 
@@ -52,8 +51,13 @@ $background: '../img/theme/loginBackgroundImg.jpg';
   .form-control {
     display: block;
 
+    &::placeholder {
+      opacity: 0;
+    }
+
     &:focus,
-    &:valid {
+    &:valid,
+    &:not(:placeholder-shown) {
       ~ .label {
         @include shrinkLabel();
       }
@@ -75,7 +79,7 @@ $background: '../img/theme/loginBackgroundImg.jpg';
     }
   }
 
-  #toggle-password {
+  #toggle-password, #toggle-confirm-password {
     all: unset;
     background: none;
     border: none;
@@ -94,19 +98,25 @@ $background: '../img/theme/loginBackgroundImg.jpg';
   }
 }
 
-.registration{
-  .form-group:first-child{
+.login {
+  .form-group:first-child {
     margin-bottom: 2.5rem;
   }
-  .form-group:last-child{
+  .form-group:nth-child(2) {
     margin-bottom: 2rem;
   }
-
-  // button:disabled{
-  //     pointer-events: none;
-  // }
 }
 
-.danger{
-  color: red;
+.registration {
+  .form-group {
+    margin-bottom: 2.2rem;
+  }
+  .form-group:first-child {
+    margin-bottom: 2.3rem;
+  }
+}
+
+.onload{
+  pointer-events: none;
+  opacity: 0.5;
 }

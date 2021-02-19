@@ -11,14 +11,14 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className="home h-100 bg-gradient-white">
+      <div className="home bg-gradient-white pb-3">
         <header>
-            <Link className="navbar-brand ml-5" to="/">
-              <img src={logo} alt="Remuner8" width="200" />
+            <Link className="ml-6" to="/">
+              <img src={logo} alt="Remuner8" width="150" />
             </Link>
         </header>
 
-        <main className="h-75">
+        <main className="mt-6">
           <div className="container h-100 d-flex flex-column justify-content-center align-items-center">
             <div className="caption text-blue">
               <h1 className="caption-heading">
@@ -32,7 +32,7 @@ export default class Home extends Component {
                   LOGIN
                 </Link>
                 <Link to="/register" className="btn btn-primary btn-register ml-5">
-                  CREATE ACCOUNT
+                  REGISTER
                 </Link>
               </div>
             </div>
