@@ -202,7 +202,7 @@ class RegistrationForm extends Component {
             </Label>
             <FormFeedback>{errors.confirmPassword}</FormFeedback>
           </FormGroup>
-          <Button type="submit" color="primary" disabled={disableButton} block>
+          <Button type="submit" color="primary" block>
             CREATE ACCOUNT
           </Button>
         </Form>

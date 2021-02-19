@@ -49,36 +49,41 @@ class LoginForm extends Component {
   };
 
   validateEmail = () => {
-    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const { email, validate } = this.state;
-    if (emailRegex.test(email)) {
-      validate.emailState = 'has-success';
-      validate.isValid = true;
-    } else {
-      validate.emailState = 'has-danger';
-    }
+    // if (emailRegex.test(email)) {
+    //   validate.emailState = 'has-success';
+    //   validate.isValid = true;
+    // } else {
+    //   validate.emailState = 'has-danger';
+    // }
     this.setState({ validate });
   };
 
-  validatePassword = () => {
-    // const { password, validate } = this.state;
-    // if (password === defPassword) {
-    //   validate.isValidPassword = true;
-    //   validate.password = 'has-success';
-    // } else validate.password = 'has-danger';
-    // this.setState({ validate });
-  };
-
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    this.validateEmail();
-    this.validatePassword();
-    const { validate: { isValid, isValidPassword }, disableButton
-    } = this.state;
+    // this.validateEmail();
+   // this.validatePassword();
+    const { validate: { isValid, isValidPassword }, email, password, disableButton } = this.state;
+    console.log(this.state);
     if (isValid && isValidPassword) {
       this.setState({ disableButton: !disableButton });
       // Call api to redirect to dashboard
+      const response = await fetch('https://localhost:44333/api/Login', {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          Email: email,
+          Password: password
+        })
+      });
+      console.log(response);
+      const backendResponse = await response.json(); // wait for data to reach database
+      console.log(backendResponse);
     }
+    else console.log("oga commot");
   };
 
   render() {
@@ -87,7 +92,6 @@ class LoginForm extends Component {
       <>
         <p className="text-muted text-center mb-4">
           Don't have an account yet?
-          <Link to="/register"> Sign Up</Link>
         </p>
         <Form id="login-form" onSubmit={this.handleSubmit}>
           <FormGroup className="mb-4">
@@ -117,8 +121,8 @@ class LoginForm extends Component {
               name="password"
               id="password"
               title="Password"
-              pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,33}$"
               autoComplete="current-password"
+              pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-`~()_=+{}\|'.<>;:,/]).{8,33}$"
               required
               value={password}
               valid={validate.password === 'has-success'}
@@ -129,7 +133,7 @@ class LoginForm extends Component {
           </FormGroup>
 
           <FormGroup>
-            <Button id="sign-in" className="mt-4" color="primary" block>
+            <Button type="submit" id="sign-in" className="mt-4" color="primary" block>
               SIGN IN
             </Button>
           </FormGroup>
