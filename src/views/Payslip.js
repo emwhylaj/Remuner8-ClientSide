@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Row } from 'reactstrap';
 import ReactToPrint from 'react-to-print';
-import PayslipNav from './Nav';
-import PayslipBody from './Body';
-import Employee from './Employee';
-import Earnings from './Earnings';
-import Deductions from './Deductions';
-import NetSalary from './NetSalary';
+import PayslipNav from '../components/Payslip/Nav';
+import PayslipBody from '../components/Payslip/Body';
+import Employee from '../components/Payslip/Employee';
+import Earnings from '../components/Payslip/Earnings';
+import Deductions from '../components/Payslip/Deductions';
+import NetSalary from '../components/Payslip/NetSalary';
 
-import './payslip.css';
+import '../assets/css/payslip.css';
 
 class Payslip extends Component {
   render() {

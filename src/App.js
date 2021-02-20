@@ -5,11 +5,11 @@ import LoginPage from './pages/Login-Auth/Login';
 import RegistrationPage from './pages/Login-Auth/Register';
 import ResetPasswordPage from './pages/Login-Auth/ResetPassword';
 import Dashboard from './pages/Dashboard/Dashboard';
-import PaySlip from './components/Payslip/Payslip';
 import './custom.scss';
 import 'assets/plugins/nucleo/css/nucleo.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'assets/scss/argon-dashboard-react.scss';
+
 
 export default class App extends Component {
   static displayName = App.name;
@@ -23,7 +23,6 @@ export default class App extends Component {
           <Route path="/register" component={RegistrationPage} />
           <Route path="/resetPassword" component={ResetPasswordPage} />
           <Route path="/admin" component={Dashboard} />
-          <Route exact path="/admin/payslip" component={PaySlip} />
         </Switch>
       </div>
     );

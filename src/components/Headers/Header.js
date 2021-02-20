@@ -52,7 +52,7 @@ const Header = () => {
                     <p className="mt-3 mb-0 text-muted text-sm">
                       <span className="text-success mr-2">
                         <i className="fa fa-arrow-up" /> 3.48%
-                      </span>{' '}
+                      </span>
                       <span className="text-nowrap">Since last month</span>
                     </p>
                   </CardBody>
@@ -67,7 +67,7 @@ const Header = () => {
                           tag="h5"
                           className="text-uppercase text-muted mb-0"
                         >
-                          PAYE
+                          DEPARTMENTS
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">2,356</span>
                       </div>
@@ -80,7 +80,7 @@ const Header = () => {
                     <p className="mt-3 mb-0 text-muted text-sm">
                       <span className="text-danger mr-2">
                         <i className="fas fa-arrow-down" /> 3.48%
-                      </span>{' '}
+                      </span>
                       <span className="text-nowrap">Since last week</span>
                     </p>
                   </CardBody>
@@ -95,7 +95,7 @@ const Header = () => {
                           tag="h5"
                           className="text-uppercase text-muted mb-0"
                         >
-                          Sales
+                          EXPENDITURE
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">924</span>
                       </div>

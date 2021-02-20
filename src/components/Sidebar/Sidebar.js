@@ -64,7 +64,7 @@ const Sidebar = props => {
     });
   };
 
-  const { routes, logo } = props;
+  const { routes, logo, employeeRoutes, hrRoutes, administrationRoutes } = props;
   let navbarBrandProps;
   if (logo && logo.innerLink) {
     navbarBrandProps = {
@@ -211,37 +211,8 @@ const Sidebar = props => {
           <h6 className="navbar-heading text-muted">Employees</h6>
           {/* Navigation */}
           <Nav className="mb-md-3" navbar>
-            <NavItem>
-              <NavLink href="/admin/employees">
-                <i className="fas fa-users text-blue" />
-                Employees
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="ni ni-building text-blue" />
-                Departments
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="ni ni-chart-bar-32 text-blue" />
-                Salary Structure
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="ni ni-user-run text-blue" />
-                Leaves
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="fas fa-calendar-check text-blue" />
-                Attendance
-              </NavLink>
-            </NavItem>
-            <NavItem>
+            {createLinks(employeeRoutes)}
+            {/* <NavItem>
               <NavLink href="/admin/departments">
                 <i className="fas fa-hourglass-end text-blue" />
                 Overtime and Bonuses
@@ -252,27 +223,16 @@ const Sidebar = props => {
                 <i className="fas fa-thumbs-up text-blue" />
                 Approvals
               </NavLink>
-            </NavItem>
+            </NavItem> */}
           </Nav>
           {/* Divider */}
           <hr className="my-3" />
           {/* Heading */}
           <h6 className="navbar-heading text-muted">HR</h6>
           <Nav className="mb-md-3" navbar>
-            <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="fas fa-file-invoice-dollar text-blue" />
-                Accounts
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="ni ni-spaceship text-blue" />
-                Taxes
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/admin/departments">
+            {createLinks(hrRoutes)}
+            {/* <NavItem>
+              <NavLink href="/admin/payroll">
                 <i className="fas fa-funnel-dollar text-blue" />
                 Payroll
               </NavLink>
@@ -281,18 +241,6 @@ const Sidebar = props => {
               <NavLink href="/admin/departments">
                 <i className="ni ni-money-coins text-blue" />
                 Employee Salary
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="ni ni-support-16 text-blue" />
-                Arrears
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/admin/payslip">
-                <i className="ni ni-book-bookmark text-blue" />
-                Payslip
               </NavLink>
             </NavItem>
             <NavItem>
@@ -306,14 +254,14 @@ const Sidebar = props => {
                 <i className="fas fa-hand-holding-usd text-blue" />
                 Loan Deduction
               </NavLink>
-            </NavItem>
+            </NavItem> */}
           </Nav>
           {/* Divider */}
           <hr className="my-3" />
           {/* Heading */}
           <h6 className="navbar-heading text-muted">Administration</h6>
           <Nav className="mb-md-3" navbar>
-            <NavItem>
+            {/* <NavItem>
               <NavLink href="/admin/departments">
                 <i className="ni ni-spaceship text-blue" />
                 Activities
@@ -336,7 +284,7 @@ const Sidebar = props => {
                 <i className="ni ni-settings-gear-65 text-blue" />
                 Settings
               </NavLink>
-            </NavItem>
+            </NavItem> */}
             <NavItem>
               <NavLink href="/login">
                 <i className="ni ni-curved-next text-blue" />
