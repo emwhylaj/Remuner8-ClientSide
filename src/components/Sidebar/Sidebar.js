@@ -272,7 +272,7 @@ const Sidebar = props => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/admin/departments">
+              <NavLink href="/admin/payroll">
                 <i className="fas fa-funnel-dollar text-blue" />
                 Payroll
               </NavLink>
