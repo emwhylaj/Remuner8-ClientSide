@@ -23,7 +23,7 @@ export default class App extends Component {
           <Route path="/register" component={RegistrationPage} />
           <Route path="/resetPassword" component={ResetPasswordPage} />
           <Route path="/admin" component={Dashboard} />
-          <Route path="/admin/payslip" component={PaySlip} />
+          <Route exact path="/admin/payslip" component={PaySlip} />
         </Switch>
       </div>
     );
