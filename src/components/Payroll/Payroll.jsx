@@ -1,91 +1,26 @@
 import React, { Component } from 'react'
 import './Payroll.css';
+import Header from './Header';
+import EmployeeNameInput from "./EmployeeNameInput";
+import Role from './Role'
+import LeaveStatus from './LeaveStatus'
+import From from './From'
+import To from './To'
+import Search from "./Search";
 
 class Payroll extends Component {
   render() {
     return (
       <div className="page-wrapper">
         <div className="content container-fluid">
-          <div className="page-header">
-            <div className="row align-items-center">
-              <div className="col">
-                <h3 className="page-title">Employee Salary</h3>
-                <ul className="breadcrumb">
-                  <li className="breadcrumb-item">
-                    <a href="index.html">Dashboard</a>
-                  </li>
-                  <li className="breadcrumb-item active">Salary</li>
-                </ul>
-              </div>
-              <div className="col-auto float-right ml-auto">
-                <a
-                  href="#"
-                  className="btn add-btn"
-                  data-toggle="modal"
-                  data-target="#add_salary"
-                >
-                  <i className="fa fa-plus"></i> Add Salary
-                </a>
-              </div>
-            </div>
-          </div>
-
+          <Header/>
           <div className="row filter-row">
-            <div className="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
-              <div className="form-group form-focus">
-                <input type="text" className="form-control floating" />
-                <label className="focus-label">Employee Name</label>
-              </div>
-            </div>
-            <div className="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
-              <div className="form-group form-focus select-focus">
-                <select className="select floating">
-                  <option value=""> -- Select -- </option>
-                  <option value="">Employee</option>
-                  <option value="1">Manager</option>
-                </select>
-                <label className="focus-label">Role</label>
-              </div>
-            </div>
-            <div className="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
-              <div className="form-group form-focus select-focus">
-                <select className="select floating">
-                  <option> -- Select -- </option>
-                  <option> Pending </option>
-                  <option> Approved </option>
-                  <option> Rejected </option>
-                </select>
-                <label className="focus-label">Leave Status</label>
-              </div>
-            </div>
-            <div className="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
-              <div className="form-group form-focus">
-                <div className="cal-icon">
-                  <input
-                    className="form-control floating datetimepicker"
-                    type="text"
-                  />
-                </div>
-                <label className="focus-label">From</label>
-              </div>
-            </div>
-            <div className="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
-              <div className="form-group form-focus">
-                <div className="cal-icon">
-                  <input
-                    className="form-control floating datetimepicker"
-                    type="text"
-                  />
-                </div>
-                <label className="focus-label">To</label>
-              </div>
-            </div>
-            <div className="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
-              <a href="#" className="btn btn-success btn-block">
-                {' '}
-                Search{' '}
-              </a>
-            </div>
+            <EmployeeNameInput/>
+            <Role/>
+            <LeaveStatus/>
+            <From/>
+            <To/>
+           <Search/>
           </div>
 
           <div className="row">
