@@ -11,14 +11,14 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className="home bg-gradient-white pb-3">
+      <main className="home bg-gradient-white pb-3">
         <header>
             <Link className="ml-6" to="/">
               <img src={logo} alt="Remuner8" width="150" />
             </Link>
         </header>
 
-        <main className="mt-6">
+        <section>
           <div className="container h-100 d-flex flex-column justify-content-center align-items-center">
             <div className="caption text-blue">
               <h1 className="caption-heading">
@@ -37,8 +37,8 @@ export default class Home extends Component {
               </div>
             </div>
           </div>
-        </main>
-      </div>
+        </section>
+      </main>
     );
   }
 }
