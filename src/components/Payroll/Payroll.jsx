@@ -1,30 +1,209 @@
 import React, { Component } from 'react'
-import './Payroll.css';
-import Header from './Header';
-import EmployeeNameInput from "./EmployeeNameInput";
+import './Payroll.css'
+import Header from './Header'
+import EmployeeNameInput from './EmployeeNameInput'
 import Role from './Role'
 import LeaveStatus from './LeaveStatus'
-import From from './From'
-import To from './To'
-import Search from "./Search";
+import InputDateFrom from './InputDateFrom'
+import InputDateTo from './InputDateTo'
+import Search from './Search'
+import ShowInput from './ShowInput'
+import SortingEmployee from './SortingEmployee'
 
 class Payroll extends Component {
   render() {
     return (
       <div className="page-wrapper">
         <div className="content container-fluid">
-          <Header/>
+          <Header />
           <div className="row filter-row">
-            <EmployeeNameInput/>
-            <Role/>
-            <LeaveStatus/>
-            <From/>
-            <To/>
-           <Search/>
+            <EmployeeNameInput />
+            <Role />
+            <LeaveStatus />
+            <InputDateFrom />
+            <InputDateTo />
+            <Search />
           </div>
-
+          <ShowInput />
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-sm-12">
+              <table
+                className="table table-striped custom-table datatable dataTable no-footer"
+                id="DataTables_Table_0"
+                role="grid"
+                aria-describedby="DataTables_Table_0_info"
+              >
+                <thead>
+                  <tr role="row">
+                   <SortingEmployee/>
+                    <th
+                      className="sorting"
+                      tabindex="0"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Employee ID: activate to sort column ascending"
+                      style={{width: "53.3333px;"}}
+                    >
+                      Employee ID
+                    </th>
+                    <th
+                      className="sorting"
+                      tabindex="0"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Email: activate to sort column ascending"
+                      style={{width: "136px;"}}
+                    >
+                      Email
+                    </th>
+                    <th
+                      className="sorting"
+                      tabindex="0"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Join Date: activate to sort column ascending"
+                      style={{width: "24.6667px;"}}
+                    >
+                      Join Date
+                    </th>
+                    <th
+                      className="sorting"
+                      tabindex="0"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Role: activate to sort column ascending"
+                      style={{width: "92.6667px;"}}
+                    >
+                      Role
+                    </th>
+                    <th
+                      className="sorting"
+                      tabindex="0"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Salary: activate to sort column ascending"
+                      style={{width: "34px;"}}
+                    >
+                      Salary
+                    </th>
+                    <th
+                      className="sorting"
+                      tabindex="0"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Payslip: activate to sort column ascending"
+                      style={{width: "40px;"}}
+                    >
+                      Payslip
+                    </th>
+                    <th
+                      className="text-right sorting"
+                      tabindex="0"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Action: activate to sort column ascending"
+                      style={{width: "99px;"}}
+                    >
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr role="row" className="odd">
+                    <td className="sorting_1">
+                      <h2 className="table-avatar">
+                        <a href="profile.html" className="avatar">
+                          <img
+                            src="assets/img/profiles/avatar-13.jpg"
+                            alt=""
+                          /></a>
+                          <a href="/">
+                            Bernardo Galaviz <span>Web Developer</span>
+                          </a>
+                        </h2>
+                      </td>
+                      <td>FT-0007</td>
+                      <td>bernardogalaviz@example.com</td>
+                      <td>1 Jan 2014</td>
+                      <td>
+                        <div className="dropdown">
+                          <a
+                            href="/"
+                            className="btn btn-white btn-sm btn-rounded dropdown-toggle"
+                            data-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            Web Developer{' '}
+                          </a>
+                          <div className="dropdown-menu">
+                            <a className="dropdown-item" href="#">
+                              Software Engineer
+                            </a>
+                            <a className="dropdown-item" href="#">
+                              Software Tester
+                            </a>
+                            <a className="dropdown-item" href="#">
+                              Frontend Developer
+                            </a>
+                            <a className="dropdown-item" href="#">
+                              UI/UX Developer
+                            </a>
+                          </div>
+                        </div>
+                      </td>
+                      <td>$38400</td>
+                      <td>
+                        <a
+                          className="btn btn-sm btn-primary"
+                          href="/"
+                        >
+                          Generate Slip
+                        </a>
+                      </td>
+                      <td className="text-right">
+                        <div className="dropdown dropdown-action">
+                          <a
+                            href="/"
+                            className="action-icon dropdown-toggle"
+                            data-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            <i className="material-icons">more_vert</i>
+                          </a>
+                          <div className="dropdown-menu dropdown-menu-right">
+                            <a
+                              className="dropdown-item"
+                              href="/"
+                              data-toggle="modal"
+                              data-target="#edit_salary"
+                            >
+                              <i className="fa fa-pencil m-r-5"></i> Edit
+                            </a>
+                            <a
+                              className="dropdown-item"
+                              href="/"
+                              data-toggle="modal"
+                              data-target="#delete_salary"
+                            >
+                              <i className="fa fa-trash-o m-r-5"></i> Delete
+                            </a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {/* <div className="row">
+            <div className="col-sm-12">
               <div className="table-responsive">
                 <table className="table table-striped custom-table datatable">
                   <thead>
@@ -60,7 +239,6 @@ class Payroll extends Component {
                       <td>
                         <div className="dropdown">
                           <a
-                            href=""
                             className="btn btn-white btn-sm btn-rounded dropdown-toggle"
                             data-toggle="dropdown"
                             aria-expanded="false"
@@ -85,913 +263,33 @@ class Payroll extends Component {
                       </td>
                       <td>$59698</td>
                       <td>
-                        <a
-                          className="btn btn-sm btn-primary"
-                          href="salary-view.html"
-                        >
+                        <a className="btn btn-sm btn-primary" href="">
                           Generate Slip
                         </a>
                       </td>
                       <td className="text-right">
                         <div className="dropdown dropdown-action">
                           <a
-                            href="#"
                             className="action-icon dropdown-toggle"
                             data-toggle="dropdown"
                             aria-expanded="false"
                           >
-                            <i className="material-icons">
-                              more_vert
-                            </i>
+                            <i className="material-icons"></i>
                           </a>
                           <div className="dropdown-menu dropdown-menu-right">
                             <a
                               className="dropdown-item"
-                              href="#"
                               data-toggle="modal"
                               data-target="#edit_salary"
                             >
-                              <i className="fa fa-pencil m-r-5"></i>{' '}
-                              Edit
+                              <i className="fa fa-pencil m-r-5"></i> Edit
                             </a>
                             <a
                               className="dropdown-item"
-                              href="#"
                               data-toggle="modal"
                               data-target="#delete_salary"
                             >
-                              <i className="fa fa-trash-o m-r-5"></i>{' '}
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h2 className="table-avatar">
-                          <a href="profile.html" className="avatar">
-                            <img
-                              src="assets/img/profiles/avatar-09.jpg"
-                              alt=""
-                            />
-                          </a>
-                          <a href="profile.html">
-                            Richard Miles <span>Web Developer</span>
-                          </a>
-                        </h2>
-                      </td>
-                      <td>FT-0002</td>
-                      <td>richardmiles@example.com</td>
-                      <td>1 Jan 2013</td>
-                      <td>
-                        <div className="dropdown">
-                          <a
-                            href=""
-                            className="btn btn-white btn-sm btn-rounded dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            Web Developer{' '}
-                          </a>
-                          <div className="dropdown-menu">
-                            <a className="dropdown-item" href="#">
-                              Software Engineer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Software Tester
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Frontend Developer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              UI/UX Developer
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                      <td>$72000</td>
-                      <td>
-                        <a
-                          className="btn btn-sm btn-primary"
-                          href="salary-view.html"
-                        >
-                          Generate Slip
-                        </a>
-                      </td>
-                      <td className="text-right">
-                        <div className="dropdown dropdown-action">
-                          <a
-                            href="#"
-                            className="action-icon dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <i className="material-icons">
-                              more_vert
-                            </i>
-                          </a>
-                          <div className="dropdown-menu dropdown-menu-right">
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#edit_salary"
-                            >
-                              <i className="fa fa-pencil m-r-5"></i>{' '}
-                              Edit
-                            </a>
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#delete_salary"
-                            >
-                              <i className="fa fa-trash-o m-r-5"></i>{' '}
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h2 className="table-avatar">
-                          <a href="profile.html" className="avatar">
-                            <img
-                              src="assets/img/profiles/avatar-10.jpg"
-                              alt=""
-                            />
-                          </a>
-                          <a href="profile.html">
-                            John Smith <span>Android Developer</span>
-                          </a>
-                        </h2>
-                      </td>
-                      <td>FT-0003</td>
-                      <td>johnsmith@example.com</td>
-                      <td>1 Jan 2013</td>
-                      <td>
-                        <div className="dropdown">
-                          <a
-                            href=""
-                            className="btn btn-white btn-sm btn-rounded dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            Android Developer{' '}
-                          </a>
-                          <div className="dropdown-menu">
-                            <a className="dropdown-item" href="#">
-                              Software Engineer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Software Tester
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Frontend Developer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              UI/UX Developer
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                      <td>$48200</td>
-                      <td>
-                        <a
-                          className="btn btn-sm btn-primary"
-                          href="salary-view.html"
-                        >
-                          Generate Slip
-                        </a>
-                      </td>
-                      <td className="text-right">
-                        <div className="dropdown dropdown-action">
-                          <a
-                            href="#"
-                            className="action-icon dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <i className="material-icons">
-                              more_vert
-                            </i>
-                          </a>
-                          <div className="dropdown-menu dropdown-menu-right">
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#edit_salary"
-                            >
-                              <i className="fa fa-pencil m-r-5"></i>{' '}
-                              Edit
-                            </a>
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#delete_salary"
-                            >
-                              <i className="fa fa-trash-o m-r-5"></i>{' '}
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h2 className="table-avatar">
-                          <a href="profile.html" className="avatar">
-                            <img
-                              src="assets/img/profiles/avatar-05.jpg"
-                              alt=""
-                            />
-                          </a>
-                          <a href="profile.html">
-                            Mike Litorus <span>IOS Developer</span>
-                          </a>
-                        </h2>
-                      </td>
-                      <td>FT-0004</td>
-                      <td>mikelitorus@example.com</td>
-                      <td>1 Jan 2013</td>
-                      <td>
-                        <div className="dropdown">
-                          <a
-                            href=""
-                            className="btn btn-white btn-sm btn-rounded dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            IOS Developer{' '}
-                          </a>
-                          <div className="dropdown-menu">
-                            <a className="dropdown-item" href="#">
-                              Software Engineer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Software Tester
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Frontend Developer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              UI/UX Developer
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                      <td>$59698</td>
-                      <td>
-                        <a
-                          className="btn btn-sm btn-primary"
-                          href="salary-view.html"
-                        >
-                          Generate Slip
-                        </a>
-                      </td>
-                      <td className="text-right">
-                        <div className="dropdown dropdown-action">
-                          <a
-                            href="#"
-                            className="action-icon dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <i className="material-icons">
-                              more_vert
-                            </i>
-                          </a>
-                          <div className="dropdown-menu dropdown-menu-right">
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#edit_salary"
-                            >
-                              <i className="fa fa-pencil m-r-5"></i>{' '}
-                              Edit
-                            </a>
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#delete_salary"
-                            >
-                              <i className="fa fa-trash-o m-r-5"></i>{' '}
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h2 className="table-avatar">
-                          <a href="profile.html" className="avatar">
-                            <img
-                              src="assets/img/profiles/avatar-11.jpg"
-                              alt=""
-                            />
-                          </a>
-                          <a href="profile.html">
-                            Wilmer Deluna <span>Team Leader</span>
-                          </a>
-                        </h2>
-                      </td>
-                      <td>FT-0005</td>
-                      <td>wilmerdeluna@example.com</td>
-                      <td>1 Jan 2013</td>
-                      <td>
-                        <div className="dropdown">
-                          <a
-                            href=""
-                            className="btn btn-white btn-sm btn-rounded dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            Team Leader{' '}
-                          </a>
-                          <div className="dropdown-menu">
-                            <a className="dropdown-item" href="#">
-                              Software Engineer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Software Tester
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Frontend Developer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              UI/UX Developer
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                      <td>$43000</td>
-                      <td>
-                        <a
-                          className="btn btn-sm btn-primary"
-                          href="salary-view.html"
-                        >
-                          Generate Slip
-                        </a>
-                      </td>
-                      <td className="text-right">
-                        <div className="dropdown dropdown-action">
-                          <a
-                            href="#"
-                            className="action-icon dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <i className="material-icons">
-                              more_vert
-                            </i>
-                          </a>
-                          <div className="dropdown-menu dropdown-menu-right">
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#edit_salary"
-                            >
-                              <i className="fa fa-pencil m-r-5"></i>{' '}
-                              Edit
-                            </a>
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#delete_salary"
-                            >
-                              <i className="fa fa-trash-o m-r-5"></i>{' '}
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h2 className="table-avatar">
-                          <a href="profile.html" className="avatar">
-                            <img
-                              src="assets/img/profiles/avatar-12.jpg"
-                              alt=""
-                            />
-                          </a>
-                          <a href="profile.html">
-                            Jeffrey Warden <span>Web Developer</span>
-                          </a>
-                        </h2>
-                      </td>
-                      <td>FT-0006</td>
-                      <td>jeffreywarden@example.com</td>
-                      <td>1 Jan 2013</td>
-                      <td>
-                        <div className="dropdown">
-                          <a
-                            href=""
-                            className="btn btn-white btn-sm btn-rounded dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            Web Developer
-                          </a>
-                          <div className="dropdown-menu">
-                            <a className="dropdown-item" href="#">
-                              Software Engineer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Software Tester
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Frontend Developer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              UI/UX Developer
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                      <td>$45000</td>
-                      <td>
-                        <a
-                          className="btn btn-sm btn-primary"
-                          href="salary-view.html"
-                        >
-                          Generate Slip
-                        </a>
-                      </td>
-                      <td className="text-right">
-                        <div className="dropdown dropdown-action">
-                          <a
-                            href="#"
-                            className="action-icon dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <i className="material-icons">
-                              more_vert
-                            </i>
-                          </a>
-                          <div className="dropdown-menu dropdown-menu-right">
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#edit_salary"
-                            >
-                              <i className="fa fa-pencil m-r-5"></i>{' '}
-                              Edit
-                            </a>
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#delete_salary"
-                            >
-                              <i className="fa fa-trash-o m-r-5"></i>{' '}
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h2 className="table-avatar">
-                          <a href="profile.html" className="avatar">
-                            <img
-                              src="assets/img/profiles/avatar-13.jpg"
-                              alt=""
-                            />
-                          </a>
-                          <a href="profile.html">
-                            Bernardo Galaviz <span>Web Developer</span>
-                          </a>
-                        </h2>
-                      </td>
-                      <td>FT-0007</td>
-                      <td>bernardogalaviz@example.com</td>
-                      <td>1 Jan 2014</td>
-                      <td>
-                        <div className="dropdown">
-                          <a
-                            href=""
-                            className="btn btn-white btn-sm btn-rounded dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            Web Developer{' '}
-                          </a>
-                          <div className="dropdown-menu">
-                            <a className="dropdown-item" href="#">
-                              Software Engineer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Software Tester
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Frontend Developer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              UI/UX Developer
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                      <td>$38400</td>
-                      <td>
-                        <a
-                          className="btn btn-sm btn-primary"
-                          href="salary-view.html"
-                        >
-                          Generate Slip
-                        </a>
-                      </td>
-                      <td className="text-right">
-                        <div className="dropdown dropdown-action">
-                          <a
-                            href="#"
-                            className="action-icon dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <i className="material-icons">
-                              more_vert
-                            </i>
-                          </a>
-                          <div className="dropdown-menu dropdown-menu-right">
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#edit_salary"
-                            >
-                              <i className="fa fa-pencil m-r-5"></i>{' '}
-                              Edit
-                            </a>
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#delete_salary"
-                            >
-                              <i className="fa fa-trash-o m-r-5"></i>{' '}
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h2 className="table-avatar">
-                          <a href="profile.html" className="avatar">
-                            <img
-                              src="assets/img/profiles/avatar-01.jpg"
-                              alt=""
-                            />
-                          </a>
-                          <a href="profile.html">
-                            Lesley Grauer <span>Team Leader</span>
-                          </a>
-                        </h2>
-                      </td>
-                      <td>FT-0008</td>
-                      <td>lesleygrauer@example.com</td>
-                      <td>1 Jun 2015</td>
-                      <td>
-                        <div className="dropdown">
-                          <a
-                            href=""
-                            className="btn btn-white btn-sm btn-rounded dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            Team Leader{' '}
-                          </a>
-                          <div className="dropdown-menu">
-                            <a className="dropdown-item" href="#">
-                              Software Engineer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Software Tester
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Frontend Developer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              UI/UX Developer
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                      <td>$75500</td>
-                      <td>
-                        <a
-                          className="btn btn-sm btn-primary"
-                          href="salary-view.html"
-                        >
-                          Generate Slip
-                        </a>
-                      </td>
-                      <td className="text-right">
-                        <div className="dropdown dropdown-action">
-                          <a
-                            href="#"
-                            className="action-icon dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <i className="material-icons">
-                              more_vert
-                            </i>
-                          </a>
-                          <div className="dropdown-menu dropdown-menu-right">
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#edit_salary"
-                            >
-                              <i className="fa fa-pencil m-r-5"></i>{' '}
-                              Edit
-                            </a>
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#delete_salary"
-                            >
-                              <i className="fa fa-trash-o m-r-5"></i>{' '}
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h2 className="table-avatar">
-                          <a href="profile.html" className="avatar">
-                            <img
-                              src="assets/img/profiles/avatar-16.jpg"
-                              alt=""
-                            />
-                          </a>
-                          <a href="profile.html">
-                            Jeffery Lalor <span>Team Leader</span>
-                          </a>
-                        </h2>
-                      </td>
-                      <td>FT-0009</td>
-                      <td>jefferylalor@example.com</td>
-                      <td>1 Jan 2013</td>
-                      <td>
-                        <div className="dropdown">
-                          <a
-                            href=""
-                            className="btn btn-white btn-sm btn-rounded dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            Team Leader{' '}
-                          </a>
-                          <div className="dropdown-menu">
-                            <a className="dropdown-item" href="#">
-                              Software Engineer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Software Tester
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Frontend Developer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              UI/UX Developer
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                      <td>$73550</td>
-                      <td>
-                        <a
-                          className="btn btn-sm btn-primary"
-                          href="salary-view.html"
-                        >
-                          Generate Slip
-                        </a>
-                      </td>
-                      <td className="text-right">
-                        <div className="dropdown dropdown-action">
-                          <a
-                            href="#"
-                            className="action-icon dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <i className="material-icons">
-                              more_vert
-                            </i>
-                          </a>
-                          <div className="dropdown-menu dropdown-menu-right">
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#edit_salary"
-                            >
-                              <i className="fa fa-pencil m-r-5"></i>{' '}
-                              Edit
-                            </a>
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#delete_salary"
-                            >
-                              <i className="fa fa-trash-o m-r-5"></i>{' '}
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h2 className="table-avatar">
-                          <a href="profile.html" className="avatar">
-                            <img
-                              src="assets/img/profiles/avatar-04.jpg"
-                              alt=""
-                            />
-                          </a>
-                          <a href="profile.html">
-                            Loren Gatlin <span>Android Developer</span>
-                          </a>
-                        </h2>
-                      </td>
-                      <td>FT-0010</td>
-                      <td>lorengatlin@example.com</td>
-                      <td>1 Jan 2013</td>
-                      <td>
-                        <div className="dropdown">
-                          <a
-                            href=""
-                            className="btn btn-white btn-sm btn-rounded dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            Android Developer{' '}
-                          </a>
-                          <div className="dropdown-menu">
-                            <a className="dropdown-item" href="#">
-                              Software Engineer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Software Tester
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Frontend Developer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              UI/UX Developer
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                      <td>$55000</td>
-                      <td>
-                        <a
-                          className="btn btn-sm btn-primary"
-                          href="salary-view.html"
-                        >
-                          Generate Slip
-                        </a>
-                      </td>
-                      <td className="text-right">
-                        <div className="dropdown dropdown-action">
-                          <a
-                            href="#"
-                            className="action-icon dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <i className="material-icons">
-                              more_vert
-                            </i>
-                          </a>
-                          <div className="dropdown-menu dropdown-menu-right">
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#edit_salary"
-                            >
-                              <i className="fa fa-pencil m-r-5"></i>{' '}
-                              Edit
-                            </a>
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#delete_salary"
-                            >
-                              <i className="fa fa-trash-o m-r-5"></i>{' '}
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h2 className="table-avatar">
-                          <a href="profile.html" className="avatar">
-                            <img
-                              src="assets/img/profiles/avatar-03.jpg"
-                              alt=""
-                            />
-                          </a>
-                          <a href="profile.html">
-                            Tarah Shropshire <span>Android Developer</span>
-                          </a>
-                        </h2>
-                      </td>
-                      <td>FT-0011</td>
-                      <td>tarahshropshire@example.com</td>
-                      <td>1 Jan 2013</td>
-                      <td>
-                        <div className="dropdown">
-                          <a
-                            href=""
-                            className="btn btn-white btn-sm btn-rounded dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            Android Developer{' '}
-                          </a>
-                          <div className="dropdown-menu">
-                            <a className="dropdown-item" href="#">
-                              Software Engineer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Software Tester
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              Frontend Developer
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              UI/UX Developer
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                      <td>$92400</td>
-                      <td>
-                        <a
-                          className="btn btn-sm btn-primary"
-                          href="salary-view.html"
-                        >
-                          Generate Slip
-                        </a>
-                      </td>
-                      <td className="text-right">
-                        <div className="dropdown dropdown-action">
-                          <a
-                            href="#"
-                            className="action-icon dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <i className="material-icons">
-                              more_vert
-                            </i>
-                          </a>
-                          <div className="dropdown-menu dropdown-menu-right">
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#edit_salary"
-                            >
-                              <i className="fa fa-pencil m-r-5"></i>{' '}
-                              Edit
-                            </a>
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-toggle="modal"
-                              data-target="#delete_salary"
-                            >
-                              <i className="fa fa-trash-o m-r-5"></i>{' '}
-                              Delete
+                              <i className="fa fa-trash-o m-r-5"></i> Delete
                             </a>
                           </div>
                         </div>
@@ -1001,14 +299,10 @@ class Payroll extends Component {
                 </table>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         {/* <!-- Add Salary Modal --> */}
-        <div
-          id="add_salary"
-          className="modal custom-modal fade"
-          role="dialog"
-        >
+        <div id="add_salary" className="modal custom-modal fade" role="dialog">
           <div
             className="modal-dialog modal-dialog-centered modal-lg"
             role="document"
@@ -1127,11 +421,7 @@ class Payroll extends Component {
           </div>
         </div>
         {/* <!-- Edit Salary Modal --> */}
-        <div
-          id="edit_salary"
-          className="modal custom-modal fade"
-          role="dialog"
-        >
+        <div id="edit_salary" className="modal custom-modal fade" role="dialog">
           <div
             className="modal-dialog modal-dialog-centered modal-md"
             role="document"
@@ -1294,9 +584,7 @@ class Payroll extends Component {
                     </div>
                   </div>
                   <div className="submit-section">
-                    <button className="btn btn-primary submit-btn">
-                      Save
-                    </button>
+                    <button className="btn btn-primary submit-btn">Save</button>
                   </div>
                 </form>
               </div>
@@ -1317,7 +605,7 @@ class Payroll extends Component {
                   <h3>Delete Salary</h3>
                   <p>Are you sure want to delete?</p>
                 </div>
-                <div className="modal-btn delete-action">
+                <div classNamee="modal-btn delete-action">
                   <div className="row">
                     <div className="col-6">
                       <a
@@ -1347,4 +635,4 @@ class Payroll extends Component {
     )
   }
 }
-export default Payroll;
+export default Payroll
