@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 
-export default class ShowImput extends Component {
+export default class ShowInput extends Component {
     render() {
         return (
-            <div class="row">
-            <div class="col-sm-12 col-md-6">
-              <div class="dataTables_length" id="DataTables_Table_0_length">
+            <div className="row">
+            <div className="col-sm-12 col-md-6">
+              <div className="dataTables_length" id="DataTables_Table_0_length">
                 <label>
                   Show{' '}
                   <select
                     name="DataTables_Table_0_length"
                     aria-controls="DataTables_Table_0"
-                    class="custom-select custom-select-sm form-control form-control-sm"
+                    className="custom-select custom-select-sm form-control form-control-sm"
                   >
                     <option value="10">10</option>
                     <option value="25">25</option>
@@ -22,7 +22,7 @@ export default class ShowImput extends Component {
                 </label>
               </div>
             </div>
-            <div class="col-sm-12 col-md-6"></div>
+            <div className="col-sm-12 col-md-6"></div>
           </div>
         )
     }
