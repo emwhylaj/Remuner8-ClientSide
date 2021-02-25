@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
+import { Button, Col } from "reactstrap";
 
 export default class Search extends Component {
   render() {
     return (
-      <div className="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
-        <a href="#" className="btn btn-primary btn-block">
-          {' '}
-          Search{' '}
-        </a>
-      </div>
+      <Col sm={6} md={3} lg={3} xl={2}>
+        <Button color="primary" block>
+          Search
+        </Button>
+      </Col>
     )
   }
 }
