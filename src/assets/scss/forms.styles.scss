@@ -79,7 +79,8 @@ $background: '../img/theme/loginBackgroundImg.jpg';
     }
   }
 
-  #toggle-password, #toggle-confirm-password {
+  #toggle-password,
+  #toggle-confirm-password {
     all: unset;
     background: none;
     border: none;
@@ -116,7 +117,7 @@ $background: '../img/theme/loginBackgroundImg.jpg';
   }
 }
 
-.onload{
+.onload {
   pointer-events: none;
   opacity: 0.5;
 }

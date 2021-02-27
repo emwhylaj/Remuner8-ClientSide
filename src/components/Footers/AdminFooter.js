@@ -16,10 +16,10 @@
 
 */
 /*eslint-disable*/
-import React from "react";
-import {Link} from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 // reactstrap components
-import { Container, Row, Col, Nav, NavItem, NavLink } from "reactstrap";
+import { Row, Col } from 'reactstrap';
 
 const Footer = () => {
   return (
@@ -27,13 +27,10 @@ const Footer = () => {
       <Row className="align-items-center justify-content-xl-between">
         <Col xl="6">
           <div className="copyright text-center text-xl-left text-muted">
-            © {new Date().getFullYear()}{" "}
-            <a
-              className="font-weight-bold ml-1"
-              href="/"
-            >
+            © {new Date().getFullYear()}{' '}
+            <Link className="font-weight-bold ml-1" to="/">
               Remuner8
-            </a>
+            </Link>
           </div>
         </Col>
       </Row>

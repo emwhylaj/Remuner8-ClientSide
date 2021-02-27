@@ -85,16 +85,11 @@ class RegistrationForm extends Component {
     } = this.state;
     if (password.length < 8 || password.length > 32)
       errors.password = 'Password must be 8 - 32 characters long.';
-    if (
-      !password.match(
-        "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-`~()_=+{}\\|'.<>;:,/]).{8,33}$"
-      )
-    ) {
-      errors.password =
-        'Password must be contain at least one lowercase and uppercase letter, a number and a special character';
+    if (!password.match("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-`~()_=+{}\\|'.<>;:,/]).{8,33}$")) {
+      errors.password = 'Password must be contain at least one lowercase and uppercase letter, a number and a special character';
     }
-    if (confirmPassword !== password)
-      errors.confirmPassword = 'Passwords must match.';
+    if (confirmPassword !== password) errors.confirmPassword = 'Passwords must match.';
+    
     if (!errors.password) {
       errors.passwordState = 'valid';
       this.setState({ errors });

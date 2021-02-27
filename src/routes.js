@@ -51,13 +51,6 @@ export const employeeRoutes = [
     icon: 'ni ni-user-run text-blue',
     component: Profile,
     layout: '/admin'
-  },
-  {
-    path: '/attendance',
-    name: 'Attendance',
-    icon: 'fas fa-calendar-check text-blue',
-    component: Profile,
-    layout: '/admin'
   }
 ];
 
@@ -82,13 +75,6 @@ export const hrRoutes = [
     icon: 'fas fa-funnel-dollar text-primary',
     component: Payroll,
     layout: '/admin',
-  },
-  {
-    path: "/user-profile",
-    name: "User Profile",
-    icon: "ni ni-single-02 text-blue",
-    component: Profile,
-    layout: "/admin",
   },
   {
     path: '/arrears',

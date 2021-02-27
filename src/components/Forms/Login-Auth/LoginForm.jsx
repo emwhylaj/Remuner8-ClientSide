@@ -44,8 +44,8 @@ class LoginForm extends Component {
       validate.emailState = '';
       validate.isValid = false;
       this.setState({
-        formText: 'Your username is most likely your email address',
-        validate
+        validate,
+        formText: 'Your username is most likely your email address'
       });
     }
     this.setState({
@@ -58,22 +58,27 @@ class LoginForm extends Component {
     e.preventDefault();
     const { email, password, loading } = this.state;
     this.setState({ loading: !loading });
-    const response = await fetch('https://localhost:44333/api/Login', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        Email: email,
-        Password: password
-      })
-    });
-    const backendResponse = await response.json();
-    if (backendResponse.status === 'Success') this.props.history.push('/admin');
-    else {
-      this.setState({ loading: false });
-      alert(backendResponse.message);
+    try {
+      const response = await fetch('https://localhost:44333/api/Login', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          Email: email,
+          Password: password
+        })
+      });
+      const backendResponse = await response.json();
+      if (backendResponse.status === 'Success') this.props.history.push('/admin/index');
+      else {
+        this.setState({ loading: false });
+        alert(backendResponse.message);
+      }
+    } catch (error) {
+      alert(error)
+      console.log(error);
     }
   };
 

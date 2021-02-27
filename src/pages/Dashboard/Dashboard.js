@@ -6,6 +6,7 @@ import { Container } from 'reactstrap';
 import AdminNavbar from 'components/Navbars/AdminNavbar';
 import AdminFooter from 'components/Footers/AdminFooter';
 import Sidebar from 'components/Sidebar/Sidebar';
+
 // image
 import Remuner8Logo from '../../assets/img/brand/profile3.png';
 
@@ -22,13 +23,13 @@ const Dashboard = props => {
   }, [location]);
 
   const getRoutes = routes => {
-    return routes.map((prop, key) => {
-      if (prop.layout === '/admin') {
+    return routes.map((route, index) => {
+      if (route.layout === '/admin') {
         return (
           <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
+            path={route.layout + route.path}
+            component={route.component}
+            key={index}
           />
         );
       } else {
@@ -68,12 +69,14 @@ const Dashboard = props => {
           {...props}
           brandText={getBrandText(props.location.pathname)}
         />
-        <Switch>
-          {getRoutes(routes)}
-          {getRoutes(employeeRoutes)}
-          {getRoutes(hrRoutes)}
-          {getRoutes(administrationRoutes)}
-        </Switch>
+        <div className="bg-gradient-info" style={{ height: '427px' }}>
+            <Switch>
+              {getRoutes(routes)}
+              {getRoutes(employeeRoutes)}
+              {getRoutes(hrRoutes)}
+              {getRoutes(administrationRoutes)}
+            </Switch>
+        </div>
         <Container fluid>
           <AdminFooter />
         </Container>

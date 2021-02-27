@@ -15,15 +15,36 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useState, useEffect } from 'react';
 
 // reactstrap components
-import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
+import { Card, CardBody, CardTitle, Container, Row, Col } from 'reactstrap';
 
 const Header = () => {
+  const [employeeCount, setEmployeeCount] = useState(0);
+
+  const fetchEmployeeCount = async () => {
+    try {
+      const response = await fetch('https://localhost:44333/api/Employee');
+      const data = await response.json();
+      console.log(response);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const getEmployeeCount = async () => {
+      const numberOfEmployees = await fetchEmployeeCount();
+      setEmployeeCount(numberOfEmployees);
+    }
+    getEmployeeCount();
+  }, [employeeCount])
+
   return (
     <>
-      <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
+      <div className="header pb-8 pt-5 pt-md-8">
         <Container fluid>
           <div className="header-body">
             {/* Card stats */}
@@ -40,7 +61,7 @@ const Header = () => {
                           EMPLOYEES
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                          350,897
+                          {employeeCount || 0}
                         </span>
                       </div>
                       <Col className="col-auto">
