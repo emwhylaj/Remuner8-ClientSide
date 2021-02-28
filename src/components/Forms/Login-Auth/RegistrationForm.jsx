@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import {
   Label,
-Button,
+  Button,
   Form,
   FormGroup,
   FormFeedback,
@@ -85,11 +85,17 @@ class RegistrationForm extends Component {
     } = this.state;
     if (password.length < 8 || password.length > 32)
       errors.password = 'Password must be 8 - 32 characters long.';
-    if (!password.match("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-`~()_=+{}\\|'.<>;:,/]).{8,33}$")) {
-      errors.password = 'Password must be contain at least one lowercase and uppercase letter, a number and a special character';
+    if (
+      !password.match(
+        "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-`~()_=+{}\\|'.<>;:,/]).{8,33}$"
+      )
+    ) {
+      errors.password =
+        'Password must be contain at least one lowercase and uppercase letter, a number and a special character';
     }
-    if (confirmPassword !== password) errors.confirmPassword = 'Passwords must match.';
-    
+    if (confirmPassword !== password)
+      errors.confirmPassword = 'Passwords must match.';
+
     if (!errors.password) {
       errors.passwordState = 'valid';
       this.setState({ errors });
@@ -102,31 +108,41 @@ class RegistrationForm extends Component {
     const formErrors = this.validate();
     const {
       data: { email, confirmPassword },
-      errors: { emailState, confirmPasswordState }, loading
+      errors: { emailState, confirmPasswordState },
+      loading
     } = this.state;
     if (emailState && confirmPasswordState) {
       this.setState({ loading: !loading });
-      const response = await fetch('https://localhost:44333/api/Register', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          Email: email,
-          Password1: confirmPassword
-        })
-      });
 
-      const backendResponse = await response.json(); // wait for data to reach database
-      console.log(backendResponse);
-      //   .then(Response => {
-      //     console.log(Response);
-      //     Response.json()})
-      //   .then(Result => {
-      //     if (Result.Status === 'Ok') this.props.history.push('/admin');
-      //     else alert('Sorrrrrry !!!! Un-authenticated User !!!!!');
-      //   });
+      try {
+        const response = await fetch('https://localhost:44333/api/Register', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            Email: email,
+            Password1: confirmPassword
+          })
+        });
+        const backendResponse = await response.json();
+        console.log(backendResponse);
+        if (backendResponse.status === 'Error') alert(backendResponse.message);
+        switch (backendResponse.message) {
+          case 'User Already Exists':
+            this.props.history.push('/login');
+            break;
+          case 'User Created Successfully':
+            this.props.history.push('/admin/index');
+            break;
+          default:
+            alert(backendResponse.message);
+            break;
+        }
+      } catch (error) {
+        alert(error);
+      }
     } else this.setState({ formErrors });
   };
 
@@ -240,7 +256,13 @@ class RegistrationForm extends Component {
             className={loading ? 'onload' : null}
             block
           >
-            {loading ? ( <span><i className="fas fa-circle-o-notch fa-spin"></i> LOADING</span> ) : ( 'CREATE ACCOUNT' )}
+            {loading ? (
+              <span>
+                <i className="fas fa-circle-o-notch fa-spin"></i> LOADING
+              </span>
+            ) : (
+              'CREATE ACCOUNT'
+            )}
           </Button>
         </Form>
         <p className="text-muted text-center mt-4">

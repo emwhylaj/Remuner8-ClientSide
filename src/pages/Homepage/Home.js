@@ -11,31 +11,28 @@ export default class Home extends Component {
 
   render() {
     return (
-      <main className="home bg-gradient-white pb-3">
-        <header>
-            <Link className="ml-6" to="/">
-              <img src={logo} alt="Remuner8" width="150" />
-            </Link>
+      <main className="home bg-gradient-white d-flex flex-column">
+        <header className="pl-5">
+          <img src={logo} alt="Remuner8" width="100" />
         </header>
 
-        <section>
-          <div className="container h-100 d-flex flex-column justify-content-center align-items-center">
-            <div className="caption text-blue">
-              <h1 className="caption-heading">
-                REMUNER8 PAYROLL PORTAL
-              </h1>
-              <p className="caption-text">
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nesciunt maiores, nostrum error enim dolor expedita adipisci obcaecati sunt magni, quaerat voluptate dolores suscipit illo odio a, delectus exercitationem voluptatem.
-              </p>
-              <div className="caption-buttons d-flex w-50 mt-5">
-                <Link className="btn btn-outline-primary btn-login" to="/login">
-                  LOGIN
-                </Link>
-                <Link to="/register" className="btn btn-primary btn-register ml-5">
-                  REGISTER
-                </Link>
-              </div>
-            </div>
+        <section className="container align-self-center h-50 d-flex flex-column justify-content-center align-items-center">
+          <div className="caption text-blue">
+            <h1 className="caption-heading">REMUNER8 PAYROLL PORTAL</h1>
+            <p className="caption-text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
+              nesciunt maiores, nostrum error enim dolor expedita adipisci
+              obcaecati sunt magni, quaerat voluptate dolores suscipit illo odio
+              a, delectus exercitationem voluptatem.
+            </p>
+          </div>
+          <div className="caption-buttons d-flex w-100">
+            <Link className="btn btn-outline-primary btn-login" to="/login">
+              LOGIN
+            </Link>
+            <Link to="/register" className="btn btn-primary btn-register ml-5">
+              REGISTER
+            </Link>
           </div>
         </section>
       </main>
