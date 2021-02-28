@@ -6,6 +6,7 @@ import { Container } from 'reactstrap';
 import AdminNavbar from 'components/Navbars/AdminNavbar';
 import AdminFooter from 'components/Footers/AdminFooter';
 import Sidebar from 'components/Sidebar/Sidebar';
+import { MainContent } from 'components/Dashboard/MainContent';
 
 // image
 import Remuner8Logo from '../../assets/img/brand/profile3.png';
@@ -64,23 +65,25 @@ const Dashboard = props => {
           imgAlt: 'Remuner8 Logo'
         }}
       />
-      <div className="main-content" ref={mainContent}>
+      {/* <div
+        className="bg-gradient-info position-relative"
+        style={{ height: '427px' }}
+      /> */}
+      <MainContent className="main-content" ref={mainContent}>
         <AdminNavbar
           {...props}
           brandText={getBrandText(props.location.pathname)}
         />
-        <div className="bg-gradient-info" style={{ height: '427px' }}>
-            <Switch>
-              {getRoutes(routes)}
-              {getRoutes(employeeRoutes)}
-              {getRoutes(hrRoutes)}
-              {getRoutes(administrationRoutes)}
-            </Switch>
-        </div>
+        <Switch>
+          {getRoutes(routes)}
+          {getRoutes(employeeRoutes)}
+          {getRoutes(hrRoutes)}
+          {getRoutes(administrationRoutes)}
+        </Switch>
         <Container fluid>
           <AdminFooter />
         </Container>
-      </div>
+      </MainContent>
     </>
   );
 };

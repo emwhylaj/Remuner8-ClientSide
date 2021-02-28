@@ -67,17 +67,17 @@ class LoginForm extends Component {
         },
         body: JSON.stringify({
           Email: email,
-          Password: password
+          Password1: password
         })
       });
       const backendResponse = await response.json();
-      if (backendResponse.status === 'Success') this.props.history.push('/admin/index');
-      else {
-        this.setState({ loading: false });
-        alert(backendResponse.message);
-      }
+      backendResponse.status === 'Success'
+        ? setTimeout(() => this.props.history.push('/admin/index'), 2000)
+        : this.setState({ loading: false }, () =>
+            alert(backendResponse.message)
+          );
     } catch (error) {
-      alert(error)
+      alert(error.message);
       console.log(error);
     }
   };

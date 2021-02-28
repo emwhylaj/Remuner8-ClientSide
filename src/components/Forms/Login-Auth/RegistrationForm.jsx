@@ -127,14 +127,15 @@ class RegistrationForm extends Component {
           })
         });
         const backendResponse = await response.json();
-        console.log(backendResponse);
         if (backendResponse.status === 'Error') alert(backendResponse.message);
+
         switch (backendResponse.message) {
           case 'User Already Exists':
             this.props.history.push('/login');
             break;
           case 'User Created Successfully':
-            this.props.history.push('/admin/index');
+            alert(backendResponse.message);
+            setTimeout(() => this.props.history.push('/admin/index'), 2000);
             break;
           default:
             alert(backendResponse.message);

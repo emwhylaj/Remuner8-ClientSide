@@ -1,14 +1,12 @@
-import React, { Component } from 'react'
-import { Button, Col } from "reactstrap";
+import React from 'react';
+import { Col } from 'reactstrap';
 
-export default class Search extends Component {
-  render() {
-    return (
-      <Col sm={6} md={3} lg={3} xl={2}>
-        <Button color="primary" block>
-          Search
-        </Button>
-      </Col>
-    )
-  }
-}
+import { Button } from '../Custom-Buttons/Button';
+
+const Search = () => (
+  <Col sm={6} md={3} lg={3} xl={2}>
+    <Button block>Search</Button>
+  </Col>
+);
+
+export default Search;

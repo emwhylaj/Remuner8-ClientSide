@@ -34,9 +34,10 @@ import {
 const Sidebar = props => {
   const [collapseOpen, setCollapseOpen] = useState();
   // verifies if routeName is the one active (in browser input)
-  // const activeRoute = routeName => {
-  //   return props.location.pathname.indexOf(routeName) > -1 ? 'active' : '';
-  // };
+  // eslint-disable-next-line no-unused-vars
+  const activeRoute = routeName => {
+    return props.location.pathname.indexOf(routeName) > -1 ? 'active' : '';
+  };
   // toggles collapse between opened and closed (true/false)
   const toggleCollapse = () => {
     setCollapseOpen(data => !data);
@@ -64,7 +65,13 @@ const Sidebar = props => {
     });
   };
 
-  const { routes, logo, employeeRoutes, hrRoutes, administrationRoutes } = props;
+  const {
+    routes,
+    logo,
+    employeeRoutes,
+    hrRoutes,
+    administrationRoutes
+  } = props;
   let navbarBrandProps;
   if (logo && logo.innerLink) {
     navbarBrandProps = {
@@ -106,6 +113,7 @@ const Sidebar = props => {
         ) : null}
         {/* User */}
         <Nav className="align-items-center d-md-none">
+          {/* Bell icon */}
           <UncontrolledDropdown nav>
             <DropdownToggle nav className="nav-link-icon">
               <i className="ni ni-bell-55" />
@@ -125,7 +133,7 @@ const Sidebar = props => {
             <DropdownToggle nav>
               <Media className="align-items-center">
                 <span className="avatar avatar-sm rounded-circle">
-                  <img alt="..." src={AdminImg} />
+                  <img alt="Your Avatar" src={AdminImg} />
                 </span>
               </Media>
             </DropdownToggle>
@@ -203,6 +211,7 @@ const Sidebar = props => {
               </InputGroupAddon>
             </InputGroup>
           </Form>
+
           {/* Navigation */}
           <Nav navbar>{createLinks(routes)}</Nav>
           {/* Divider */}
@@ -212,85 +221,21 @@ const Sidebar = props => {
           {/* Navigation */}
           <Nav className="mb-md-3" navbar>
             {createLinks(employeeRoutes)}
-            {/* <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="fas fa-hourglass-end text-blue" />
-                Overtime and Bonuses
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="fas fa-thumbs-up text-blue" />
-                Approvals
-              </NavLink>
-            </NavItem> */}
           </Nav>
+
           {/* Divider */}
           <hr className="my-3" />
           {/* Heading */}
           <h6 className="navbar-heading text-muted">HR</h6>
           <Nav className="mb-md-3" navbar>
             {createLinks(hrRoutes)}
-            {/* <NavItem>
-              <NavLink href="/admin/payroll">
-                <i className="fas fa-funnel-dollar text-blue" />
-                Payroll
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="ni ni-money-coins text-blue" />
-                Employee Salary
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="fas fa-money-bill-alt text-blue" />
-                Payroll Items
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="fas fa-hand-holding-usd text-blue" />
-                Loan Deduction
-              </NavLink>
-            </NavItem> */}
           </Nav>
           {/* Divider */}
           <hr className="my-3" />
           {/* Heading */}
           <h6 className="navbar-heading text-muted">Administration</h6>
           <Nav className="mb-md-3" navbar>
-            {/* <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="ni ni-spaceship text-blue" />
-                Activities
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="ni ni-key-25 text-blue" />
-                Authentication
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="fas fa-user text-blue" />
-                Users
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/admin/departments">
-                <i className="ni ni-settings-gear-65 text-blue" />
-                Settings
-              </NavLink>
-            </NavItem> */}
-            <NavItem>
-              <NavLink href="/login">
-                <i className="ni ni-curved-next text-blue" />
-                Log Out
-              </NavLink>
-            </NavItem>
+            {createLinks(administrationRoutes)}
           </Nav>
         </Collapse>
       </Container>
