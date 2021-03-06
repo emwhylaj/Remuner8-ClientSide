@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
-import LoginForm from '../../components/Forms/Login-Auth/LoginForm';
-import '../../assets/scss/forms.styles.scss';
+import LoginForm from 'components/Forms/Login-Auth/LoginForm';
+import 'assets/scss/forms.styles.scss';
 
 const Login = () => {
   return (

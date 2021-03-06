@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { useLocation, Route, Switch } from 'react-router-dom';
+import { useLocation, Route, Switch, Redirect } from 'react-router-dom';
 // reactstrap components
 import { Container } from 'reactstrap';
 // core components
@@ -8,8 +8,8 @@ import AdminFooter from 'components/Footers/AdminFooter';
 import Sidebar from 'components/Sidebar/Sidebar';
 import { MainContent } from 'components/Dashboard/MainContent';
 
-// image
-import Remuner8Logo from '../../assets/img/brand/profile3.png';
+// Anon image
+import Remuner8Logo from 'assets/img/brand/profile3.png';
 
 import routes, { employeeRoutes, hrRoutes, administrationRoutes } from 'routes';
 
@@ -33,9 +33,7 @@ const Dashboard = props => {
             key={index}
           />
         );
-      } else {
-        return null;
-      }
+      } else return null;
     });
   };
 
@@ -79,6 +77,11 @@ const Dashboard = props => {
           {getRoutes(employeeRoutes)}
           {getRoutes(hrRoutes)}
           {getRoutes(administrationRoutes)}
+          <Route
+            path="/employee-profile"
+            component=""
+          />
+          <Redirect from="/admin" to="/admin/index" />
         </Switch>
         <Container fluid>
           <AdminFooter />

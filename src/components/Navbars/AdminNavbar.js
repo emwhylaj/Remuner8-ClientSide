@@ -15,8 +15,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 // reactstrap components
 import {
   DropdownMenu,
@@ -32,12 +32,12 @@ import {
   Navbar,
   Nav,
   Container,
-  Media,
-} from "reactstrap";
+  Media
+} from 'reactstrap';
 
 import AdminImage from '../../assets/img/theme/adminImage.jfif';
 
-const AdminNavbar = (props) => {
+const AdminNavbar = props => {
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -65,15 +65,10 @@ const AdminNavbar = (props) => {
               <DropdownToggle className="pr-0" nav>
                 <Media className="align-items-center">
                   <span className="avatar avatar-sm rounded-circle">
-                    <img
-                      alt="Admin Img"
-                      src={AdminImage}
-                    />
+                    <img alt="Admin Img" src={AdminImage} />
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
-                    <span className="mb-0 text-sm font-weight-bold">
-                      Admin
-                    </span>
+                    <span className="mb-0 text-sm font-weight-bold">Admin</span>
                   </Media>
                 </Media>
               </DropdownToggle>

@@ -10,7 +10,7 @@ import {
 } from 'reactstrap';
 import { Link, withRouter } from 'react-router-dom';
 
-import '../../../assets/scss/forms.styles.scss';
+import 'assets/scss/forms.styles.scss';
 
 class LoginForm extends Component {
   static displayName = LoginForm.name;

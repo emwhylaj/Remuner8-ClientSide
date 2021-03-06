@@ -1,12 +1,12 @@
-import Index from './views/Index.js';
-import Profile from './views/Profile';
-import Employees from './views/Employees';
-import Departments from './views/Departments';
-import SalaryStructure from './views/SalaryStructure';
-import Payslip from './views/Payslip';
-import Payroll from './views/Payroll';
+import Index from 'pages/Dashboard/Index.js';
+import AdminProfile from 'pages/Dashboard/AdminProfile';
+import Employees from 'pages/Dashboard/Employees';
+import Departments from 'pages/Dashboard/Departments';
+import SalaryStructure from 'pages/Dashboard/SalaryStructure';
+import Payslip from 'pages/Dashboard/Payslip';
+import Payroll from 'pages/Dashboard/Payroll';
 
-import Custom404 from './views/404';
+import Custom404 from 'pages/404';
 
 const routes = [
   {
@@ -20,7 +20,7 @@ const routes = [
     path: '/user-profile',
     name: 'User Profile',
     icon: 'ni ni-single-02 text-blue',
-    component: Profile,
+    component: AdminProfile,
     layout: '/admin'
   }
 ];
@@ -30,21 +30,21 @@ export const employeeRoutes = [
     path: '/employees',
     name: 'Employees',
     icon: 'fas fa-users text-blue',
-    component: Custom404,
+    component: Employees,
     layout: '/admin'
   },
   {
     path: '/departments',
     name: 'Departments',
     icon: 'ni ni-building text-blue',
-    component: Custom404,
+    component: Departments,
     layout: '/admin'
   },
   {
     path: '/salary-structure',
     name: 'Salary Structure',
     icon: 'ni ni-chart-bar-32 text-blue',
-    component: Custom404,
+    component: SalaryStructure,
     layout: '/admin'
   },
   {
@@ -104,13 +104,6 @@ export const hrRoutes = [
     name: 'Payslip',
     icon: 'ni ni-book-bookmark text-blue',
     component: Payslip,
-    layout: '/admin'
-  },
-  {
-    path: '/employee-salary',
-    name: 'Employee Salary',
-    icon: 'ni ni-money-coins text-blue',
-    component: Custom404,
     layout: '/admin'
   },
   {

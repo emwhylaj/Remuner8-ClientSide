@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
-import ResetPassword from '../../components/Forms/Login-Auth/ResetPassword';
-import '../../assets/scss/forms.styles.scss';
+import ResetPassword from 'components/Forms/Login-Auth/ResetPassword';
+import 'assets/scss/forms.styles.scss';
 
 const ResetPasswordPage = () => {
   return (

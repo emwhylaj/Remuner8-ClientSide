@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
-import RegistrationForm from '../../components/Forms/Login-Auth/RegistrationForm';
-import '../../assets/scss/forms.styles.scss';
+import RegistrationForm from 'components/Forms/Login-Auth/RegistrationForm';
+import 'assets/scss/forms.styles.scss';
 
 const RegistrationPage = () => {
   return (

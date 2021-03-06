@@ -155,7 +155,7 @@ var colors = {
     info: "#11cdef",
     success: "#2dce89",
     danger: "#f5365c",
-    warning: "#fb6340",
+    warning: "#A34562",
   },
   black: "#12263F",
   white: "#FFFFFF",
@@ -200,7 +200,7 @@ function chartOptions() {
             borderCapStyle: "rounded",
           },
           rectangle: {
-            backgroundColor: colors.theme["warning"],
+            backgroundColor: colors.theme["primary"],
           },
           arc: {
             backgroundColor: colors.theme["primary"],
@@ -332,12 +332,12 @@ let chartExample1 = {
       datasets: [
         {
           label: "Performance",
-          data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
+          data: [0, 20, 0, 30, 15, 40, 20, 60, 60],
         },
       ],
     };
   },
-  data2: (canvas) => {
+  data2: () => {
     return {
       labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
       datasets: [
@@ -350,7 +350,7 @@ let chartExample1 = {
   },
 };
 
-// Example 2 of Chart inside src/views/Index.js (Total orders - Card)
+// Example 2 of Chart inside src/views/Index.js (Total working hours - Card)
 let chartExample2 = {
   options: {
     scales: {

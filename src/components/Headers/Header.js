@@ -13,7 +13,6 @@ const Header = () => {
       return data;
     } catch (error) {
       console.log(error);
-      alert(error.message);
     }
   };
 
@@ -23,7 +22,7 @@ const Header = () => {
       setEmployeeCount(numberOfEmployees);
     };
     getEmployeeCount();
-  }, [employeeCount]);
+  }, []);
 
   return (
     <>

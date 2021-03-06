@@ -33,7 +33,7 @@ import {
 // core components
 import UserHeader from "components/Headers/UserHeader.js";
 
-const Profile = () => {
+const AdminProfile = () => {
   return (
     <>
       <UserHeader />
@@ -50,7 +50,7 @@ const Profile = () => {
                         alt="..."
                         className="rounded-circle"
                         src={
-                          require("../assets/img/theme/team-4-800x800.jpg")
+                          require("assets/img/theme/team-4-800x800.jpg")
                             .default
                         }
                       />
@@ -330,4 +330,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default AdminProfile;
