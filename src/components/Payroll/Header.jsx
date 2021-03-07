@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button } from '../Custom-Buttons/Button';
+import { Link } from "react-router-dom";
+import Button from '../Custom-Buttons/Button';
 
 const Header = props => (
   <>
@@ -9,7 +10,7 @@ const Header = props => (
           <h3 className="page-title">Employee Salary</h3>
           <ul className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="/">Dashboard</a>
+              <Link to="/admin">Dashboard</Link>
             </li>
             <li className="breadcrumb-item active">Salary</li>
           </ul>

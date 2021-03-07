@@ -127,11 +127,6 @@ table.dataTable thead > tr > td.sorting {
   float: right;
   text-align: right;
 }
-
-.page-wrapper {
-  padding-top: 70px;
-}
-
 .card-header {
   background-color: #fff;
 }

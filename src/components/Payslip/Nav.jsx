@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import ReactToPrint from 'react-to-print';
 
 const Nav = props => (
@@ -8,7 +9,7 @@ const Nav = props => (
         <h3 className="page-title">Payslip</h3>
         <ul className="breadcrumb">
           <li className="breadcrumb-item">
-            <a href="index.html">Dashboard</a>
+            <Link to="/admin">Dashboard</Link>
           </li>
           <li className="breadcrumb-item active">Payslip</li>
         </ul>

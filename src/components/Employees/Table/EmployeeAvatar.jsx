@@ -18,8 +18,9 @@ const Avatar = styled(Link)`
   white-space: nowrap;
 `;
 
-const AvatarLink = styled(Link)`
-  color: #525f7f;
+export const AvatarLink = styled(Link)`
+  color: #1f1f1f;
+  text-align: left;
 `;
 
 const Image = styled.img`
@@ -42,7 +43,7 @@ const EmployeeAvatar = () => {
       <Avatar to="/admin/employee-profile">
         <Image src={Avi} />
       </Avatar>
-      <AvatarLink to="/admin/employee-profile" className="text-left">
+      <AvatarLink to="/admin/employee-profile">
         John Doe
         <Job>Product Designer</Job>
       </AvatarLink>

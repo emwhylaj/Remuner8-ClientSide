@@ -18,7 +18,7 @@ export default class Home extends Component {
 
         <section className="container align-self-center h-50 d-flex flex-column justify-content-center align-items-center">
           <div className="caption text-blue">
-            <h1 className="caption-heading">REMUNER8 PAYROLL PORTAL</h1>
+            <h1 className="caption-heading floating">REMUNER8 PAYROLL PORTAL</h1>
             <p className="caption-text">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
               nesciunt maiores, nostrum error enim dolor expedita adipisci

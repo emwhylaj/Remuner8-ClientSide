@@ -70,13 +70,15 @@ a.btn.add-btn {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-input, button, a {
-    transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
-    -ms-transition: all 0.4s ease;
-    -webkit-transition: all 0.4s ease;
-    margin-bottom: 10px;
+input,
+button,
+a {
+  transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  margin-bottom: 10px;
 }
 .form-control {
   display: block;
@@ -121,18 +123,13 @@ select.select {
   height: calc(1.6em + 1.25rem + 2px);
   border: solid 1px #8898aa;
 }
-.focus-label {
-  color: #676767;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 38px;
-}
 .form-focus .form-control {
   height: 50px;
   padding: 21px 12px 6px;
 }
 .form-control {
   border-color: #e3e3e3;
+  color: #1f1f1f !important;
   box-shadow: none;
   font-size: 15px;
   height: 44px;
@@ -159,9 +156,6 @@ a:focus {
   text-decoration: none;
   outline: none;
 }
-.page-wrapper {
-  padding-top: 6em;
-}
 .page-wrapper > .content {
   padding: 30px;
 }
@@ -184,8 +178,3 @@ a:focus {
   margin-right: 30px;
   margin-left: 50px;
 }
-/* .action-icon {
-  color: #777;
-  font-size: 18px;
-  display: inline-block;
-} */

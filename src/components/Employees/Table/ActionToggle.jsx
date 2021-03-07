@@ -6,14 +6,19 @@ import {
   DropdownItem
 } from 'reactstrap';
 
-const ActionToggle = () => {
+const ActionToggle = ({ direction }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
   return (
-    <Dropdown isOpen={dropdownOpen} toggle={toggle} direction="left">
-      <DropdownToggle className="mr-0">
+    <Dropdown isOpen={dropdownOpen} toggle={toggle} direction={direction}>
+      <DropdownToggle
+        className="mr-0 no-btn"
+        style={{
+          boxShadow: 'unset'
+        }}
+      >
         <i className="fa fa-ellipsis-v"></i>
       </DropdownToggle>
       <DropdownMenu>

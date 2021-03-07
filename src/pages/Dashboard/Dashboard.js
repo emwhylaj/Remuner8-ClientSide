@@ -10,7 +10,7 @@ import { MainContent } from 'components/Dashboard/MainContent';
 // Anon image
 import Remuner8Logo from 'assets/img/brand/profile3.png';
 // Sidebar menu items
-import routes from 'routes';
+import routes from 'variables/routes';
 import Custom404 from 'pages/404';
 
 const Dashboard = props => {
@@ -44,14 +44,20 @@ const Dashboard = props => {
   };
 
   const getBrandText = () => {
-    let brandText = 'Brand';
-    routes.forEach(route => {
-      for (let i = 0; i < route.length; i++) {
-        let pathname = route[i].layout + route[i].path;
-        if (props.location.pathname === pathname) brandText = route[i].name;
-      }
-    });
-    return brandText
+    let brandText = null;
+    // routes.forEach(route => {
+    //   for (let i = 0; i < route.length; i++) {
+    //     let pathname = route[i].layout + route[i].path;
+    //     if (props.location.pathname === pathname) brandText = route[i].name;
+    //   }
+    // });
+    // return brandText
+    for (let i = 0; i < dashboardRoutes.length; i++) {
+      let pathname = dashboardRoutes[i].layout + dashboardRoutes[i].path;
+      if (props.location.pathname === pathname)
+        brandText = dashboardRoutes[i].name;
+    }
+    return brandText;
   };
 
   return (
