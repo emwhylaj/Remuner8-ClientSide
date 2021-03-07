@@ -1,20 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Avi from '../../assets/img/theme/adminImage.jfif';
+import Avi from 'assets/img/theme/adminImage.jfif';
 
-const AvatarContainer = styled.h2`
-  display: inline-flex;
-  align-items: center;
-  font-size: inherit;
-  font-weight: 400;
-  margin: 0;
-  padding: 0;
-  vertical-align: middle;
-  white-space: nowrap;
-`;
-
-const AvatarLink = styled(Link)`
+const Avatar = styled(Link)`
   border-radius: 50%;
   display: inline-block;
   font-weight: 500;
@@ -27,10 +16,10 @@ const AvatarLink = styled(Link)`
   width: 38px;
   position: relative;
   white-space: nowrap;
+`;
 
-  &:hover {
-    color: #5e72e4;
-  }
+const AvatarLink = styled(Link)`
+  color: #525f7f;
 `;
 
 const Image = styled.img`
@@ -41,7 +30,7 @@ const Image = styled.img`
 `;
 
 const Job = styled.span`
-  color: #888;
+  color: #525f7f;
   display: block;
   font-size: 12px;
   margin-top: 3px;
@@ -49,15 +38,15 @@ const Job = styled.span`
 
 const EmployeeAvatar = () => {
   return (
-    <AvatarContainer>
-      <AvatarLink>
+    <h2 className="table-avatar">
+      <Avatar to="/admin/employee-profile">
         <Image src={Avi} />
-      </AvatarLink>
-      <AvatarLink>
+      </Avatar>
+      <AvatarLink to="/admin/employee-profile" className="text-left">
         John Doe
-        <Job></Job>
+        <Job>Product Designer</Job>
       </AvatarLink>
-    </AvatarContainer>
+    </h2>
   );
 };
 

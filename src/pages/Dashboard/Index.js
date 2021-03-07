@@ -29,7 +29,7 @@ import {
 
 import Header from 'components/Headers/Header.js';
 import SummaryCards from 'components/Dashboard/SummaryCards';
-import EmployeeTable from 'components/Employees/EmployeeTable';
+import EmployeeTable from 'components/Employees/Table/EmployeeTable';
 
 const Index = props => {
   const [activeNav, setActiveNav] = useState(1);

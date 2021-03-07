@@ -64,10 +64,9 @@ const Sidebar = props => {
       );
     });
   };
-
   const {
-    routes,
     logo,
+    dashboardRoutes,
     employeeRoutes,
     hrRoutes,
     administrationRoutes
@@ -213,7 +212,7 @@ const Sidebar = props => {
           </Form>
 
           {/* Navigation */}
-          <Nav navbar>{createLinks(routes)}</Nav>
+          <Nav navbar>{createLinks(dashboardRoutes)}</Nav>
           {/* Divider */}
           <hr className="my-3" />
           {/* Heading */}

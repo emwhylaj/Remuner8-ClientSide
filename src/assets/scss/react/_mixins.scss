@@ -1,3 +1,5 @@
-button:focus, :focus {
+button:focus,
+:focus {
+  color: blue;
   outline: none;
 }

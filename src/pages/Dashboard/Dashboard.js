@@ -7,15 +7,21 @@ import AdminNavbar from 'components/Navbars/AdminNavbar';
 import AdminFooter from 'components/Footers/AdminFooter';
 import Sidebar from 'components/Sidebar/Sidebar';
 import { MainContent } from 'components/Dashboard/MainContent';
-
 // Anon image
 import Remuner8Logo from 'assets/img/brand/profile3.png';
-
-import routes, { employeeRoutes, hrRoutes, administrationRoutes } from 'routes';
+// Sidebar menu items
+import routes from 'routes';
+import Custom404 from 'pages/404';
 
 const Dashboard = props => {
   const mainContent = useRef(null);
   const location = useLocation();
+  const {
+    0: dashboardRoutes,
+    1: employeeRoutes,
+    2: hrRoutes,
+    3: administrationRoutes
+  } = routes;
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -38,22 +44,21 @@ const Dashboard = props => {
   };
 
   const getBrandText = () => {
-    for (let i = 0; i < routes.length; i++) {
-      if (
-        props.location.pathname.indexOf(routes[i].layout + routes[i].path) !==
-        -1
-      ) {
-        return routes[i].name;
+    let brandText = 'Brand';
+    routes.forEach(route => {
+      for (let i = 0; i < route.length; i++) {
+        let pathname = route[i].layout + route[i].path;
+        if (props.location.pathname === pathname) brandText = route[i].name;
       }
-    }
-    return 'Brand';
+    });
+    return brandText
   };
 
   return (
     <>
       <Sidebar
         {...props}
-        routes={routes}
+        dashboardRoutes={dashboardRoutes}
         employeeRoutes={employeeRoutes}
         hrRoutes={hrRoutes}
         administrationRoutes={administrationRoutes}
@@ -63,25 +68,15 @@ const Dashboard = props => {
           imgAlt: 'Remuner8 Logo'
         }}
       />
-      {/* <div
-        className="bg-gradient-info position-relative"
-        style={{ height: '427px' }}
-      /> */}
       <MainContent className="main-content" ref={mainContent}>
-        <AdminNavbar
-          {...props}
-          brandText={getBrandText(props.location.pathname)}
-        />
+        <AdminNavbar {...props} brandText={getBrandText()} />
         <Switch>
-          {getRoutes(routes)}
+          {getRoutes(dashboardRoutes)}
           {getRoutes(employeeRoutes)}
           {getRoutes(hrRoutes)}
           {getRoutes(administrationRoutes)}
-          <Route
-            path="/employee-profile"
-            component=""
-          />
-          <Redirect from="/admin" to="/admin/index" />
+          <Redirect exact from="/admin" to="/admin/index" />
+          <Route path="/admin/employee-profile" component={Custom404} />
         </Switch>
         <Container fluid>
           <AdminFooter />

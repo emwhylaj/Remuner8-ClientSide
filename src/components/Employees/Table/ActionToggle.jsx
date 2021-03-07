@@ -12,8 +12,8 @@ const ActionToggle = () => {
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
   return (
-    <Dropdown isOpen={dropdownOpen} toggle={toggle} direction="down">
-      <DropdownToggle>
+    <Dropdown isOpen={dropdownOpen} toggle={toggle} direction="left">
+      <DropdownToggle className="mr-0">
         <i className="fa fa-ellipsis-v"></i>
       </DropdownToggle>
       <DropdownMenu>
