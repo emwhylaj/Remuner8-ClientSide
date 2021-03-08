@@ -1,11 +1,11 @@
-# Remuner8-ClientSide
+﻿![](https://github.com/MorganJay/Remuner8/blob/master/public/images/default.png)
+
 Built with React.js and Creative Tim
 
 ### What is this repository for? ###
 
 * Code files for the client side of the Remuner8 payroll application written in React.js
 * Version 1.0.0
-* Click here to [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
 ### Setup and Configuration ###
 
@@ -13,8 +13,6 @@ Built with React.js and Creative Tim
 * Open the folder, then the terminal with Ctrl + `
 * Run `npm install` to install dependencies (first time only)
 * Run `npm start` to launch the application in your browser
-* Add `/admin` to the end of localhost in the address bar to open the admin dashboard, there are links within the dashboard to navigate back to the homepage and login pages
-
 
 ### Contribution guidelines ###
 
