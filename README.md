@@ -1,3 +1,6 @@
+# Remuner8-ClientSide
+Built with React.js and Creative Tim
+
 ### What is this repository for? ###
 
 * Code files for the client side of the Remuner8 payroll application written in React.js
