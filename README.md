@@ -1,4 +1,4 @@
-﻿![](https://bitbucket.org/Morganjay/remuner8-clientside/src/master/public/images/default.png)
+﻿![](https://github.com/MorganJay/Remuner8/blob/master/public/images/default.png)
 
 ### What is this repository for? ###
 
