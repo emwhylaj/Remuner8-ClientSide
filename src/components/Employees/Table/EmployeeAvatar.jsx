@@ -20,7 +20,7 @@ const Avatar = styled(Link)`
 
 export const AvatarLink = styled(Link)`
   color: #1f1f1f;
-  text-align: left;
+  display: inline-grid;
 `;
 
 const Image = styled.img`
@@ -32,7 +32,6 @@ const Image = styled.img`
 
 const Job = styled.span`
   color: #525f7f;
-  display: block;
   font-size: 12px;
   margin-top: 3px;
 `;

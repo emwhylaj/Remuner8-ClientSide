@@ -6,13 +6,13 @@ const sortStyles = css`
   position: relative;
 
   &::before {
-    right: 1em;
+    right: 0;
     content: '\\2191';
     position: absolute;
     bottom: 0.6em;
     display: block;
     opacity: 0.5;
-    font-size: 15px;
+    font-size: 1rem;
   }
 
   &::after {
@@ -22,14 +22,14 @@ const sortStyles = css`
     bottom: 0.6em;
     display: block;
     opacity: 0.5;
-    font-size: 15px;
+    font-size: 1rem;
   }
 `;
 
 const getSortStyles = props => (props.sort ? sortStyles : '');
 
 const StyledTh = styled.th`
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.05em;
   border-bottom: 2px solid #dee2e6;
   font-size: 0.9375rem;

@@ -11,7 +11,6 @@ const CardContainer = styled(Card)`
 
 const SummaryCards = () => {
   return (
-    <>
       <CardGroup>
         <CardContainer>
           <CardBody>
@@ -85,7 +84,6 @@ const SummaryCards = () => {
           </CardBody>
         </CardContainer>
       </CardGroup>
-    </>
   );
 };
 

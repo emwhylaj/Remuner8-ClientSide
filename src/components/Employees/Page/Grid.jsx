@@ -24,7 +24,7 @@ const Grid = props => {
         }
       );
   }, []);
-  console.log(state.employees);
+
   return (
     <Row>
       {state.loading && !state.employees ? (

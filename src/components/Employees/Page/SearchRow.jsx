@@ -9,7 +9,7 @@ const options = [ "Web Developer", "IOS Developer", "Product Designer", "Android
 
 const SearchRow = () => {
   return (
-    <Row>
+    <Row className="mb-2-md">
       <Col sm={6} md={3}>
         <FormInput label="Employee ID" type="text" />
       </Col>

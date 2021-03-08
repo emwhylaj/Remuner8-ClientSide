@@ -17,12 +17,10 @@ const EmployeeTable = props => {
   ];
 
   return (
-    <>
-      <Table className="align-items-center table-flush" responsive>
-        <TableHeader columns={columns} />
-        <TableBody columns={columns} />
-      </Table>
-    </>
+    <Table className="align-items-center table-flush " responsive hover>
+      <TableHeader columns={columns} />
+      <TableBody columns={columns} />
+    </Table>
   );
 };
 

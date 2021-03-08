@@ -13,9 +13,9 @@ const TableBody = () => {
   return (
     <tbody className="text-center">
       <tr>
-        <td>
+        <th scope="row">
           <Avatar />
-        </td>
+        </th>
         <td>FT-0001</td>
         <td>email@email.com</td>
         <td>+2349109032388</td>

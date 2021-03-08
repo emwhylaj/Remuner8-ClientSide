@@ -7,7 +7,6 @@ import Chart from 'chart.js';
 import { Line, Bar } from 'react-chartjs-2';
 // reactstrap components
 import {
-  Button,
   Card,
   CardHeader,
   CardBody,
@@ -29,9 +28,9 @@ import {
 
 import Header from 'components/Headers/Header.js';
 import SummaryCards from 'components/Dashboard/SummaryCards';
-import EmployeeTable from 'components/Employees/Table/EmployeeTable';
+import EmployeeCard from 'components/Dashboard/EmployeeCard';
 
-const Index = props => {
+const Index = () => {
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState('data1');
   if (window.Chart) {
@@ -134,27 +133,9 @@ const Index = props => {
         </Row>
 
         {/* Employee card with table */}
-        <Row className="mt-5">
+        <Row className="mt-5 justify-content-center">
           <Col className="mb-5 mb-xl-0" xl="8">
-            <Card className="shadow">
-              <CardHeader className="border-0">
-                <Row className="align-items-center">
-                  <div className="col">
-                    <h3 className="mb-0">Employees</h3>
-                  </div>
-                  <div className="col text-right">
-                    <Button
-                      color="primary"
-                      onClick={() => props.history.push('/admin/employees')}
-                      size="sm"
-                    >
-                      See all
-                    </Button>
-                  </div>
-                </Row>
-              </CardHeader>
-              <EmployeeTable />
-            </Card>
+            <EmployeeCard />
           </Col>
         </Row>
       </Container>
