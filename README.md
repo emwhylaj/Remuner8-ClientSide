@@ -1,4 +1,4 @@
-﻿![](https://github.com/MorganJay/Remuner8/blob/master/public/images/default.png)
+﻿![](https://res.cloudinary.com/dhw0kymph/image/upload/v1615372245/Remuner8_fwt9rm.jpg)
 
 # What is this repository for? #
 
