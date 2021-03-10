@@ -4,7 +4,7 @@ import Home from './pages/Homepage/Home';
 import LoginPage from './pages/Login-Auth/Login';
 import RegistrationPage from './pages/Login-Auth/Register';
 import ResetPasswordPage from './pages/Login-Auth/ResetPassword';
-import Dashboard from './pages/Dashboard/Dashboard';
+import Dashboard from 'pages/Dashboard/Dashboard';
 import './custom.scss';
 import 'assets/plugins/nucleo/css/nucleo.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';

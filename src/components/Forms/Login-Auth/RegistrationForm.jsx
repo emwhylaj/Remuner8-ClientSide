@@ -10,7 +10,7 @@ import {
   Input
 } from 'reactstrap';
 
-import '../../../assets/scss/forms.styles.scss';
+import 'assets/scss/forms.styles.scss';
 
 class RegistrationForm extends Component {
   constructor(props) {

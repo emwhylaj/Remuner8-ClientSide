@@ -1,14 +1,24 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
+const LoaderRing = () => (
+  <Container>
+    <Loader>
+      <Span />
+    </Loader>
+  </Container>
+);
+
+export default LoaderRing;
+
 const animate = keyframes`
-  from{
-    transform: rotate(0deg);
-  }
-  to{
-    transform: rotate(360deg);
-  }
-`;
+    from{
+      transform: rotate(0deg);
+    }
+    to{
+      transform: rotate(360deg);
+    }
+  `;
 
 const Container = styled.div`
   position: relative;
@@ -63,16 +73,6 @@ const Span = styled.span`
   left: 20px;
   right: 20px;
   bottom: 20px;
-  background: rgb(17, 162, 239);
+  background: rgb(17, 134, 239);
   border-radius: 50%;
 `;
-
-const LoaderRing = () => (
-  <Container>
-    <Loader>
-      <Span />
-    </Loader>
-  </Container>
-);
-
-export default LoaderRing;

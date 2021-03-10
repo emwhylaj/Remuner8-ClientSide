@@ -1,7 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Avi from 'assets/img/theme/adminImage.jfif';
+
+const EmployeeAvatar = ({ avatar, name }) => {
+  return (
+    <h2 className="table-avatar">
+      <Avatar to="/admin/employee-profile">
+        <Image src={avatar} />
+      </Avatar>
+      <AvatarLink to="/admin/employee-profile">
+        {name}
+        <Job>{name}</Job>
+      </AvatarLink>
+    </h2>
+  );
+};
+
+export default EmployeeAvatar;
 
 const Avatar = styled(Link)`
   border-radius: 50%;
@@ -35,19 +50,3 @@ const Job = styled.span`
   font-size: 12px;
   margin-top: 3px;
 `;
-
-const EmployeeAvatar = () => {
-  return (
-    <h2 className="table-avatar">
-      <Avatar to="/admin/employee-profile">
-        <Image src={Avi} />
-      </Avatar>
-      <AvatarLink to="/admin/employee-profile">
-        John Doe
-        <Job>Product Designer</Job>
-      </AvatarLink>
-    </h2>
-  );
-};
-
-export default EmployeeAvatar;

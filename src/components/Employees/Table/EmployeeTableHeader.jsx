@@ -1,6 +1,52 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+const EmployeeTableHeader = props => {
+  // const raiseSort = path => {
+  //   const sortColumn = { ...props.sortColumn };
+  //   if (sortColumn.path === path)
+  //     sortColumn.order = sortColumn.order === 'asc' ? 'desc' : 'asc';
+  //   else {
+  //     sortColumn.path = path;
+  //     sortColumn.order = 'asc';
+  //   }
+  //   props.onSort(sortColumn);
+  // };
+
+  // const renderSortIcon = column => {
+  //   if (column.path !== props.sortColumn.path) return null;
+  //   if (props.sortColumn.order === 'asc')
+  //     return <i className="fa fa-sort-asc" aria-hidden="true"></i>;
+  // };
+
+  const sanitizeHeaders = () => {
+    let headers = props.headers().slice(1); // take off id
+    headers.splice(1,1); // take off avatar from headers
+    headers = headers.map(header => header.replace("_", " "))
+    return headers;
+  };
+
+  return (
+    <thead className="pl-5">
+      <tr>
+        {sanitizeHeaders().map((header, index) => (
+          <StyledTh
+            tabIndex={0}
+            key={index}
+            sort={header}
+          >
+            {header}
+          </StyledTh>
+        ))}
+        <StyledTh>Action</StyledTh>
+      </tr>
+    </thead>
+  );
+};
+
+export default EmployeeTableHeader;
+
+// Styled components
 const sortStyles = css`
   cursor: pointer;
   position: relative;
@@ -35,39 +81,3 @@ const StyledTh = styled.th`
   font-size: 0.9375rem;
   ${getSortStyles}
 `;
-
-const EmployeeTableHeader = props => {
-  const raiseSort = path => {
-    const sortColumn = { ...props.sortColumn };
-    if (sortColumn.path === path)
-      sortColumn.order = sortColumn.order === 'asc' ? 'desc' : 'asc';
-    else {
-      sortColumn.path = path;
-      sortColumn.order = 'asc';
-    }
-    props.onSort(sortColumn);
-  };
-  const renderSortIcon = column => {
-    if (column.path !== props.sortColumn.path) return null;
-    if (props.sortColumn.order === 'asc')
-      return <i className="fa fa-sort-asc" aria-hidden="true"></i>;
-  };
-
-  return (
-    <thead className="text-center">
-      <tr>
-        {props.columns.map(column => (
-          <StyledTh
-            tabIndex={0}
-            key={column.path || column.key}
-            sort={column.path}
-          >
-            {column.label}
-          </StyledTh>
-        ))}
-      </tr>
-    </thead>
-  );
-};
-
-export default EmployeeTableHeader;

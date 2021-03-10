@@ -22,7 +22,7 @@ const Header = () => {
       setEmployeeCount(numberOfEmployees);
     };
     getEmployeeCount();
-  }, [employeeCount]);
+  }, []);
 
   return (
     <>

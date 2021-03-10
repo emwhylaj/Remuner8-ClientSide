@@ -1,30 +1,36 @@
 import React from 'react';
 import ActionToggle from './ActionToggle';
 import Avatar from './EmployeeAvatar';
+import DummyImage from 'assets/img/theme/team-1-800x800.jpg';
 
-const TableBody = () => {
-  const createKey = (item, column) => item._id + (column.path || column.key);
+const TableBody = ({ body, toggleEditModal, toggleDeleteModal }) => {
+  // const createKey = (item, column) => item._id + (column.path || column.key);
 
-  const renderCell = (item, column) => {
-    if (column.content) return column.content(item);
+  // const renderCell = (item, column) => {
+  //   if (column.content) return column.content(item);
 
-    //return _.get(item, column.path);
-  };
+  //   //return _.get(item, column.path);
+  // };
   return (
-    <tbody className="text-center">
-      <tr>
-        <th scope="row">
-          <Avatar />
-        </th>
-        <td>FT-0001</td>
-        <td>email@email.com</td>
-        <td>+2349109032388</td>
-        <td>12th July, 2021</td>
-        <td>IT</td>
-        <td>
-          <ActionToggle />
-        </td>
-      </tr>
+    <tbody>
+      {body.map(employee => (
+        <tr key={employee.id}>
+          <th scope="row">
+            <Avatar avatar={DummyImage} name={employee.name} />
+          </th>
+          <td>{employee.employee_id}</td>
+          <td>{employee.email}</td>
+          <td>{employee.phone_number}</td>
+          <td>{employee.join_date}</td>
+          <td>{employee.department}</td>
+          <td>
+            <ActionToggle
+              toggleEditModal={toggleEditModal}
+              toggleDeleteModal={toggleDeleteModal}
+            />
+          </td>
+        </tr>
+      ))}
     </tbody>
   );
 };

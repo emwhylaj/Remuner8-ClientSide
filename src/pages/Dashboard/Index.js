@@ -29,19 +29,25 @@ import {
 import Header from 'components/Headers/Header.js';
 import SummaryCards from 'components/Dashboard/SummaryCards';
 import EmployeeCard from 'components/Dashboard/EmployeeCard';
+import EditEmployeeModal from 'components/Employees/Modals/EditEmployee';
+import DeleteEmployeeModal from 'components/Employees/Modals/DeleteEmployee';
 
 const Index = () => {
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState('data1');
-  if (window.Chart) {
-    parseOptions(Chart, chartOptions());
-  }
+  const [editModalOpen, setEditModalState] = useState(false);
+  const [deleteModalOpen, setDeleteModalState] = useState(false);
+  const toggleEditModal = () => setEditModalState(!editModalOpen);
+  const toggleDeleteModal = () => setDeleteModalState(!editModalOpen);
+
+  if (window.Chart) parseOptions(Chart, chartOptions());
 
   const toggleNavs = (e, index) => {
     e.preventDefault();
     setActiveNav(index);
     setChartExample1Data('data' + index);
   };
+
   return (
     <>
       <Header />
@@ -134,11 +140,19 @@ const Index = () => {
 
         {/* Employee card with table */}
         <Row className="mt-5 justify-content-center">
-          <Col className="mb-5 mb-xl-0" xl="8">
-            <EmployeeCard />
+          <Col className="mb-5 mb-xl-0">
+            <EmployeeCard
+              toggleEditModal={toggleEditModal}
+              toggleDeleteModal={toggleDeleteModal}
+            />
           </Col>
         </Row>
       </Container>
+      <EditEmployeeModal isOpen={editModalOpen} toggle={toggleEditModal} />
+      <DeleteEmployeeModal
+        isOpen={deleteModalOpen}
+        toggle={toggleDeleteModal}
+      />
     </>
   );
 };

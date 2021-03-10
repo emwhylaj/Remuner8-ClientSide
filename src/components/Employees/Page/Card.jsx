@@ -5,24 +5,22 @@ import styled from 'styled-components';
 import { AvatarLink } from 'components/Employees/Table/EmployeeAvatar';
 import ActionToggle from 'components/Employees/Table/ActionToggle';
 
-const Card = ({ imgSrc, data: { name, job } }) => {
-  return (
-    <ProfileWidget>
-      <ProfileImg>
-        <Avatar to="/admin/employee/profile">
-          <img src={imgSrc} alt="A fine employee" />
-        </Avatar>
-      </ProfileImg>
-      <Dropdown>
-        <ActionToggle direction="left" />
-      </Dropdown>
-      <UserName>
-        <AvatarLink to="/admin/employee/profile">{name}</AvatarLink>
-      </UserName>
-      <div className="small text-muted">{job}</div>
-    </ProfileWidget>
-  );
-};
+const Card = ({ imgSrc, employee: { name, employee_id } }) => (
+  <ProfileWidget>
+    <ProfileImg>
+      <Avatar to="/admin/employee/profile">
+        <img src={imgSrc} alt="A fine employee" />
+      </Avatar>
+    </ProfileImg>
+    <Dropdown>
+      <ActionToggle direction="left" />
+    </Dropdown>
+    <UserName>
+      <AvatarLink to="/admin/employee/profile">{name}</AvatarLink>
+    </UserName>
+    <div className="small text-muted">{employee_id}</div>
+  </ProfileWidget>
+);
 
 export default Card;
 
