@@ -7,49 +7,48 @@
 // Creates a vertically aligned version of the navbar
 .navbar-vertical {
   box-shadow: $navbar-vertical-box-shadow;
-  color: rgba(#FFFFFF, 1.0);
+  color: rgba(#ffffff, 1);
   transition: color 0.3s ease;
 
-  // &::-webkit-scrollbar,
-  // &::-webkit-scrollbar-thumb {
-  //   width: 10px;
-  //   border-radius: 13px;
-  //   background-clip: padding-box;
-  // }
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-thumb {
+    width: 10px;
+    border-radius: 13px;
+    background-clip: padding-box;
+  }
 
-  // &::-webkit-scrollbar-thumb {
-  //   box-shadow: inset 0 0 0 10px;
-  // }
+  &::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 0 10px;
+  }
 
   // &:hover {
-  //   color: rgba(233, 0, 0, 0.3);
+  //   color: grey;
   // }
 
-  // // Scroll bar
-  // &::-webkit-scrollbar {
-  //   width: 10px;
-  //   // background-color: #F5F5F5;
-  // }
+  // Scroll bar
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
 
-  // /* Track */
-  // &::-webkit-scrollbar-track {
-  //   background-color: transparent;
-  //   border-radius: 10px;
-  // }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 10px;
+  }
 
-  // /* Handle */
-  // &::-webkit-scrollbar-thumb {
-  //   // background-color: transparent;
-  //   border-radius: 10px;
-  //   background-clip: padding-box;
-  //   border: 10px solid transparent;
-  //   box-shadow: inset 0 0 0 10px;
-  // }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-clip: padding-box;
+    box-shadow: inset 0 0 0 10px;
+    // border: 10px solid rgba(128, 128, 128, 0.473);
+  }
 
-  // /* Handle on hover */
-  // &::-webkit-scrollbar-thumb:hover {
-  //   // background-color: rgba(32, 32, 32, 0.3);
-  // }
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    // background-color: rgba(32, 32, 32, 0.3);
+    //  border: 10px solid grey;
+  }
 
   .navbar {
     border-width: 0 0 1px 0;
