@@ -5,15 +5,15 @@ import Card from 'components/Employees/Page/Card';
 import DummyImage from 'assets/img/theme/team-1-800x800.jpg';
 import LoaderRing from 'components/Loading/Loader';
 
-const Grid = props => {
+const Grid = ({ loading, employees, toggleEditModal, toggleDeleteModal }) => {
   return (
     <Row>
-      {props.loading && !props.employees ? (
+      {loading && !employees ? (
         <LoaderRing />
       ) : (
-        props.employees.map((employee, index) => (
-          <Col xs={12} sm={6} md={4} lg={4} xl={3} key={index}>
-            <Card imgSrc={DummyImage} employee={employee} key={employee.id} />
+        employees.map((employee, index) => (
+          <Col xs={12} sm={6} md={6} lg={4} xl={3} key={index}>
+            <Card imgSrc={DummyImage} employee={employee} key={employee.id} toggleEditModal={toggleEditModal} toggleDeleteModal={toggleDeleteModal} />
           </Col>
         ))
       )}

@@ -29,8 +29,9 @@ import {
 import Header from 'components/Headers/Header.js';
 import SummaryCards from 'components/Dashboard/SummaryCards';
 import EmployeeCard from 'components/Dashboard/EmployeeCard';
-import EditEmployeeModal from 'components/Employees/Modals/EditEmployee';
-import DeleteEmployeeModal from 'components/Employees/Modals/DeleteEmployee';
+import CustomModal from 'components/Modals/CustomModal';
+import DeleteModal from 'components/Modals/DeleteModal';
+import EmployeeForm from 'components/Employees/Components/EmployeeForm';
 
 const Index = () => {
   const [activeNav, setActiveNav] = useState(1);
@@ -148,11 +149,20 @@ const Index = () => {
           </Col>
         </Row>
       </Container>
-      <EditEmployeeModal isOpen={editModalOpen} toggle={toggleEditModal} />
-      <DeleteEmployeeModal
+      <CustomModal
+        isOpen={editModalOpen}
+        toggle={toggleEditModal}
+        label="Edit Employee"
+      >
+        <EmployeeForm readOnly />
+      </CustomModal>
+      <DeleteModal
         isOpen={deleteModalOpen}
         toggle={toggleDeleteModal}
-      />
+        label="Delete Employee"
+      >
+        Are you sure you want to delete this employee?
+      </DeleteModal>
     </>
   );
 };

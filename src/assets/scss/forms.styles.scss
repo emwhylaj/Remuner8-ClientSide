@@ -50,8 +50,6 @@ $background: '../img/theme/loginBackgroundImg.jpg';
   position: relative;
 
   .form-control {
-    display: block;
-
     &::placeholder {
       opacity: 0;
     }

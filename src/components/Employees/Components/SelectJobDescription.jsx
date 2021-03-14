@@ -6,7 +6,7 @@ const SelectJobDescription = props => {
       <select
         className="select select2-hidden-accessible"
         data-select2-id="19"
-        tabindex="-1"
+        tabIndex="-1"
         aria-hidden="true"
       >
         <option data-select2-id="21">Select Designation</option>
@@ -25,7 +25,7 @@ const SelectJobDescription = props => {
             className="select2-selection select2-selection--single"
             aria-haspopup="true"
             aria-expanded="false"
-            tabindex="0"
+            tabIndex="0"
             aria-labelledby="select2-vvus-container"
           >
             <span
