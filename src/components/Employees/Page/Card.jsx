@@ -5,7 +5,12 @@ import styled from 'styled-components';
 import { AvatarLink } from 'components/Employees/Table/EmployeeAvatar';
 import ActionToggle from 'components/Employees/Table/ActionToggle';
 
-const Card = ({ imgSrc, employee: { name, employee_id } }) => (
+const Card = ({
+  imgSrc,
+  employee: { name, employee_id },
+  toggleEditModal,
+  toggleDeleteModal
+}) => (
   <ProfileWidget>
     <ProfileImg>
       <Avatar to="/admin/employee/profile">
@@ -13,7 +18,11 @@ const Card = ({ imgSrc, employee: { name, employee_id } }) => (
       </Avatar>
     </ProfileImg>
     <Dropdown>
-      <ActionToggle direction="left" />
+      <ActionToggle
+        direction="left"
+        toggleEditModal={toggleEditModal}
+        toggleDeleteModal={toggleDeleteModal}
+      />
     </Dropdown>
     <UserName>
       <AvatarLink to="/admin/employee/profile">{name}</AvatarLink>

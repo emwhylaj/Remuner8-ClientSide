@@ -5,8 +5,10 @@ import { Link, withRouter } from 'react-router-dom';
 import CustomButton from 'components/Custom-Buttons/Button';
 
 const Header = props => {
-  const { pathname } = props.location;
-
+  const {
+    location: { pathname },
+    toggleModal
+  } = props;
   return (
     <div className="page-header">
       <Row className="align-items-center">
@@ -22,8 +24,7 @@ const Header = props => {
         <div className="col-auto float-right ml-auto">
           <CustomButton
             className="btn add-btn mr-0 float-right"
-            data-toggle="modal"
-            data-target="#add_employee"
+            onClick={toggleModal}
           >
             <i className="fa fa-plus"></i> Add Employee
           </CustomButton>

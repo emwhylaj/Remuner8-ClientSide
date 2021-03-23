@@ -10,18 +10,17 @@ const ActionToggle = ({ direction, toggleEditModal, toggleDeleteModal }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
+
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle} direction={direction}>
       <DropdownToggle
         className="mr-0 no-btn"
-        style={{
-          boxShadow: 'unset'
-        }}
+        style={{ boxShadow: 'unset' }}
       >
         <i className="fa fa-ellipsis-v"></i>
       </DropdownToggle>
       <DropdownMenu>
-        <DropdownItem onClick={()=> toggleEditModal}>
+        <DropdownItem onClick={toggleEditModal}>
           <i className="fa fa-user-edit"></i>Edit
         </DropdownItem>
         <DropdownItem onClick={toggleDeleteModal}>

@@ -9,19 +9,19 @@ const options = [ "Web Developer", "IOS Developer", "Product Designer", "Android
 
 const SearchRow = () => {
   return (
-    <Row className="mb-2-md">
-      <Col sm={6} md={3}>
+    <Row className="mb-3 justify-content-around">
+      <Col sm={6} md={5} lg={3} xl={2}>
         <FormInput label="Employee ID" type="text" />
       </Col>
-      <Col sm={6} md={3}>
+      <Col sm={6} md={5} lg={4} xl={3}>
         <FormInput label="Employee Name" type="text" />
       </Col>
-      <Col sm={6} md={3}>
+      <Col sm={6} md={5} lg={4} xl={3}>
         <SelectBox className="p-2" options={options}>
         Select Designation    
         </SelectBox>
       </Col>
-      <Col sm={6} md={3}>
+      <Col sm={6} md={5} lg={3}>
         <CustomButton className="btn btn-block">Search</CustomButton>
       </Col>
     </Row>

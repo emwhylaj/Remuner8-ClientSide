@@ -1,25 +1,40 @@
 import React from 'react';
 import { Form, Row, Col, FormGroup, Input } from 'reactstrap';
-import SelectDepartment from './SelectDepartment';
-import SelectJobDescription from './SelectJobDescription';
+import SelectBox from './SelectBox';
 
-const EditForm = props => {
+const departmentOptions = [
+  'Select Department',
+  'Software Eng',
+  'IT Management',
+  'Marketing',
+  'Option 4'
+];
+
+const jobOptions = [
+  'Select',
+  'Web Designer',
+  'Web Developer',
+  'Android Developer',
+  '.NET Developer'
+];
+
+const EmployeeForm = props => {
   return (
     <Form>
       <Row>
         <Col sm={6}>
           <FormGroup>
             <label className="col-form-label">
-              First Name<span className="text-danger">*</span>
+              First Name <span className="text-danger">*</span>
             </label>
-            <Input type="text" value="John" />
+            <Input type="text" />
           </FormGroup>
         </Col>
 
         <Col sm={6}>
           <FormGroup>
             <label className="col-form-label">Last Name</label>
-            <Input type="text" value="Doe" />
+            <Input type="text" />
           </FormGroup>
         </Col>
         <Col sm={6}>
@@ -27,7 +42,7 @@ const EditForm = props => {
             <label className="col-form-label">
               Username <span className="text-danger">*</span>
             </label>
-            <Input type="text" value="johndoe" />
+            <Input type="text" />
           </FormGroup>
         </Col>
 
@@ -36,7 +51,7 @@ const EditForm = props => {
             <label className="col-form-label">
               Email <span className="text-danger">*</span>
             </label>
-            <Input type="email" value="johndoe@example.com" />
+            <Input type="email" placeholder="johndoe@example.com" />
           </FormGroup>
         </Col>
 
@@ -47,9 +62,8 @@ const EditForm = props => {
             </label>
             <Input
               type="text"
-              readonly=""
-              className="form-control floating"
-              value="FT-0001"
+              readOnly={props.readOnly}
+              placeholder="FT-0001"
             />
           </FormGroup>
         </Col>
@@ -59,7 +73,7 @@ const EditForm = props => {
               Date Joined <span className="text-danger">*</span>
             </label>
             <div className="cal-icon">
-              <Input className="datetimepicker" type="text" />
+              <Input className="" type="date" />
             </div>
           </FormGroup>
         </Col>
@@ -67,23 +81,23 @@ const EditForm = props => {
         <Col sm={6}>
           <FormGroup>
             <label className="col-form-label">Phone </label>
-            <Input type="text" value="9876543210" />
+            <Input type="tel" placeholder="9876543210" />
+          </FormGroup>
+        </Col>
+        <Col sm={6}>
+          <FormGroup>
+            <label>
+              Department <span className="text-danger">*</span>
+            </label>
+            <SelectBox label="Select Department" options={departmentOptions} />
           </FormGroup>
         </Col>
         <Col md={6}>
           <FormGroup>
             <label>
-              Department <span className="text-danger">*</span>
+              Job Description <span className="text-danger">*</span>
             </label>
-            <SelectDepartment />
-          </FormGroup>
-        </Col>
-        <Col md={6} data-select2-id="38">
-          <FormGroup data-select2-id="37">
-            <label>
-              Designation <span className="text-danger">*</span>
-            </label>
-            <SelectJobDescription />
+            <SelectBox label="Select Job Description" options={jobOptions} />
           </FormGroup>
         </Col>
       </Row>
@@ -91,4 +105,4 @@ const EditForm = props => {
   );
 };
 
-export default EditForm;
+export default EmployeeForm;
