@@ -8,7 +8,9 @@ const Header = () => {
 
   const fetchEmployeeCount = async () => {
     try {
-      const response = await fetch('https://localhost:44333/api/Employee');
+      const response = await fetch(
+        'https://localhost:44333/api/Employee/count'
+      );
       const data = await response.json();
       return data;
     } catch (error) {
@@ -43,7 +45,7 @@ const Header = () => {
                           EMPLOYEES
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                          {employeeCount || 0}
+                          {employeeCount && 9}
                         </span>
                       </div>
                       <Col className="col-auto">
