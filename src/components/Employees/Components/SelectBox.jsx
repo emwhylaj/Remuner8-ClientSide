@@ -57,7 +57,7 @@ const SelectBox = ({ options, label }) => {
             aria-controls="select"
             aria-haspopup="true"
             aria-expanded="false"
-            tabindex="0"
+            tabIndex="0"
             aria-labelledby="select2-kokx-container"
           >
             <SpanSelectRendered
@@ -77,7 +77,7 @@ const SelectBox = ({ options, label }) => {
           <SelectDropdown
             open={dropdownOpen}
             style={{ width: `${getWidth()}px` }}
-            tabIndex={dropdownOpen && 0}
+            tabIndex={dropdownOpen ? 0 : undefined}
           >
             <DropdownSearch />
             <SelectResults>
@@ -86,12 +86,12 @@ const SelectBox = ({ options, label }) => {
                   <SelectOption
                     key={index}
                     ariaSelected={state.outerText === option}
-                    tabIndex={dropdownOpen && 0}  
+                    tabIndex={dropdownOpen ? 0 : undefined}
                     onClick={event => handleChange(event)}
                     value={index}
                     selected={state.innerText === option}
                     onMouseOver={event => handleHover(event)}
-                  >     
+                  >
                     {option}
                   </SelectOption>
                 ))}

@@ -1,45 +1,25 @@
-import React, { useState } from 'react';
-// node.js library that concatenates classes (strings)
-import classnames from 'classnames';
-// javascript plugin for creating charts
+import React, { useState, useEffect } from 'react';
 import Chart from 'chart.js';
-// react plugin used to create charts
-import { Line, Bar } from 'react-chartjs-2';
-// reactstrap components
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  NavItem,
-  NavLink,
-  Nav,
-  Container,
-  Row,
-  Col
-} from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 // core components
-import {
-  chartOptions,
-  parseOptions,
-  chartExample1,
-  chartExample2
-} from 'variables/charts.js';
+import { chartOptions, parseOptions } from 'variables/charts.js';
 
 import Header from 'components/Headers/Header.js';
 import SummaryCards from 'components/Dashboard/SummaryCards';
 import EmployeeCard from 'components/Dashboard/EmployeeCard';
-import CustomModal from 'components/Modals/CustomModal';
-import DeleteModal from 'components/Modals/DeleteModal';
-import EmployeeForm from 'components/Employees/Components/EmployeeForm';
+import PerformanceChart from 'components/Dashboard/PerformanceChart';
+import RevenueChart from 'components/Dashboard/RevenueChart';
 
 const Index = () => {
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState('data1');
-  const [editModalOpen, setEditModalState] = useState(false);
-  const [deleteModalOpen, setDeleteModalState] = useState(false);
-  const toggleEditModal = () => setEditModalState(!editModalOpen);
-  const toggleDeleteModal = () => setDeleteModalState(!editModalOpen);
+  const [employeeCount, setEmployeeCount] = useState(0);
+  const [departmentCount, setDepartmentCount] = useState(0);
+  const urls = [
+    'https://localhost:44333/api/Employees/count',
+    'https://localhost:44333/api/Departments/count'
+  ];
 
   if (window.Chart) parseOptions(Chart, chartOptions());
 
@@ -49,140 +29,54 @@ const Index = () => {
     setChartExample1Data('data' + index);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await Promise.all(
+          urls.map(url => fetch(url).then(res => res.json()))
+        );
+        setEmployeeCount(response[0]);
+        setDepartmentCount(response[1]);
+      } catch (error) {
+        console.log({ error });
+      }
+    };
+    fetchData();
+  });
+
   return (
     <>
-      <Header />
+      <Header employeeCount={employeeCount} departmentCount={departmentCount} />
       {/* Page content */}
       <Container className="mt--7" fluid>
         <Row>
           <Col className="mb-5 mb-xl-0" xl="8">
-            <Card className="bg-gradient-default shadow">
-              <CardHeader className="bg-transparent">
-                <Row className="align-items-center">
-                  <Col className="col">
-                    <h6 className="text-uppercase text-light ls-1 mb-1">
-                      Overview
-                    </h6>
-                    <h2 className="text-white mb-0">Total Revenue</h2>
-                  </Col>
-                  <Col>
-                    <Nav className="justify-content-end" pills>
-                      <NavItem>
-                        <NavLink
-                          className={classnames('py-2 px-3', {
-                            active: activeNav === 1
-                          })}
-                          href="#pablo"
-                          onClick={e => toggleNavs(e, 1)}
-                        >
-                          <span className="d-none d-md-block">Month</span>
-                          <span className="d-md-none">M</span>
-                        </NavLink>
-                      </NavItem>
-                      <NavItem>
-                        <NavLink
-                          className={classnames('py-2 px-3', {
-                            active: activeNav === 2
-                          })}
-                          data-toggle="tab"
-                          href="#pablo"
-                          onClick={e => toggleNavs(e, 2)}
-                        >
-                          <span className="d-none d-md-block">Week</span>
-                          <span className="d-md-none">W</span>
-                        </NavLink>
-                      </NavItem>
-                    </Nav>
-                  </Col>
-                </Row>
-              </CardHeader>
-              <CardBody>
-                {/* Chart */}
-                <div className="chart">
-                  <Line
-                    data={chartExample1[chartExample1Data]}
-                    options={chartExample1.options}
-                    getDatasetAtEvent={e => console.log(e)}
-                  />
-                </div>
-              </CardBody>
-            </Card>
+            <RevenueChart
+              activeNav={activeNav}
+              chartExample1Data={chartExample1Data}
+              toggleNavs={toggleNavs}
+            />
           </Col>
           <Col xl="4">
-            <Card className="shadow">
-              <CardHeader className="bg-transparent">
-                <Row className="align-items-center">
-                  <div className="col">
-                    <h6 className="text-uppercase text-muted ls-1 mb-1">
-                      Performance
-                    </h6>
-                    <h2 className="mb-0">Total working hours</h2>
-                  </div>
-                </Row>
-              </CardHeader>
-              <CardBody>
-                {/* Chart */}
-                <div className="chart">
-                  <Bar
-                    data={chartExample2.data}
-                    options={chartExample2.options}
-                  />
-                </div>
-              </CardBody>
-            </Card>
+            <PerformanceChart />
           </Col>
         </Row>
 
         <Row className="mt-5">
           <Col md={12}>
-            <SummaryCards />
+            <SummaryCards overallEmployees={employeeCount} />
           </Col>
         </Row>
 
         {/* Employee card with table */}
         <Row className="mt-5 justify-content-center">
           <Col className="mb-5 mb-xl-0">
-            <EmployeeCard
-              toggleEditModal={toggleEditModal}
-              toggleDeleteModal={toggleDeleteModal}
-            />
+            <EmployeeCard />
           </Col>
         </Row>
       </Container>
-      <CustomModal
-        isOpen={editModalOpen}
-        toggle={toggleEditModal}
-        label="Edit Employee"
-      >
-        <EmployeeForm readOnly />
-      </CustomModal>
-      <DeleteModal
-        isOpen={deleteModalOpen}
-        toggle={toggleDeleteModal}
-        label="Delete Employee"
-      >
-        Are you sure you want to delete this employee?
-      </DeleteModal>
     </>
   );
 };
 
 export default Index;
-
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/

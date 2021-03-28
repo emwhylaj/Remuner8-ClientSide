@@ -34,7 +34,8 @@ const Employees = () => {
   };
 
   useEffect(() => fetchEmployees(), []);
-
+  const { loading, employees } = state;
+  
   return (
     <div className="page-wrapper">
       <div className="content container-fluid">
@@ -45,8 +46,8 @@ const Employees = () => {
             path="/admin/employees/all"
             render={() => (
               <Grid
-                loading={state.loading}
-                employees={state.employees}
+                loading={loading}
+                employees={employees}
                 toggleEditModal={toggleEditModal}
                 toggleDeleteModal={toggleDeleteModal}
               />
@@ -56,8 +57,8 @@ const Employees = () => {
             path="/admin/employees/employees-list"
             render={() => (
               <EmployeeTable
-                loading={state.loading}
-                employees={state.employees}
+                loading={loading}
+                employees={employees}
                 toggleEditModal={toggleEditModal}
                 toggleDeleteModal={toggleDeleteModal}
               />

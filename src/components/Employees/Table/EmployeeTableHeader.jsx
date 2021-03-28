@@ -32,7 +32,7 @@ const EmployeeTableHeader = props => {
         {sanitizeHeaders().map((header, index) => (
           <StyledTh
             tabIndex={0}
-            key={index}
+            key={index}           
             sort={header}
           >
             {header}
