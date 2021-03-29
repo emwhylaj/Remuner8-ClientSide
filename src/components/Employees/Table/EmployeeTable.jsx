@@ -25,6 +25,7 @@ const EmployeeTable = props => {
   // ];
 
   const getTableHeaders = () => {
+    if(!props.employees) return;
     const tableHeaders = props.employees.slice(1);
     return Object.keys(...tableHeaders);
   };
