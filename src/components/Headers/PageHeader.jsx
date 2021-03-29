@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Col, Row } from 'reactstrap';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -6,23 +7,56 @@ const Header = ({ children, match, button }) => {
   const title = match.url.slice(7);
   return (
     <div className="page-header">
-      <Row className="align-items-center">
-        <Col>
+      <Row className="align-items-center pl-md-3">
+        <Col sm={6} md={6}>
           <h3 className="page-title text-capitalize">{title}</h3>
           <ul className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link to="/admin">Dashboard</Link>
+              <BreadcrumbItem to="/admin">Dashboard</BreadcrumbItem>
             </li>
             <li className="breadcrumb-item active text-capitalize">{title}</li>
           </ul>
         </Col>
-        <div className="col-auto float-right ml-auto">
+        <ButtonsContainer>
           {button}
-          <div className="view-icons float-right mr-3">{children}</div>
-        </div>
+          <div className="view-icons row flex-nowrap float-right">
+            {children}
+          </div>
+        </ButtonsContainer>
       </Row>
     </div>
   );
 };
 
 export default withRouter(Header);
+
+const ButtonsContainer = styled.div`
+  margin: 0 auto;
+  float: right;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex: 1 0 0;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+  margin-top: 1.5rem;
+  flex-direction: column-reverse;
+  gap: 1.4em;
+
+  @media (min-width: 360px) {
+    flex-flow: row-reverse nowrap;
+  }
+
+  @media (min-width: 768px) {
+    gap: 2em;
+    justify-content: space-around;
+    margin-top: 2rem;
+  }
+`;
+
+const BreadcrumbItem = styled(Link)`
+  &:hover {
+    color: #ddd;
+  }
+`;
