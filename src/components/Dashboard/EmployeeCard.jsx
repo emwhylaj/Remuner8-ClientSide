@@ -13,12 +13,8 @@ const EmployeeCard = props => {
     fetch('https://604529e6c0194f00170bca44.mockapi.io/api/users/jk')
       .then(res => res.json())
       .then(
-        users => {
-          setState({ loading: false, employees: users });
-        },
-        error => {
-          console.log(error);
-        }
+        users => setState({ loading: false, employees: users }),
+        error => console.log(error)
       );
   }, []);
 
@@ -26,6 +22,7 @@ const EmployeeCard = props => {
   const slicedEmployees = !loading ? employees.slice(0, 5) : null;
 
   return (
+    <>
     <Card className="shadow">
       <CardHeader className="border-0">
         <Row className="align-items-stretch">
@@ -48,10 +45,9 @@ const EmployeeCard = props => {
       <EmployeeTable
         loading={loading}
         employees={slicedEmployees}
-        toggleEditModal={props.toggleEditModal}
-        toggleDeleteModal={props.toggleDeleteModal}
       />
     </Card>
+    </>
   );
 };
 

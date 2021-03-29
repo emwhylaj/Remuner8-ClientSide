@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Row, Col, FormGroup, Input } from 'reactstrap';
-import SelectBox from './SelectBox';
+import SelectBox from '../SelectBox';
 
 const departmentOptions = [
   'Select Department',
@@ -11,7 +11,7 @@ const departmentOptions = [
 ];
 
 const jobOptions = [
-  'Select',
+  'Select Job Description',
   'Web Designer',
   'Web Developer',
   'Android Developer',
@@ -86,7 +86,7 @@ const EmployeeForm = props => {
         </Col>
         <Col sm={6}>
           <FormGroup>
-            <label>
+            <label className="col-form-label">
               Department <span className="text-danger">*</span>
             </label>
             <SelectBox label="Select Department" options={departmentOptions} />
@@ -94,7 +94,7 @@ const EmployeeForm = props => {
         </Col>
         <Col md={6}>
           <FormGroup>
-            <label>
+            <label className="col-form-label">
               Job Description <span className="text-danger">*</span>
             </label>
             <SelectBox label="Select Job Description" options={jobOptions} />

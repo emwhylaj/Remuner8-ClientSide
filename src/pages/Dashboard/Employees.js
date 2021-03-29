@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Header from 'components/Employees/Page/Header';
+import { Button } from 'reactstrap';
+// import { Link, withRouter } from 'react-router-dom';
+
+import PageHeader from 'components/Headers/PageHeader';
+import CustomButton from 'components/Custom-Buttons/Button';
+// import Header from 'components/Employees/Page/Header';
 import SearchRow from 'components/Employees/Page/SearchRow';
 import Grid from 'components/Employees/Page/Grid';
 import EmployeeTable from 'components/Employees/Table/EmployeeTable';
 import CustomModal from 'components/Modals/CustomModal';
 import DeleteModal from 'components/Modals/DeleteModal';
-import EmployeeForm from 'components/Employees/Components/EmployeeForm';
+import EmployeeForm from 'components/Forms/Employees/EmployeeForm';
 
-const Employees = () => {
+const Employees = props => {
   const [state, setState] = useState({
     loading: true,
     employees: null
@@ -23,9 +28,7 @@ const Employees = () => {
 
   const fetchEmployees = async () => {
     try {
-      const res = await fetch(
-        'https://604529e6c0194f00170bca44.mockapi.io/api/users/jk'
-      );
+      const res = await fetch('https://604529e6c0194f00170bca44.mockapi.io/api/users/jk');
       const users = await res.json();
       setState({ loading: false, employees: users });
     } catch (error) {
@@ -34,19 +37,42 @@ const Employees = () => {
   };
 
   useEffect(() => fetchEmployees(), []);
-
+  const { loading, employees } = state;
+  const { history, location: { pathname } } = props;
   return (
     <div className="page-wrapper">
       <div className="content container-fluid">
-        <Header toggleModal={toggleAddModal} />
+        <PageHeader
+          button={
+            <CustomButton
+              className="btn add-btn mr-0 float-right"
+              onClick={toggleAddModal}
+            >
+              <i className="fa fa-plus"></i> Add Employee
+            </CustomButton>
+          }
+        >
+          <Button
+            className={pathname.includes('all') ? 'btn-link' : null}
+            onClick={() => history.push('/admin/employees/all')}
+          >
+            <i className="fa fa-th"></i>
+          </Button>
+          <Button
+            className={pathname.includes('list') ? 'btn-link' : null}
+            onClick={() => history.push('/admin/employees/employees-list')}
+          >
+            <i className="fa fa-bars"></i>
+          </Button>
+        </PageHeader>
         <SearchRow />
         <Switch>
           <Route
             path="/admin/employees/all"
             render={() => (
               <Grid
-                loading={state.loading}
-                employees={state.employees}
+                loading={loading}
+                employees={employees}
                 toggleEditModal={toggleEditModal}
                 toggleDeleteModal={toggleDeleteModal}
               />
@@ -56,8 +82,8 @@ const Employees = () => {
             path="/admin/employees/employees-list"
             render={() => (
               <EmployeeTable
-                loading={state.loading}
-                employees={state.employees}
+                loading={loading}
+                employees={employees}
                 toggleEditModal={toggleEditModal}
                 toggleDeleteModal={toggleDeleteModal}
               />
@@ -85,7 +111,7 @@ const Employees = () => {
         toggle={toggleDeleteModal}
         label="Delete Employee"
       >
-        Are you sure you want to delete to this employee?
+        Are you sure you want to delete this employee?
       </DeleteModal>
     </div>
   );

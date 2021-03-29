@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Table } from 'reactstrap';
-import TableHeader from './EmployeeTableHeader';
-import TableBody from './EmployeeTableBody';
+
+import CustomModal from 'components/Modals/CustomModal';
+import DeleteModal from 'components/Modals/DeleteModal';
+import EmployeeForm from 'components/Forms/Employees/EmployeeForm';
 import LoaderRing from 'components/Loading/Loader';
 
+import TableHeader from './EmployeeTableHeader';
+import TableBody from './EmployeeTableBody';
+
 const EmployeeTable = props => {
+  const [editModalOpen, setEditModalState] = useState(false);
+  const [deleteModalOpen, setDeleteModalState] = useState(false);
+  const toggleEditModal = () => setEditModalState(!editModalOpen);
+  const toggleDeleteModal = () => setDeleteModalState(!deleteModalOpen);
   // const columns = [
   //   { path: 'name', label: 'Name', content: <Avatar /> },
   //   { path: 'id', label: 'ID' },
@@ -16,6 +25,7 @@ const EmployeeTable = props => {
   // ];
 
   const getTableHeaders = () => {
+    if(!props.employees) return;
     const tableHeaders = props.employees.slice(1);
     return Object.keys(...tableHeaders);
   };
@@ -35,11 +45,27 @@ const EmployeeTable = props => {
           <TableHeader headers={getTableHeaders} />
           <TableBody
             body={props.employees}
-            toggleEditModal={props.toggleEditModal}
-            toggleDeleteModal={props.toggleDeleteModal}
+            toggleEditModal={toggleEditModal}
+            toggleDeleteModal={toggleDeleteModal}
           />
         </Table>
       )}
+
+      <CustomModal
+        isOpen={editModalOpen}
+        toggle={toggleEditModal}
+        label="Edit Employee"
+      >
+        <EmployeeForm readOnly />
+      </CustomModal>
+
+      <DeleteModal
+        isOpen={deleteModalOpen}
+        toggle={toggleDeleteModal}
+        label="Delete Employee"
+      >
+        Are you sure you want to delete this employee?
+      </DeleteModal>
     </>
   );
 };
