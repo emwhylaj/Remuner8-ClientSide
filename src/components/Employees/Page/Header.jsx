@@ -9,6 +9,8 @@ const Header = props => {
     location: { pathname },
     toggleModal
   } = props;
+
+  console.log(props);
   return (
     <div className="page-header">
       <Row className="align-items-center">

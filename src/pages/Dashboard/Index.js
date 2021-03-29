@@ -5,7 +5,7 @@ import { Container, Row, Col } from 'reactstrap';
 // core components
 import { chartOptions, parseOptions } from 'variables/charts.js';
 
-import Header from 'components/Headers/Header.js';
+import Header from 'components/Dashboard/Header';
 import SummaryCards from 'components/Dashboard/SummaryCards';
 import EmployeeCard from 'components/Dashboard/EmployeeCard';
 import PerformanceChart from 'components/Dashboard/PerformanceChart';

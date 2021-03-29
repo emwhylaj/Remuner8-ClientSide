@@ -6,7 +6,7 @@ import Grid from 'components/Employees/Page/Grid';
 import EmployeeTable from 'components/Employees/Table/EmployeeTable';
 import CustomModal from 'components/Modals/CustomModal';
 import DeleteModal from 'components/Modals/DeleteModal';
-import EmployeeForm from 'components/Employees/Components/EmployeeForm';
+import EmployeeForm from 'components/Forms/Employees/EmployeeForm';
 
 const Employees = () => {
   const [state, setState] = useState({
@@ -35,7 +35,7 @@ const Employees = () => {
 
   useEffect(() => fetchEmployees(), []);
   const { loading, employees } = state;
-  
+
   return (
     <div className="page-wrapper">
       <div className="content container-fluid">
@@ -86,7 +86,7 @@ const Employees = () => {
         toggle={toggleDeleteModal}
         label="Delete Employee"
       >
-        Are you sure you want to delete to this employee?
+        Are you sure you want to delete this employee?
       </DeleteModal>
     </div>
   );

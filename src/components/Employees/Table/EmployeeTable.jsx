@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 
 import CustomModal from 'components/Modals/CustomModal';
 import DeleteModal from 'components/Modals/DeleteModal';
-import EmployeeForm from 'components/Employees/Components/EmployeeForm';
+import EmployeeForm from 'components/Forms/Employees/EmployeeForm';
 import LoaderRing from 'components/Loading/Loader';
 
 import TableHeader from './EmployeeTableHeader';
