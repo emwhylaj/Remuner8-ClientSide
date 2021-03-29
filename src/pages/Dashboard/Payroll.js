@@ -1,37 +1,37 @@
 import React, { useState } from 'react';
 import Header from 'components/Payroll/Header';
-import EmployeeNameInput from 'components/Payroll/EmployeeNameInput';
-import Role from 'components/Payroll/Role';
-import LeaveStatus from 'components/Payroll/LeaveStatus';
-import InputDateFrom from 'components/Payroll/InputDateFrom';
-import InputDateTo from 'components/Payroll/InputDateTo';
-import Search from 'components/Payroll/Search';
-import ShowInput from 'components/Payroll/ShowInput';
-import TableHead from 'components/Payroll/TableHead';
+
 import AddSalaryModal from 'components/Payroll/AddSalaryModal';
+import InputRow from 'components/Payroll/InputRow';
+import ServerTable from 'react-strap-table';
 
 import 'assets/css/Payroll.css';
+import EmployeeTable from 'components/Employees/Table/EmployeeTable';
 
 const Payroll = () => {
   const [modalOpen, setModalState] = useState(false);
   const toggleModal = () => setModalState(!modalOpen);
 
+  const url = 'https://604529e6c0194f00170bca44.mockapi.io/api/users/employees';
+  const columns = ['Name', 'Employee ID', 'email', 'Join Date','Job Description','Salary','Payslip','Action'];
+  const options = {
+    headings: { name: 'Name', Employee_id: 'Employee ID',email:'email',join_date:'Join Date',jo:'Job Description',salary:'Salary',payslip:'Payslip',action:'Action' },
+    sortable: ['Name','Employee ID', 'email','Join Date','Salary']
+  };
+
   return (
     <div className="page-wrapper">
       <div className="content container-fluid">
         <Header toggleModal={toggleModal} />
-        <div className="row filter-row">
-          <EmployeeNameInput />
-          <Role />
-          <LeaveStatus />
-          <InputDateFrom />
-          <InputDateTo />
-          <Search />
-        </div>
-        <ShowInput />
-        <div className="row">
-          <TableHead />
-        </div>
+        <InputRow />
+        <ServerTable
+          columns={columns}
+          url={url}
+          options={options}
+          bordered
+          hover
+        />
+        {/* <EmployeeTable/> */}
       </div>
       <AddSalaryModal isOpen={modalOpen} toggleModal={toggleModal} />
     </div>
