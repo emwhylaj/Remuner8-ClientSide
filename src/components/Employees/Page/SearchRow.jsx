@@ -1,11 +1,17 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, FormGroup } from 'reactstrap';
 
 import CustomButton from 'components/Custom-Buttons/Button';
 import FormInput from 'components/Forms/Input';
 import SelectBox from 'components/Forms/SelectBox';
 
-const options = [ "Web Developer", "IOS Developer", "Product Designer", "Android Developer"]
+const options = [
+  'Select Job Description',
+  'Web Developer',
+  'IOS Developer',
+  'Product Designer',
+  'Android Developer'
+];
 
 const SearchRow = () => {
   return (
@@ -17,12 +23,18 @@ const SearchRow = () => {
         <FormInput label="Employee Name" type="text" />
       </Col>
       <Col sm={6} md={5} lg={4} xl={3}>
-        <SelectBox className="p-2" options={options}>
-        Select Designation    
-        </SelectBox>
+        <FormGroup>
+          <SelectBox
+            options={options}
+            label="Select Job Description"
+            focusLabel="Job Description"
+          />
+        </FormGroup>
       </Col>
       <Col sm={6} md={5} lg={3}>
-        <CustomButton className="btn btn-block">Search</CustomButton>
+        <CustomButton className="btn btn-block mt-1">
+          Search
+        </CustomButton>
       </Col>
     </Row>
   );

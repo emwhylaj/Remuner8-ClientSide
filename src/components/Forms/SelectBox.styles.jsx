@@ -17,6 +17,8 @@ export const Select = styled.select`
   position: absolute;
   width: 1px;
   white-space: nowrap;
+  height: 50px;
+  padding: 21px 12px 6px;
 `;
 
 export const SpanContainer = styled.span`
@@ -25,20 +27,21 @@ export const SpanContainer = styled.span`
   margin: 0;
   position: relative;
   vertical-align: middle;
-
+  
   &:focus {
     outline: 1px auto rgba(94, 114, 228, 0.5);
   }
 `;
 
 export const SpanSingleSelect = styled.span`
-  border: 1px solid #e3e3e3;
-  border-radius: 0.25rem;
-  height: 44px;
+  border: 1px solid #cad1d7;
+  border-radius: 0.375rem;
   background-color: #fff;
   cursor: pointer;
   display: block;
   user-select: none;
+  height: 50px;
+  padding: 4px 0 6px;
   ${getSpanSelectStyles}
 `;
 
@@ -52,7 +55,7 @@ export const SpanSelectRendered = styled.span`
   color: #676767;
   font-size: 15px;
   font-weight: normal;
-  line-height: 42px;
+  line-height: 50px;
   user-select: none;
   cursor: pointer;
 `;
@@ -72,7 +75,6 @@ export const B = styled.b`
   height: 0;
   left: 50%;
   margin-left: -10px;
-  margin-top: -2px;
   position: absolute;
   top: 50%;
   width: 0;
@@ -139,7 +141,7 @@ const highlightedStyles = css`
 `;
 
 const getSelectedStyles = props => {
-  return props.selected ? selectedStyles : null;
+  return props.selected && selectedStyles;
 };
 
 export const SelectOption = styled.li`
@@ -151,8 +153,22 @@ export const SelectOption = styled.li`
   border-radius: 4px;
   transition: all 0.15s ease-in-out;
   ${getSelectedStyles}
-  ${props => (props.ariaSelected ? highlightedStyles : null)}
-  &:focus {                     
+  ${props => props.ariaSelected && highlightedStyles}
+  &:focus {
     ${highlightedStyles}
   }
+`;
+
+export const FocusLabel = styled.label`
+  color: #1f1f1f;
+  transform: translate3d(0, 22px, 0) scale(1);
+  transform-origin: left top;
+  transition: 240ms;
+  left: 17px;
+  pointer-events: none;
+  position: absolute;
+  font-weight: 300;
+  top: -21px;
+  font-size: 12px;
+  z-index: 1;
 `;

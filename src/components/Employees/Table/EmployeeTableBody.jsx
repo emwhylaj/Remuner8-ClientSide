@@ -1,4 +1,6 @@
 import React from 'react';
+import dateFormat from 'dateformat';
+
 import ActionToggle from './ActionToggle';
 import Avatar from './EmployeeAvatar';
 import DummyImage from 'assets/img/theme/team-1-800x800.jpg';
@@ -11,26 +13,41 @@ const TableBody = ({ body, toggleEditModal, toggleDeleteModal }) => {
 
   //   //return _.get(item, column.path);
   // };
+
+  const formatDate = date => {
+    return dateFormat(date, 'dd/mm/yyyy');
+  };
+ // console.log(body);
   return (
     <tbody>
-      {body.map(employee => (
-        <tr key={employee.id}>
-          <th scope="row">
-            <Avatar avatar={DummyImage} name={employee.name} />
-          </th>
-          <td>{employee.employee_id}</td>
-          <td>{employee.email}</td>
-          <td>{employee.phone_number}</td>
-          <td>{employee.join_date}</td>
-          <td>{employee.department}</td>
-          <td>
-            <ActionToggle
-              toggleEditModal={toggleEditModal}
-              toggleDeleteModal={toggleDeleteModal}
-            />
-          </td>
-        </tr>
-      ))}
+      {body.map(
+        ({
+          id,
+          name,
+          employee_id,
+          email,
+          phone_number,
+          join_date,
+          department
+        }) => (
+          <tr key={id}>
+            <th scope="row">
+              <Avatar avatar={DummyImage} name={name} />
+            </th>
+            <td>{employee_id}</td>
+            <td>{email}</td>
+            <td>{phone_number}</td>
+            <td>{formatDate(join_date)}</td>
+            <td>{department}</td>
+            <td>
+              <ActionToggle
+                toggleEditModal={toggleEditModal}
+                toggleDeleteModal={toggleDeleteModal}
+              />
+            </td>
+          </tr>
+        )
+      )}
     </tbody>
   );
 };
