@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import Header from 'components/Payroll/Header';
-import EmployeeNameInput from 'components/Payroll/EmployeeNameInput';
-import Role from 'components/Payroll/Role';
-import LeaveStatus from 'components/Payroll/LeaveStatus';
-import InputDateFrom from 'components/Payroll/InputDateFrom';
-import InputDateTo from 'components/Payroll/InputDateTo';
-import Search from 'components/Payroll/Search';
-import ShowInput from 'components/Payroll/ShowInput';
-import TableHead from 'components/Payroll/TableHead';
+
 import AddSalaryModal from 'components/Payroll/AddSalaryModal';
+import InputRow from 'components/Payroll/InputRow';
 
 import 'assets/css/Payroll.css';
 
@@ -21,17 +15,16 @@ const Payroll = () => {
       <div className="content container-fluid">
         <Header toggleModal={toggleModal} />
         <div className="row filter-row">
-          <EmployeeNameInput />
+          {/* <EmployeeNameInput />
           <Role />
           <LeaveStatus />
           <InputDateFrom />
           <InputDateTo />
-          <Search />
+          <Search /> */}
         </div>
-        <ShowInput />
-        <div className="row">
-          <TableHead />
-        </div>
+        <InputRow />
+
+        <div className="row"></div>
       </div>
       <AddSalaryModal isOpen={modalOpen} toggleModal={toggleModal} />
     </div>
