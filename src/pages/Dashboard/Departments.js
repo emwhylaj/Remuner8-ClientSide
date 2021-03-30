@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import PageHeader from 'components/Headers/PageHeader';
 import CustomButton from 'components/Custom-Buttons/Button';
@@ -11,13 +11,27 @@ const Departments = () => {
     loading: true,
     departments: null
   });
-
   const [addModalOpen, setAddModalState] = useState(false);
   const [editModalOpen, setEditModalState] = useState(false);
   const [deleteModalOpen, setDeleteModalState] = useState(false);
   const toggleAddModal = () => setAddModalState(!addModalOpen);
   const toggleEditModal = () => setEditModalState(!editModalOpen);
   const toggleDeleteModal = () => setDeleteModalState(!deleteModalOpen);
+
+  const fetchDepartments = async () => {
+    try {
+      const res = await fetch(
+        'https://604529e6c0194f00170bca44.mockapi.io/api/users/jk'
+      );
+      const data = await res.json();
+      setState({ loading: false, departments: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => fetchDepartments(), []);
+
   return (
     <div className="page-wrapper">
       <div className="content container-fluid">
