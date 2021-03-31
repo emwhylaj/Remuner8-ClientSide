@@ -31,7 +31,7 @@ const Departments = () => {
   };
 
   useEffect(() => fetchDepartments(), []);
-
+  const { loading, departments } = state;
   return (
     <div className="page-wrapper">
       <div className="content container-fluid">
