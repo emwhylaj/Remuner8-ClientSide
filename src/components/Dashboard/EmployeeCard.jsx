@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardHeader, Button, Row, Col } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
-import EmployeeTable from 'components/Employees/Table/EmployeeTable';
+import EmployeeTable from 'components/Tables/EmployeeTable';
 
 const EmployeeCard = props => {
   const [state, setState] = useState({

@@ -20,24 +20,25 @@ const EmployeeTableHeader = props => {
   // };
 
   const sanitizeHeaders = () => {
+    if (!props.headers()) return;
     let headers = props.headers().slice(1); // take off id
-    headers.splice(1,1); // take off avatar from headers
-    headers = headers.map(header => header.replace("_", " "))
+    headers.splice(1, 1); // take off avatar from headers
+    headers = headers.map(header => header.replace('_', ' '));
     return headers;
   };
 
   return (
-    <thead className="pl-5">
+    <thead>
       <tr>
-        {sanitizeHeaders().map((header, index) => (
-          <StyledTh
-            tabIndex={0}
-            key={index}           
-            sort={header}
-          >
-            {header}
-          </StyledTh>
-        ))}
+        {sanitizeHeaders() ? (
+          sanitizeHeaders().map((header, index) => (
+            <StyledTh tabIndex={0} key={index} sort={header}>
+              {header}
+            </StyledTh>
+          ))
+        ) : (
+          <th>No data</th>
+        )}
         <StyledTh>Action</StyledTh>
       </tr>
     </thead>
@@ -72,7 +73,7 @@ const sortStyles = css`
   }
 `;
 
-const getSortStyles = props => (props.sort ? sortStyles : '');
+const getSortStyles = props => props.sort && sortStyles;
 
 const StyledTh = styled.th`
   font-weight: 600;
@@ -80,4 +81,8 @@ const StyledTh = styled.th`
   border-bottom: 2px solid #dee2e6;
   font-size: 0.9375rem;
   ${getSortStyles}
+  white-space: normal !important;
+  &:first-child {
+    padding-left: 15px;
+  }
 `;

@@ -3,8 +3,8 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 
 const CustomModal = ({ isOpen, toggle, label, children }) => (
   <Modal keyboard isOpen={isOpen} toggle={toggle} centered>
-    <ModalHeader toggle={toggle} className="align-items-center">
-      <span style={{ fontSize: '1.25rem' }}>{label}</span>
+    <ModalHeader toggle={toggle}>
+      <span style={{ fontSize: '1.25rem', marginLeft: '140px' }}>{label}</span>
     </ModalHeader>
     <ModalBody>{children}</ModalBody>
     <ModalFooter className="justify-content-center">

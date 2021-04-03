@@ -14,12 +14,9 @@ import RevenueChart from 'components/Dashboard/RevenueChart';
 const Index = () => {
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState('data1');
-  const [employeeCount, setEmployeeCount] = useState(0);
-  const [departmentCount, setDepartmentCount] = useState(0);
-  const urls = [
-    'https://localhost:44333/api/Employees/count',
-    'https://localhost:44333/api/Departments/count'
-  ];
+  const [statistics, setStatistics] = useState([]);
+
+  const url = 'https://003b6f1d4004.ngrok.io/api/statistics';
 
   if (window.Chart) parseOptions(Chart, chartOptions());
 
@@ -30,23 +27,24 @@ const Index = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchStatistics = async () => {
       try {
-        const response = await Promise.all(
-          urls.map(url => fetch(url).then(res => res.json()))
-        );
-        setEmployeeCount(response[0]);
-        setDepartmentCount(response[1]);
+        const data = await fetch(url).then(res => res.json());
+        console.log({ data });
+        // setEmployeeCount(response[0]);
+        // setDepartmentCount(response[1]);
       } catch (error) {
         console.log({ error });
       }
     };
-    fetchData();
+    fetchStatistics();
   });
+
+  const { departments, employees } = statistics;
 
   return (
     <>
-      <Header employeeCount={employeeCount} departmentCount={departmentCount} />
+      <Header employeeCount={employees} departmentCount={departments} />
       {/* Page content */}
       <Container className="mt--7" fluid>
         <Row>
@@ -64,7 +62,7 @@ const Index = () => {
 
         <Row className="mt-5">
           <Col md={12}>
-            <SummaryCards overallEmployees={employeeCount} />
+            <SummaryCards overallEmployees={employees} />
           </Col>
         </Row>
 

@@ -25,8 +25,8 @@ const EmployeeTable = props => {
   // ];
 
   const getTableHeaders = () => {
-    if(!props.employees) return;
-    const tableHeaders = props.employees.slice(1);
+    if (!props.data) return;
+    const tableHeaders = props.data.slice(1);
     return Object.keys(...tableHeaders);
   };
 
@@ -40,11 +40,11 @@ const EmployeeTable = props => {
           responsive
           striped
           bordered
-          style={{ background: '#fff' }}
+          style={{ background: '#fff', color: '#333' }}
         >
           <TableHeader headers={getTableHeaders} />
           <TableBody
-            body={props.employees}
+            body={props.data}
             toggleEditModal={toggleEditModal}
             toggleDeleteModal={toggleDeleteModal}
           />
