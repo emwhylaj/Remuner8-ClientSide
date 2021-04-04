@@ -3,7 +3,6 @@ import Header from 'components/Payroll/Header';
 
 import AddSalaryModal from 'components/Payroll/AddSalaryModal';
 import InputRow from 'components/Payroll/InputRow';
-import ServerTable from 'react-strap-table';
 
 import 'assets/css/Payroll.css';
 // import EmployeeTable from 'components/Employees/Table/EmployeeTable';
@@ -42,13 +41,6 @@ const Payroll = () => {
       <div className="content container-fluid">
         <Header toggleModal={toggleModal} />
         <InputRow />
-        <ServerTable
-          columns={columns}
-          url={url}
-          options={options}
-          bordered
-          hover
-        />
         {/* <EmployeeTable/> */}
       </div>
       <AddSalaryModal isOpen={modalOpen} toggleModal={toggleModal} />

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-const EmployeeTableHeader = props => {
+const TableHeader = props => {
   // const raiseSort = path => {
   //   const sortColumn = { ...props.sortColumn };
   //   if (sortColumn.path === path)
@@ -45,7 +45,7 @@ const EmployeeTableHeader = props => {
   );
 };
 
-export default EmployeeTableHeader;
+export default TableHeader;
 
 // Styled components
 const sortStyles = css`
@@ -53,7 +53,7 @@ const sortStyles = css`
   position: relative;
 
   &::before {
-    right: 0;
+    right: 0.5em;
     content: '\\2191';
     position: absolute;
     bottom: 0.6em;
@@ -63,7 +63,7 @@ const sortStyles = css`
   }
 
   &::after {
-    right: 0.5em;
+    right: 1em;
     content: '\\2193';
     position: absolute;
     bottom: 0.6em;
@@ -75,7 +75,7 @@ const sortStyles = css`
 
 const getSortStyles = props => props.sort && sortStyles;
 
-const StyledTh = styled.th`
+export const StyledTh = styled.th`
   font-weight: 600;
   letter-spacing: 0.05em;
   border-bottom: 2px solid #dee2e6;

@@ -6,8 +6,8 @@ import DeleteModal from 'components/Modals/DeleteModal';
 import EmployeeForm from 'components/Forms/Employees/EmployeeForm';
 import LoaderRing from 'components/Loading/Loader';
 
-import TableHeader from './EmployeeTableHeader';
-import TableBody from './EmployeeTableBody';
+import TableHeader from './TableHeader';
+import TableBody from './TableBody';
 
 const EmployeeTable = props => {
   const [editModalOpen, setEditModalState] = useState(false);

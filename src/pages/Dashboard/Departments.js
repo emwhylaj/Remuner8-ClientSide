@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import ServerTable from 'react-strap-table';
-import BTable from 'react-bootstrap/Table';
+import { Row, Col } from 'reactstrap';
 
 import PageHeader from 'components/Headers/PageHeader';
-import DepartmentForm from 'components/Forms/Department/DepartmentForm';
-import CustomModal from 'components/Modals/CustomModal';
-import DeleteModal from 'components/Modals/DeleteModal';
 import CustomButton from 'components/Custom-Buttons/Button';
+import DepartmentsTable from 'components/Tables/DepartmentsTable';
 
 const Departments = () => {
   const [state, setState] = useState({
@@ -14,26 +11,11 @@ const Departments = () => {
     departments: []
   });
   const [addModalOpen, setAddModalState] = useState(false);
-  const [editModalOpen, setEditModalState] = useState(false);
-  const [deleteModalOpen, setDeleteModalState] = useState(false);
   const toggleAddModal = () => setAddModalState(!addModalOpen);
-  const toggleEditModal = () => setEditModalState(!editModalOpen);
-  const toggleDeleteModal = () => setDeleteModalState(!deleteModalOpen);
-  const url = 'https://3f780952a4ca.ngrok.io/api/departments';
-  const columns = ['Id', 'Department Name'];
-  const options = {
-    headings: {
-      id: '#',
-      departmentName: 'Department Name',
-    },
-    sortable: ['Id', 'Department Name']
-  };
 
   const fetchDepartments = async () => {
     try {
-      const response = await fetch(
-        'https://localhost:44333/api/departments'
-      );
+      const response = await fetch('https://localhost:44333/api/departments');
 
       if (response.ok) {
         const data = await response.json();
@@ -45,7 +27,9 @@ const Departments = () => {
   };
 
   useEffect(() => fetchDepartments(), []);
+
   const { loading, departments } = state;
+
   return (
     <div className="page-wrapper">
       <div className="content container-fluid">
@@ -60,36 +44,12 @@ const Departments = () => {
             </CustomButton>
           }
         />
-        {/* <EmployeeTable loading={loading} data={departments} /> */}
-        <ServerTable
-          columns={columns}
-          url={url}
-          options={options}
-          bordered
-          hover
-        />
+        <Row>
+          <Col md={12}>
+            <DepartmentsTable data={departments.data} loading={loading} />
+          </Col>
+        </Row>
       </div>
-      <CustomModal
-        label="Add Department"
-        isOpen={addModalOpen}
-        toggle={toggleAddModal}
-      >
-        <DepartmentForm />
-      </CustomModal>
-      <CustomModal
-        label="Edit Department"
-        isOpen={editModalOpen}
-        toggle={toggleEditModal}
-      >
-        <DepartmentForm />
-      </CustomModal>
-      <DeleteModal
-        isOpen={deleteModalOpen}
-        toggle={toggleDeleteModal}
-        label="Delete Department"
-      >
-        Are you sure you want to delete this department?
-      </DeleteModal>
     </div>
   );
 };
