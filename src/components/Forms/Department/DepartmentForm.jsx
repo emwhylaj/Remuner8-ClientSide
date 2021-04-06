@@ -2,15 +2,21 @@ import React from 'react';
 import { Col, FormGroup, Input } from 'reactstrap';
 import CustomForm from 'components/Forms/CustomForm';
 
-const DepartmentForm = () => {
+const DepartmentForm = props => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(props);
+    props.toggle();
+  };
+
   return (
-    <CustomForm>
+    <CustomForm toggleModal={props.toggle} handleSubmit={handleSubmit}>
       <Col>
         <FormGroup>
           <label className="col-form-label">
             Department Name <span className="text-danger">*</span>
           </label>
-          <Input type="text" />
+          <Input type="text" required />
         </FormGroup>
       </Col>
     </CustomForm>
