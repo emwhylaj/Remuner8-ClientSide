@@ -4,7 +4,7 @@ import { Col } from 'reactstrap';
 const TableInfo = ({ start, end, total }) => (
   <Col sm={6} md={5}>
     <div
-      className="dataTables_info text-center"
+      className="dataTables_info text-center text-lg-left px-lg-4"
       id="DataTables_Table_info"
       role="status"
       aria-live="polite"

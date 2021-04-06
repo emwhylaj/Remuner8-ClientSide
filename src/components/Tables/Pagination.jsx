@@ -12,7 +12,7 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
     <Col sm={6} md={7} className="pt-3 pt-sm-0">
       <div className="dataTables_paginate paging_simple_numbers ">
         <nav aria-label="Departments Page navigation">
-          <ul className="pagination justify-content-center mb-0">
+          <ul className="pagination justify-content-center justify-content-lg-end px-lg-4 mb-0">
             <li className="page-item" title="Previous Page">
               <button className="page-link">Previous</button>
             </li>

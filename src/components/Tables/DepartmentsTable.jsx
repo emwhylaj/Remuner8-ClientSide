@@ -21,11 +21,13 @@ const DepartmentsTable = ({ data, onSort }) => {
 
   const handlePageChange = page => setCurrentPage(page);
 
+  const handleSort = path => console.log(path);
+
   const departments = data && paginate(data, currentPage, pageSize);
 
   return (
     <div className="table-wrapper">
-      <Row>
+      <Row className="px-lg-4">
         <TableLength />
       </Row>
       <BTable
@@ -42,7 +44,7 @@ const DepartmentsTable = ({ data, onSort }) => {
               Click to sort by ascend
             </UncontrolledTooltip>
             <StyledTh
-              onClick={() => onSort('id')}
+              onClick={() => handleSort('id')}
               tabIndex={0}
               sort={'Department Id'}
               style={{ width: '4rem', fontSize: '2ch' }}
@@ -51,7 +53,7 @@ const DepartmentsTable = ({ data, onSort }) => {
               #
             </StyledTh>
             <StyledTh
-              onClick={() => onSort('name')}
+              onClick={() => handleSort('name')}
               tabIndex={0}
               sort={'Department Name'}
               id="name"
@@ -88,7 +90,7 @@ const DepartmentsTable = ({ data, onSort }) => {
         </tbody>
       </BTable>
 
-      <Row className="align-items-baseline">
+      <Row className="align-items-baseline justify-content-lg-between mt-2">
         <TableInfo start={1} end={10} total={data.length} />
         <Pagination
           itemsCount={data.length}

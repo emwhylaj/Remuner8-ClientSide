@@ -33,10 +33,7 @@ class Departments extends Component {
 
       if (response.ok) {
         const data = await response.json();
-        this.setState(
-          { loading: false, departments: data },
-          console.log(this.state)
-        );
+        this.setState({ loading: false, departments: data });
       }
     } catch (error) {
       console.log(error);

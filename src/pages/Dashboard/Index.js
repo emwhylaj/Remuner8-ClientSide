@@ -30,9 +30,8 @@ const Index = () => {
     const fetchStatistics = async () => {
       try {
         const data = await fetch(url).then(res => res.json());
+        setStatistics(data);
         console.log({ data });
-        // setEmployeeCount(response[0]);
-        // setDepartmentCount(response[1]);
       } catch (error) {
         console.log({ error });
       }

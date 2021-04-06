@@ -6,8 +6,8 @@ import { Link, withRouter } from 'react-router-dom';
 const Header = ({ children, match, button }) => {
   const title = match.url.slice(7);
   return (
-    <div className="page-header">
-      <Row className="align-items-center pl-md-3 mt-md--4">
+    <div className="page-header px-lg-4">
+      <Row className="align-items-center pr-md-4 mt-md--4">
         <Col sm={6} md={6}>
           <h3 className="page-title text-capitalize">{title}</h3>
           <ul className="breadcrumb">
@@ -52,6 +52,10 @@ const ButtonsContainer = styled.div`
     gap: 2em;
     justify-content: space-around;
     margin-top: 2rem;
+  }
+
+  @media (min-width: 1200px){
+    justify-content: space-between;
   }
 `;
 
