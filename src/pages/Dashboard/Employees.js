@@ -8,7 +8,7 @@ import CustomButton from 'components/Custom-Buttons/Button';
 // import Header from 'components/Employees/Page/Header';
 import SearchRow from 'components/Employees/Page/SearchRow';
 import Grid from 'components/Employees/Page/Grid';
-import EmployeeTable from 'components/Employees/Table/EmployeeTable';
+import EmployeeTable from 'components/Tables/EmployeeTable';
 import CustomModal from 'components/Modals/CustomModal';
 import DeleteModal from 'components/Modals/DeleteModal';
 import EmployeeForm from 'components/Forms/Employees/EmployeeForm';
@@ -28,17 +28,28 @@ const Employees = props => {
 
   const fetchEmployees = async () => {
     try {
-      const res = await fetch('https://604529e6c0194f00170bca44.mockapi.io/api/users/jk');
-      const users = await res.json();
-      setState({ loading: false, employees: users });
+      const res = await fetch(
+        'https://604529e6c0194f00170bca44.mockapi.io/api/jk'
+      );
+      console.log(res);
+      if (res.ok) {
+        const users = await res.json();
+        setState({ loading: false, employees: users });
+      }
     } catch (error) {
-      return console.log(error);
+      console.log(error);
     }
   };
 
-  useEffect(() => fetchEmployees(), []);
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
+
   const { loading, employees } = state;
-  const { history, location: { pathname } } = props;
+  const {
+    history,
+    location: { pathname }
+  } = props;
   return (
     <div className="page-wrapper">
       <div className="content container-fluid">
@@ -83,7 +94,7 @@ const Employees = props => {
             render={() => (
               <EmployeeTable
                 loading={loading}
-                employees={employees}
+                data={employees}
                 toggleEditModal={toggleEditModal}
                 toggleDeleteModal={toggleDeleteModal}
               />

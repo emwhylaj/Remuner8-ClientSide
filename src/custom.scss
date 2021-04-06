@@ -63,6 +63,7 @@ body {
 }
 .page-wrapper {
   padding-top: 0.5em;
+  min-height: 80vh;
 }
 
 @media screen and (min-width: $breakpoint-md) {

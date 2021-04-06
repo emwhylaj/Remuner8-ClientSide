@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const EmployeeAvatar = ({ avatar, name }) => {
   return (
-    <h2 className="table-avatar">
+    <TableAvatar>
       <Avatar to="/admin/employee-profile">
         <Image src={avatar} />
       </Avatar>
@@ -12,11 +12,16 @@ const EmployeeAvatar = ({ avatar, name }) => {
         {name}
         <Job>{name}</Job>
       </AvatarLink>
-    </h2>
+    </TableAvatar>
   );
 };
 
 export default EmployeeAvatar;
+
+const TableAvatar = styled.h2`
+    display: inline-flex;
+    align-items: center;
+`;
 
 const Avatar = styled(Link)`
   border-radius: 50%;
@@ -36,6 +41,7 @@ const Avatar = styled(Link)`
 export const AvatarLink = styled(Link)`
   color: #1f1f1f;
   display: inline-grid;
+  margin-bottom: 0;
 `;
 
 const Image = styled.img`

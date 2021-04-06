@@ -17,8 +17,7 @@ a:focus {
   background-color: #f6f6f6;
 }
 table.table td h2 {
-  display: inline-block;
-  font-size: inherit;
+  font-size: 16px;
   font-weight: 400;
   margin: 0;
   padding: 0;
