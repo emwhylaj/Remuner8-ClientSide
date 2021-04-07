@@ -31,7 +31,7 @@ const Employees = props => {
       const res = await fetch(
         'https://604529e6c0194f00170bca44.mockapi.io/api/jk'
       );
-      console.log(res);
+      
       if (res.ok) {
         const users = await res.json();
         setState({ loading: false, employees: users });
