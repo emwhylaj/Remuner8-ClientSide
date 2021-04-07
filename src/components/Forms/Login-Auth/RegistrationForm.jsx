@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import swal from '@sweetalert/with-react';
+
 import {
   Label,
   Button,
@@ -67,12 +69,17 @@ class RegistrationForm extends Component {
 
   handleOnBlurEmail = () => {
     const {
-      data: { email },
+      data: { email, username },
       errors
     } = this.state;
+
     if (email === '') errors.email = 'Email cannot be blank';
-    if (!errors.email) {
+    if (username === email)
+      errors.username = 'Username cannot the same as your Email Address';
+
+    if (!errors.email && !errors.username) {
       errors.emailState = 'valid';
+      errors.usernameState = 'valid';
       this.setState({ errors });
     } else this.setState({ errors });
   };
@@ -89,10 +96,9 @@ class RegistrationForm extends Component {
       !password.match(
         "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-`~()_=+{}\\|'.<>;:,/]).{8,33}$"
       )
-    ) {
+    )
       errors.password =
         'Password must be contain at least one lowercase and uppercase letter, a number and a special character';
-    }
 
     if (confirmPassword !== password)
       errors.confirmPassword = 'Passwords must match.';
@@ -104,53 +110,62 @@ class RegistrationForm extends Component {
     } else this.setState({ errors });
   };
 
-  handleSubmit = async e => {
+  postUserToDb = async () => {
+    const {
+      data: { username, email, password, confirmPassword }
+    } = this.state;
+    try {
+      const response = await fetch(
+        'https://localhost:44333/api/account/register',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            userName: username,
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword
+          })
+        }
+      );
+      const backendResponse = await response.json();
+      console.log(backendResponse);
+      if (backendResponse.status === 'Error') swal(backendResponse.message);
+
+      switch (backendResponse.message) {
+        case 'User already exists':
+          swal(backendResponse.message, 'Proceed to Login', 'warning');
+         // alert(backendResponse.message);
+          this.props.history.push('/login');
+          break;
+        case 'You have successfully registered':
+          swal(backendResponse.message, 'Success', 'success');
+          setTimeout(() => this.props.history.push('/admin/index'), 2000);
+          break;
+        default:
+          swal(backendResponse.message);
+          break;
+      }
+    } catch (error) {
+      swal(error, 'Something happened!', 'error');
+      console.log(error);
+    }
+  };
+
+  handleSubmit = e => {
     e.preventDefault();
     const formErrors = this.validate();
     const {
-      data: { username, email, password, confirmPassword },
       errors: { usernameState, emailState, confirmPasswordState },
       loading
     } = this.state;
-    if (emailState && confirmPasswordState && usernameState) {
-      this.setState({ loading: !loading });
 
-      try {
-        const response = await fetch(
-          'https://localhost:44333/api/account/register',
-          {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-type': 'application/json'
-            },
-            body: JSON.stringify({
-              Username: username,
-              Email: email,
-              Password: password,
-              ConfirmPassword: confirmPassword
-            })
-          }
-        );
-        const backendResponse = await response.json();
-        if (backendResponse.status === 'Error') alert(backendResponse.message);
-
-        switch (backendResponse.message) {
-          case 'User Already Exists':
-            this.props.history.push('/login');
-            break;
-          case 'User Created Successfully':
-            alert(backendResponse.message);
-            setTimeout(() => this.props.history.push('/admin/index'), 2000);
-            break;
-          default:
-            alert(backendResponse.message);
-            break;
-        }
-      } catch (error) {
-        alert(error);
-      }
-    } else this.setState({ formErrors });
+    if (emailState && confirmPasswordState && usernameState)
+      this.setState({ loading: !loading }, () => this.postUserToDb());
+    else this.setState({ formErrors });
   };
 
   render() {
@@ -182,6 +197,7 @@ class RegistrationForm extends Component {
             <Label htmlFor="username" className="label">
               Enter Username
             </Label>
+            <FormFeedback>{errors.username}</FormFeedback>
           </FormGroup>
 
           <FormGroup>
@@ -278,7 +294,6 @@ class RegistrationForm extends Component {
           <Button
             type="submit"
             color="primary"
-            onClick={() => console.log(this.state)}
             className={loading ? 'onload' : null}
             block
           >
