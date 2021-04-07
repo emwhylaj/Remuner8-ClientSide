@@ -10,7 +10,7 @@ const EmployeeCard = props => {
   });
 
   useEffect(() => {
-    fetch('https://604529e6c0194f00170bca44.mockapi.io/api/users/jk')
+    fetch('https://604529e6c0194f00170bca44.mockapi.io/api/jk')
       .then(res => res.json())
       .then(
         users => setState({ loading: false, employees: users }),

@@ -13,21 +13,18 @@ import {
 import 'assets/scss/forms.styles.scss';
 
 class RegistrationForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: {
-        email: '',
-        password: '',
-        confirmPassword: ''
-      },
-      errors: {},
-      showPassword: false,
-      showConfirmPassword: false,
-      loading: false
-    };
-  }
+  state = {
+    data: {
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    },
+    errors: {},
+    showPassword: false,
+    showConfirmPassword: false,
+    loading: false
+  };
 
   togglePassword = () => {
     const { showPassword } = this.state;
@@ -58,10 +55,13 @@ class RegistrationForm extends Component {
       data: { password, confirmPassword },
       errors
     } = this.state;
+
     if (password.length < 8 || password.length > 32)
       errors.password = 'Password must be 8 - 32 characters long.';
+
     if (confirmPassword !== password)
       errors.confirmPassword = 'Passwords must match.';
+
     return errors;
   };
 
@@ -74,7 +74,6 @@ class RegistrationForm extends Component {
     if (!errors.email) {
       errors.emailState = 'valid';
       this.setState({ errors });
-      // Call an api here
     } else this.setState({ errors });
   };
 
@@ -85,6 +84,7 @@ class RegistrationForm extends Component {
     } = this.state;
     if (password.length < 8 || password.length > 32)
       errors.password = 'Password must be 8 - 32 characters long.';
+
     if (
       !password.match(
         "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-`~()_=+{}\\|'.<>;:,/]).{8,33}$"
@@ -93,6 +93,7 @@ class RegistrationForm extends Component {
       errors.password =
         'Password must be contain at least one lowercase and uppercase letter, a number and a special character';
     }
+
     if (confirmPassword !== password)
       errors.confirmPassword = 'Passwords must match.';
 
@@ -107,25 +108,30 @@ class RegistrationForm extends Component {
     e.preventDefault();
     const formErrors = this.validate();
     const {
-      data: { email, confirmPassword },
-      errors: { emailState, confirmPasswordState },
+      data: { username, email, password, confirmPassword },
+      errors: { usernameState, emailState, confirmPasswordState },
       loading
     } = this.state;
-    if (emailState && confirmPasswordState) {
+    if (emailState && confirmPasswordState && usernameState) {
       this.setState({ loading: !loading });
 
       try {
-        const response = await fetch('https://localhost:44333/api/Register', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-type': 'application/json'
-          },
-          body: JSON.stringify({
-            Email: email,
-            Password1: confirmPassword
-          })
-        });
+        const response = await fetch(
+          'https://localhost:44333/api/account/register',
+          {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+              Username: username,
+              Email: email,
+              Password: password,
+              ConfirmPassword: confirmPassword
+            })
+          }
+        );
         const backendResponse = await response.json();
         if (backendResponse.status === 'Error') alert(backendResponse.message);
 
@@ -162,11 +168,29 @@ class RegistrationForm extends Component {
         <Form onSubmit={this.handleSubmit} className="registration">
           <FormGroup>
             <Input
+              id="username"
+              name="username"
+              type="text"
+              className={errors.username ? 'has-danger' : null}
+              autoFocus
+              required
+              valid={errors.usernameState === 'valid' ? true : false}
+              invalid={errors.username ? true : false}
+              value={data.username}
+              onChange={e => this.handleChange(e)}
+            />
+            <Label htmlFor="username" className="label">
+              Enter Username
+            </Label>
+          </FormGroup>
+
+          <FormGroup>
+            <Input
               id="email"
               name="email"
               type="email"
+              placeholder="Email Address"
               className={errors.email ? 'has-danger' : null}
-              autoFocus
               required
               valid={errors.emailState === 'valid' ? true : false}
               invalid={errors.email ? true : false}
@@ -254,6 +278,7 @@ class RegistrationForm extends Component {
           <Button
             type="submit"
             color="primary"
+            onClick={() => console.log(this.state)}
             className={loading ? 'onload' : null}
             block
           >

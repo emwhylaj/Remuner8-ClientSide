@@ -14,9 +14,9 @@ import RevenueChart from 'components/Dashboard/RevenueChart';
 const Index = () => {
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState('data1');
-  const [statistics, setStatistics] = useState([]);
+  const [statistics, setStatistics] = useState({});
 
-  const url = 'https://003b6f1d4004.ngrok.io/api/statistics';
+  const url = 'https://localhost:44333/api/statistics';
 
   if (window.Chart) parseOptions(Chart, chartOptions());
 
@@ -37,7 +37,7 @@ const Index = () => {
       }
     };
     fetchStatistics();
-  });
+  }, []);
 
   const { departments, employees } = statistics;
 

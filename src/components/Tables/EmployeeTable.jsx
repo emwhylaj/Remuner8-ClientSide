@@ -25,8 +25,8 @@ const EmployeeTable = props => {
   // ];
 
   const getTableHeaders = () => {
-    if (!props.data) return;
-    const tableHeaders = props.data.slice(1);
+    if (!props.employees) return;
+    const tableHeaders = props.employees.slice(1);
     return Object.keys(...tableHeaders);
   };
 
@@ -44,7 +44,7 @@ const EmployeeTable = props => {
         >
           <TableHeader headers={getTableHeaders} />
           <TableBody
-            body={props.data}
+            body={props.employees}
             toggleEditModal={toggleEditModal}
             toggleDeleteModal={toggleDeleteModal}
           />
