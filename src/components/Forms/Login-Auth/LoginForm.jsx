@@ -59,18 +59,19 @@ class LoginForm extends Component {
     const { email, password, loading } = this.state;
     this.setState({ loading: !loading });
     try {
-      const response = await fetch('https://localhost:44333/api/Login', {
+      const response = await fetch('https://localhost:44333/api/account/login', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          Email: email,
-          Password1: password
+          email: email,
+          password: password
         })
       });
       const backendResponse = await response.json();
+      console.log(backendResponse);
       backendResponse.status === 'Success'
         ? setTimeout(() => this.props.history.push('/admin/index'), 2000)
         : this.setState({ loading: false }, () =>
@@ -91,6 +92,7 @@ class LoginForm extends Component {
       showPassword,
       loading
     } = this.state;
+
     return (
       <>
         <p className="text-muted text-center mb-5">
@@ -102,7 +104,7 @@ class LoginForm extends Component {
               type="email"
               name="email"
               id="email"
-              title="Username"
+              title="Email Address"
               autoComplete="username"
               required
               autoFocus
@@ -112,9 +114,9 @@ class LoginForm extends Component {
               onChange={e => this.handleChange(e)}
             />
             <Label htmlFor="email" className="label">
-              Username
+              Email Address
             </Label>
-            <FormFeedback>Invalid Username/Email Address</FormFeedback>
+            <FormFeedback>Invalid Email Address</FormFeedback>
             <FormText>{formText}</FormText>
           </FormGroup>
 
@@ -160,7 +162,7 @@ class LoginForm extends Component {
             >
               {loading ? (
                 <span>
-                  <i className="fas fa-circle-o-notch fa-spin"></i> Loading
+                  <i className="fas fa-circle-o-notch fa-spin"></i> LOADING
                 </span>
               ) : (
                 'LOG IN'
