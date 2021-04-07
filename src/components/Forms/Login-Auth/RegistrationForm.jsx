@@ -51,14 +51,17 @@ class RegistrationForm extends Component {
   };
 
   validate = () => {
-    const { data: { password, confirmPassword }, errors } = this.state;
+    const {
+      data: { password, confirmPassword },
+      errors
+    } = this.state;
 
     if (password.length < 8 || password.length > 32)
       errors.password = 'Password must be 8 - 32 characters long.';
 
     if (confirmPassword !== password)
       errors.confirmPassword = 'Passwords must match.';
-    
+
     return errors;
   };
 
@@ -104,7 +107,6 @@ class RegistrationForm extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     const formErrors = this.validate();
-    console.log(this.state);
     const {
       data: { username, email, password, confirmPassword },
       errors: { usernameState, emailState, confirmPasswordState },
@@ -177,7 +179,7 @@ class RegistrationForm extends Component {
               value={data.username}
               onChange={e => this.handleChange(e)}
             />
-            <Label htmlFor="email" className="label">
+            <Label htmlFor="username" className="label">
               Enter Username
             </Label>
           </FormGroup>
