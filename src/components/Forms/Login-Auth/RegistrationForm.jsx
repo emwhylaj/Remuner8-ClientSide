@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import swal from '@sweetalert/with-react';
+
 import {
   Label,
   Button,
@@ -72,7 +74,8 @@ class RegistrationForm extends Component {
     } = this.state;
 
     if (email === '') errors.email = 'Email cannot be blank';
-    if (username === email) errors.username = 'Username cannot the same as your Email Address';
+    if (username === email)
+      errors.username = 'Username cannot the same as your Email Address';
 
     if (!errors.email && !errors.username) {
       errors.emailState = 'valid';
@@ -130,22 +133,25 @@ class RegistrationForm extends Component {
       );
       const backendResponse = await response.json();
       console.log(backendResponse);
-      if (backendResponse.status === 'Error') alert(backendResponse.message);
+      if (backendResponse.status === 'Error') swal(backendResponse.message);
 
       switch (backendResponse.message) {
         case 'User already exists':
+          swal(backendResponse.message, 'Proceed to Login', 'warning');
+         // alert(backendResponse.message);
           this.props.history.push('/login');
           break;
         case 'You have successfully registered':
-          alert(backendResponse.message);
+          swal(backendResponse.message, 'Success', 'success');
           setTimeout(() => this.props.history.push('/admin/index'), 2000);
           break;
         default:
-          alert(backendResponse.message);
+          swal(backendResponse.message);
           break;
       }
     } catch (error) {
-      alert(error);
+      swal(error, 'Something happened!', 'error');
+      console.log(error);
     }
   };
 
