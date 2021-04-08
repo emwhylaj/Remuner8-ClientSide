@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { NavLink as NavLinkRRD, Link } from 'react-router-dom';
 // nodejs library to set properties for components
 import { PropTypes } from 'prop-types';
-//import SimpleBar from 'simplebar-react';
-// import 'simplebar/dist/simplebar';
 
 // Profile Image
 import AdminImg from '../../assets/img/theme/adminImage.jfif';
@@ -35,17 +33,13 @@ const Sidebar = props => {
   const [collapseOpen, setCollapseOpen] = useState();
   // verifies if routeName is the one active (in browser input)
   // eslint-disable-next-line no-unused-vars
-  const activeRoute = routeName => {
-    return props.location.pathname.indexOf(routeName) > -1 ? 'active' : '';
-  };
+  const activeRoute = routeName => props.location.pathname.indexOf(routeName) > -1 ? 'active' : '';
+  
   // toggles collapse between opened and closed (true/false)
-  const toggleCollapse = () => {
-    setCollapseOpen(data => !data);
-  };
+  const toggleCollapse = () => setCollapseOpen(data => !data);
+  
   // closes the collapse
-  const closeCollapse = () => {
-    setCollapseOpen(false);
-  };
+  const closeCollapse = () => setCollapseOpen(false);
   // creates the links that appear in the left menu / Sidebar
   const createLinks = routes => {
     return routes.map((prop, key) => {
@@ -113,7 +107,7 @@ const Sidebar = props => {
         {/* User */}
         <Nav className="align-items-center d-md-none">
           {/* Bell icon */}
-          <UncontrolledDropdown nav>
+          {/* <UncontrolledDropdown nav>
             <DropdownToggle nav className="nav-link-icon">
               <i className="ni ni-bell-55" />
             </DropdownToggle>
@@ -127,7 +121,7 @@ const Sidebar = props => {
               <DropdownItem divider />
               <DropdownItem>Something else here</DropdownItem>
             </DropdownMenu>
-          </UncontrolledDropdown>
+          </UncontrolledDropdown> */}
           <UncontrolledDropdown nav>
             <DropdownToggle nav>
               <Media className="align-items-center">
@@ -157,7 +151,7 @@ const Sidebar = props => {
                 <span>Support</span>
               </DropdownItem>
               <DropdownItem divider />
-              <DropdownItem href="/login" onClick={e => e.preventDefault()}>
+              <DropdownItem to="/login" tag={Link}>
                 <i className="ni ni-user-run" />
                 <span>Logout</span>
               </DropdownItem>
