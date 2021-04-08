@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Chart from "chart.js";
 import { Container, Row, Col } from "reactstrap";
-// import { AppContext } from "./../../context/store";
+import { AppContext } from "context/store";
 
 // core components
 import { chartOptions, parseOptions } from "variables/charts.js";
@@ -13,8 +13,8 @@ import PerformanceChart from "components/Dashboard/PerformanceChart";
 import RevenueChart from "components/Dashboard/RevenueChart";
 
 const Index = () => {
-	// const { state, events } = useContext(AppContext);
-	// console.log(state, events);
+	const { state, events } = useContext(AppContext);
+	console.log(state, events);
 	// uncomment import of AppContext and the two above to
 	// view the states or retrieve reducer functions from the events
 	// the state and events are both objects so you can call their keys to retrieve their value pairs
