@@ -5,7 +5,7 @@ import CustomForm from 'components/Forms/CustomForm';
 const DepartmentForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(props);
+    console.log(props.name);
     props.toggle();
   };
 
@@ -16,7 +16,7 @@ const DepartmentForm = props => {
           <label className="col-form-label">
             Department Name <span className="text-danger">*</span>
           </label>
-          <Input type="text" required />
+          <Input type="text" required defaultValue={props.name} />
         </FormGroup>
       </Col>
     </CustomForm>
