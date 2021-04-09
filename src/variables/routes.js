@@ -5,6 +5,7 @@ import Departments from 'pages/Dashboard/Departments';
 import SalaryStructure from 'pages/Dashboard/SalaryStructure';
 import Payslip from 'pages/Dashboard/Payslip';
 import Payroll from 'pages/Dashboard/Payroll';
+import Leaves from 'pages/Dashboard/Leaves';
 
 import Custom404 from 'pages/404';
 
@@ -51,7 +52,7 @@ const routes = [
       path: '/leaves',
       name: 'Leaves',
       icon: 'ni ni-user-run text-blue',
-      component: Custom404,
+      component: Leaves,
       layout: '/admin'
     },
     {
