@@ -4,7 +4,6 @@ import { Row } from 'reactstrap';
 import { paginate } from 'utils/paginate';
 
 import Table from 'components/Tables/Table';
-
 import TableInfo from 'components/Tables/TableInfo';
 import TableLength from 'components/Tables/TableLength';
 import Pagination from 'components/Tables/Pagination';
