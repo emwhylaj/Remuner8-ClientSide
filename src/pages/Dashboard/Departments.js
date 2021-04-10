@@ -22,14 +22,21 @@ class Departments extends Component {
   _isMounted = false;
   toggleAddModal = () =>
     this.setState({ addModalOpen: !this.state.addModalOpen });
-  toggleEditModal = e => {
+
+  toggleEditModal = () => {
     this.setState({ editModalOpen: !this.state.editModalOpen });
   };
+
   toggleDeleteModal = () =>
     this.setState({ deleteModalOpen: !this.state.deleteModalOpen });
 
-  setDepartmentName = string => {
-    this.setState({ departmentName: string });
+  setFormData = object => {
+    this.setState({ formData: [object] });
+  };
+
+  handleEdit = object => {
+    this.setFormData(object);
+    this.toggleEditModal();
   };
 
   mockUrl = 'https://604529e6c0194f00170bca44.mockapi.io/api/departments';
@@ -87,9 +94,9 @@ class Departments extends Component {
               ) : (
                 <DepartmentsTable
                   data={departments}
-                  toggleEditModal={this.toggleEditModal}
-                  toggleDeleteModal={this.toggleDeleteModal}
-                  setDepartmentName={this.setDepartmentName}
+                  onEdit={this.handleEdit}
+                  onDelete={this.toggleDeleteModal}
+                  setFormData={this.setFormData}
                 />
               )}
             </Col>
@@ -107,7 +114,7 @@ class Departments extends Component {
             toggle={this.toggleEditModal}
           >
             <DepartmentForm
-              name={this.state.departmentName}
+              data={this.state.formData}
               toggle={this.toggleEditModal}
             />
           </CustomModal>

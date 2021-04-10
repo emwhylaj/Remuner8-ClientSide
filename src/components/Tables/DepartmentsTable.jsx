@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import BTable from 'react-bootstrap/Table';
 import { Row } from 'reactstrap';
 
 import { paginate } from 'utils/paginate';
 
-import TableHeader from 'components/Tables/TableHeader';
-import TableBody from 'components/Tables/TableBody';
+import Table from 'components/Tables/Table';
+
 import TableInfo from 'components/Tables/TableInfo';
 import TableLength from 'components/Tables/TableLength';
 import Pagination from 'components/Tables/Pagination';
@@ -17,7 +16,9 @@ class DepartmentsTable extends Component {
     this.state = {
       pageSize: 10,
       currentPage: 1,
-      sortColumn: { path: 'id', order: 'asc' }
+      sortColumn: { path: 'id', order: 'asc' },
+      start: 1,
+      end: 10
     };
   }
 
@@ -29,14 +30,12 @@ class DepartmentsTable extends Component {
       label: 'Action',
       content: departmentName => (
         <ActionToggle
-          toggleEditModal={() => this.handleEdit(departmentName)}
-          toggleDeleteModal={this.props.toggleDeleteModal}
+          toggleEditModal={() => this.props.onEdit(departmentName)}
+          toggleDeleteModal={this.props.onDelete}
         />
       )
     }
   ];
-
-  localData = this.props.data;
 
   handlePageChange = page => this.setState({ currentPage: page });
 
@@ -44,45 +43,27 @@ class DepartmentsTable extends Component {
 
   handleSort = sortColumn => this.setState({ sortColumn });
 
-  handleEdit = string => {
-    this.props.setDepartmentName(string);
-    this.props.toggleEditModal();
-  };
-
   render() {
-    const { data, toggleDeleteModal } = this.props;
-    const { pageSize, currentPage, sortColumn } = this.state;
+    const { data } = this.props;
+    const { start, end, pageSize, currentPage, sortColumn } = this.state;
 
-    const departments = data && paginate(this.localData, currentPage, pageSize);
+    const departments = data && paginate(data, currentPage, pageSize);
 
     return (
       <div className="table-wrapper">
         <Row className="px-lg-4">
           <TableLength togglePageSize={this.handlePageSizeChange} />
         </Row>
-        <BTable
-          className="align-items-center my-3"
-          responsive
-          striped
-          size="sm"
-          style={{ background: '#fff', color: '#333' }}
-        >
-          <TableHeader
-            columns={this.columns}
-            sortColumn={sortColumn}
-            onSort={this.handleSort}
-            data={this.localData}
-          />
-          <TableBody
-            data={departments}
-            columns={this.columns}
-            handleEdit={this.handleEdit}
-            toggleDelete={toggleDeleteModal}
-          />
-        </BTable>
 
+        <Table
+          columns={this.columns}
+          headerData={data}
+          bodyData={departments}
+          sortColumn={sortColumn}
+          onSort={this.handleSort}
+        />
         <Row className="align-items-baseline justify-content-lg-between mt-2">
-          <TableInfo start={1} end={10} total={data.length} />
+          <TableInfo start={start} end={end} total={data.length} />
           <Pagination
             itemsCount={data.length}
             pageSize={pageSize}

@@ -1,21 +1,18 @@
 import React from 'react';
-// import dateFormat from 'dateformat';
 import _ from 'lodash';
+import styled from 'styled-components';
 
 // import Avatar from 'components/Avatars/EmployeeAvatar';
 // import DummyImage from 'assets/img/theme/team-1-800x800.jpg';
 
 const TableBody = ({ data, columns }) => {
-  // const createKey = (item, column) => item._id + (column.path || column.key);
+  const createKey = (item, column) => item.id + (column.path || column.key);
 
   const renderCell = (item, column) => {
-   // console.log(item[column.path]);
-    if (column.content) return column.content(item[column.path]);
+    if (column.content) return column.content(item);
 
     return _.get(item, column.path);
   };
-
-  //console.log(columns);
 
   // const formatDate = date => {
   //   return dateFormat(date, 'dd/mm/yyyy');
@@ -27,7 +24,9 @@ const TableBody = ({ data, columns }) => {
         data.map(item => (
           <tr key={item.id} role="row">
             {columns.map(column => (
-              <td className="pl-4">{renderCell(item, column)}</td>
+              <Cell key={createKey(item, column)} className="pl-4">
+                {renderCell(item, column)}
+              </Cell>
             ))}
           </tr>
         ))
@@ -39,6 +38,12 @@ const TableBody = ({ data, columns }) => {
 };
 
 export default TableBody;
+
+const Cell = styled.td`
+  &:last-child {
+    text-align: center;
+  }
+`;
 
 // <tbody>
 //   {body

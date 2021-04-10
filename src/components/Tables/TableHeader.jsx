@@ -2,8 +2,10 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { UncontrolledTooltip } from 'reactstrap';
 
-const TableHeader = props => {
+const TableHeader = ({ sortColumn, data, onSort, columns }) => {
+
   const sortData = (sortColumn, data) => {
+    console.log(data)
     const { path, order } = sortColumn;
     if (order === 'asc') {
       !path.includes('id')
@@ -17,28 +19,17 @@ const TableHeader = props => {
   };
 
   const raiseSort = path => {
-    const sortColumn = { ...props.sortColumn };
-    if (sortColumn.path === path) {
-      sortColumn.order = sortColumn.order === 'asc' ? 'desc' : '';
-      if (sortColumn.order === '') sortColumn.order = 'asc';
+    const sortColumnCopy = { ...sortColumn };
+    if (sortColumnCopy.path === path) {
+      sortColumnCopy.order = sortColumnCopy.order === 'asc' ? 'desc' : '';
+      if (sortColumnCopy.order === '') sortColumnCopy.order = 'asc';
     } else {
-      sortColumn.path = path;
-      sortColumn.order = 'asc';
+      sortColumnCopy.path = path;
+      sortColumnCopy.order = 'asc';
     }
-    props.onSort(sortColumn);
-    sortData(sortColumn, props.data);
+    onSort(sortColumnCopy);
+    sortData(sortColumnCopy, data);
   };
-
-  // const renderSortIcon = column => {
-  //   if (column.path !== props.sortColumn.path) return null;
-  //   if (props.sortColumn.order === 'asc')
-  //     return <i className="fa fa-sort-asc" aria-hidden="true"></i>;
-  // };
-
-  const {
-    sortColumn: { order },
-    columns
-  } = props;
 
   return (
     <thead>
@@ -52,16 +43,17 @@ const TableHeader = props => {
                   placement="top"
                   target={column.path}
                 >
-                  {!order
+                  {!sortColumn.order
                     ? 'Click to reset'
                     : `Click to sort by ${
-                        order === 'asc' ? 'descending' : 'ascending'
+                        sortColumn.order === 'asc' ? 'descending' : 'ascending'
                       }`}
                 </UncontrolledTooltip>
               ) : null}
-              <StyledTh
+              <Th
                 key={index}
-                order={order}
+                order={sortColumn.order}
+                active={sortColumn.path === column.path}
                 onClick={() => raiseSort(column.path)}
                 tabIndex={0}
                 sort={column.path}
@@ -69,7 +61,7 @@ const TableHeader = props => {
                 id={column.path}
               >
                 {column.label}
-              </StyledTh>
+              </Th>
             </>
           ))
         ) : (
@@ -98,6 +90,7 @@ const sortStyles = css`
     font-size: 1.2rem;
     ${props =>
       props.order === 'asc' &&
+      props.active &&
       css`
         opacity: 1;
       `}
@@ -111,7 +104,9 @@ const sortStyles = css`
     display: block;
     font-size: 1.2rem;
     opacity: 0.5;
-    ${props => props.order === 'desc' &&
+    ${props =>
+      props.order === 'desc' &&
+      props.active &&
       css`
         opacity: 1;
       `}
@@ -120,7 +115,7 @@ const sortStyles = css`
 
 const getSortStyles = props => props.sort && sortStyles;
 
-export const StyledTh = styled.th`
+export const Th = styled.th`
   font-weight: 600;
   letter-spacing: 0.05em;
   border-bottom: 2px solid #dee2e6;
