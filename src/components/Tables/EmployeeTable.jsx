@@ -47,6 +47,10 @@ class EmployeeTable extends Component {
 
   handlePageChange = page => this.setState({ currentPage: page });
 
+  handlePrevious = page => this.setState({ currentPage: page - 1 });
+
+  handleNext = page => this.setState({ currentPage: page + 1 });
+
   handlePageSizeChange = value => this.setState({ pageSize: Number(value) });
 
   handleSort = sortColumn => this.setState({ sortColumn });
@@ -90,6 +94,8 @@ class EmployeeTable extends Component {
                 onPageChange={this.handlePageChange}
                 currentPage={currentPage}
                 onPageSizeChange={this.handlePageSizeChange}
+                onPrevious={this.handlePrevious}
+                onNext={this.handleNext}
               />
             </Row>
           </>

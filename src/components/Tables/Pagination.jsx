@@ -10,7 +10,9 @@ const Pagination = ({
   pageSize,
   onPageChange,
   currentPage,
-  onPageSizeChange
+  onPageSizeChange,
+  onPrevious,
+  onNext
 }) => {
   const pagesCount = Math.ceil(itemsCount / pageSize);
 
@@ -28,7 +30,11 @@ const Pagination = ({
         <nav aria-label="Departments Page navigation">
           <ul className="pagination justify-content-center justify-content-lg-end px-lg-4 mb-0">
             <li className="page-item" title="Previous Page">
-              <Button className="page-link" disabled={currentPage === 1}>
+              <Button
+                className="page-link"
+                disabled={currentPage === 1}
+                onClick={() => onPrevious(currentPage)}
+              >
                 Previous
               </Button>
             </li>
@@ -48,7 +54,13 @@ const Pagination = ({
               </li>
             ))}
             <li className="page-item" title="Next Page">
-              <button className="page-link">Next</button>
+              <Button
+                className="page-link"
+                disabled={currentPage === pages.length}
+                onClick={() => onNext(currentPage)}
+              >
+                Next
+              </Button>
             </li>
           </ul>
         </nav>
@@ -63,7 +75,9 @@ Pagination.propTypes = {
   pageSize: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   currentPage: PropTypes.number.isRequired,
-  onPageSizeChange: PropTypes.func.isRequired
+  onPageSizeChange: PropTypes.func.isRequired,
+  onPrevious: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired
 };
 
 export default Pagination;
