@@ -12,7 +12,7 @@ import DeleteModal from 'components/Modals/DeleteModal';
 class Departments extends Component {
   state = {
     loading: true,
-    departmentName: '',
+    formData: [],
     departments: [],
     addModalOpen: false,
     editModalOpen: false,

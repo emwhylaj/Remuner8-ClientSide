@@ -2,12 +2,15 @@ import React from 'react';
 import { Col } from 'reactstrap';
 import styled from 'styled-components';
 
-const TableLength = () => (
+const TableLength = props => (
   <Col sm={12} md={6}>
     <Wrapper>
       <Label>
         Show
-        <select className="w-auto mx-2 custom-select text-darker">
+        <select
+          className="w-auto mx-2 custom-select text-darker"
+          onChange={e => props.togglePageSize(e.target.value)}
+        >
           <option value="10">10</option>
           <option value="25">25</option>
           <option value="50">50</option>

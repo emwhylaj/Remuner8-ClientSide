@@ -5,7 +5,7 @@ import CustomForm from 'components/Forms/CustomForm';
 const DepartmentForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(props.name);
+    console.log(props);
     props.toggle();
   };
 
