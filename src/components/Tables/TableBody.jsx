@@ -2,9 +2,6 @@ import React from 'react';
 import _ from 'lodash';
 import styled from 'styled-components';
 
-// import Avatar from 'components/Avatars/EmployeeAvatar';
-// import DummyImage from 'assets/img/theme/team-1-800x800.jpg';
-
 const TableBody = ({ data, columns }) => {
   const createKey = (item, column) => item.id + (column.path || column.key);
 
@@ -13,10 +10,6 @@ const TableBody = ({ data, columns }) => {
 
     return _.get(item, column.path);
   };
-
-  // const formatDate = date => {
-  //   return dateFormat(date, 'dd/mm/yyyy');
-  // };
 
   return (
     <tbody>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Table } from 'reactstrap';
 
+// import Avatar from 'components/Avatars/EmployeeAvatar';
 import CustomModal from 'components/Modals/CustomModal';
 import DeleteModal from 'components/Modals/DeleteModal';
 import EmployeeForm from 'components/Forms/Employees/EmployeeForm';
@@ -29,6 +30,10 @@ const EmployeeTable = props => {
     const tableHeaders = props.employees.slice(1);
     return Object.keys(...tableHeaders);
   };
+
+  // const formatDate = date => {
+  //   return dateFormat(date, 'dd/mm/yyyy');
+  // };
 
   return (
     <>

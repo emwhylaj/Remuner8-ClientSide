@@ -2,25 +2,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const EmployeeAvatar = ({ avatar, name }) => {
-  return (
-    <TableAvatar>
-      <Avatar to="/admin/employee-profile">
-        <Image src={avatar} />
-      </Avatar>
-      <AvatarLink to="/admin/employee-profile">
-        {name}
-        <Job>{name}</Job>
-      </AvatarLink>
-    </TableAvatar>
-  );
-};
+import DummyImage from 'assets/img/theme/team-1-800x800.jpg';
+
+const EmployeeAvatar = ({ avatar, name }) => (
+  <TableAvatar>
+    <Avatar to="/admin/employee-profile">
+      <Image src={avatar || DummyImage} />
+    </Avatar>
+    <AvatarLink to="/admin/employee-profile">
+      {name}
+      <Job>{name}</Job>
+    </AvatarLink>
+  </TableAvatar>
+);
 
 export default EmployeeAvatar;
 
 const TableAvatar = styled.h2`
-    display: inline-flex;
-    align-items: center;
+  display: inline-flex;
+  align-items: center;
 `;
 
 const Avatar = styled(Link)`

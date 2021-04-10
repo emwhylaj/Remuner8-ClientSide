@@ -42,11 +42,18 @@ class DepartmentsTable extends Component {
 
   handleSort = sortColumn => this.setState({ sortColumn });
 
+  getPagedData = () => {
+    const { data } = this.props;
+    const { pageSize, currentPage } = this.state;
+    const departments = data && paginate(data, currentPage, pageSize);
+
+    return { totalCount: data.length, data: departments };
+  };
+
   render() {
     const { data } = this.props;
     const { start, end, pageSize, currentPage, sortColumn } = this.state;
-
-    const departments = data && paginate(data, currentPage, pageSize);
+    const { totalCount, data: departments } = this.getPagedData();
 
     return (
       <div className="table-wrapper">
@@ -62,9 +69,9 @@ class DepartmentsTable extends Component {
           onSort={this.handleSort}
         />
         <Row className="align-items-baseline justify-content-lg-between mt-2">
-          <TableInfo start={start} end={end} total={data.length} />
+          <TableInfo start={start} end={end} total={totalCount} />
           <Pagination
-            itemsCount={data.length}
+            itemsCount={totalCount}
             pageSize={pageSize}
             onPageChange={this.handlePageChange}
             currentPage={currentPage}
