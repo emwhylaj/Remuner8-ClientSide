@@ -2,7 +2,7 @@ import React from 'react';
 import { Col } from 'reactstrap';
 
 const TableInfo = ({ start, end, total }) => (
-  <Col sm={6} md={5}>
+  <Col sm={12} md={5} className="mb-sm-3">
     <div
       className="dataTables_info text-center text-lg-left px-lg-4"
       id="DataTables_Table_info"

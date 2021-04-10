@@ -30,14 +30,11 @@ class Departments extends Component {
   toggleDeleteModal = () =>
     this.setState({ deleteModalOpen: !this.state.deleteModalOpen });
 
-  setFormData = object => {
-    this.setState({ formData: [object] });
-  };
-
-  handleEdit = object => {
-    this.setFormData(object);
-    this.toggleEditModal();
-  };
+  handleEdit = object =>
+    this.setState({
+      formData: [object],
+      editModalOpen: !this.state.editModalOpen
+    });
 
   mockUrl = 'https://604529e6c0194f00170bca44.mockapi.io/api/departments';
   url = 'https://localhost:44333/api/departments';

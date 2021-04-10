@@ -3,16 +3,14 @@ import styled, { css } from 'styled-components';
 import { UncontrolledTooltip } from 'reactstrap';
 
 const TableHeader = ({ sortColumn, data, onSort, columns }) => {
-
   const sortData = (sortColumn, data) => {
-    console.log(data)
     const { path, order } = sortColumn;
     if (order === 'asc') {
-      !path.includes('id')
+      !path.includes('id') || typeof data[0][path] === 'string'
         ? data.sort((a, b) => a[path].localeCompare(b[path]))
         : data.sort((a, b) => a[path] - b[path]);
     } else if (order === 'desc') {
-      !path.includes('id')
+      !path.includes('id') || typeof data[0][path] === 'string'
         ? data.sort((a, b) => b[path].localeCompare(a[path]))
         : data.sort((a, b) => b[path] - a[path]);
     } else return null;
@@ -57,7 +55,7 @@ const TableHeader = ({ sortColumn, data, onSort, columns }) => {
                 onClick={() => raiseSort(column.path)}
                 tabIndex={0}
                 sort={column.path}
-                style={{ width: '2rem', fontSize: '1.6ch' }}
+                style={{ fontSize: '1.6ch' }}
                 id={column.path}
               >
                 {column.label}
@@ -81,7 +79,7 @@ const sortStyles = css`
 
   // ascending icon
   &::before {
-    right: 0.5em;
+    right: -0.3em;
     content: '\\2191';
     position: absolute;
     bottom: 0.5em;
@@ -97,7 +95,7 @@ const sortStyles = css`
   }
 
   &::after {
-    right: 1em;
+    right: -0.7em;
     content: '\\2193';
     position: absolute;
     bottom: 0.4em;
@@ -122,9 +120,7 @@ export const Th = styled.th`
   font-size: 0.9375rem;
   ${getSortStyles}
   white-space: normal !important;
-  &:first-child {
-    padding-left: 25px;
-  }
+  padding-left: 25px !important;
   &:last-child {
     text-align: center;
   }

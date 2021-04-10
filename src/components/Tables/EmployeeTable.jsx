@@ -1,78 +1,102 @@
-import React, { useState } from 'react';
-import { Table } from 'reactstrap';
+import React, { Component } from 'react';
+import { Row } from 'reactstrap';
+import dateFormat from 'dateformat';
+import { paginate } from 'utils/paginate';
 
-// import Avatar from 'components/Avatars/EmployeeAvatar';
-import CustomModal from 'components/Modals/CustomModal';
-import DeleteModal from 'components/Modals/DeleteModal';
-import EmployeeForm from 'components/Forms/Employees/EmployeeForm';
+import Avatar from 'components/Avatars/EmployeeAvatar';
 import LoaderRing from 'components/Loading/Loader';
+import Table from 'components/Tables/Table';
+import TableInfo from 'components/Tables/TableInfo';
+import Pagination from 'components/Tables/Pagination';
+import ActionToggle from 'components/Custom-Buttons/ActionToggle';
 
-import TableHeader from './TableHeader';
-import TableBody from './TableBody';
+class EmployeeTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pageSize: 10,
+      currentPage: 1,
+      sortColumn: { path: 'employeeId', order: 'asc' },
+      start: 1,
+      end: 10
+    };
+  }
 
-const EmployeeTable = props => {
-  const [editModalOpen, setEditModalState] = useState(false);
-  const [deleteModalOpen, setDeleteModalState] = useState(false);
-  const toggleEditModal = () => setEditModalState(!editModalOpen);
-  const toggleDeleteModal = () => setDeleteModalState(!deleteModalOpen);
-  // const columns = [
-  //   { path: 'name', label: 'Name', content: <Avatar /> },
-  //   { path: 'id', label: 'ID' },
-  //   { path: 'email', label: 'Email' },
-  //   { path: 'mobile', label: 'Phone Number' },
-  //   { path: 'joinDate', label: 'Join Date' },
-  //   { path: 'department', label: 'Department' },
-  //   { key: 'Action', label: 'Action', content: <ActionToggle /> }
-  // ];
+  columns = [
+    {
+      path: 'name',
+      label: 'Name',
+      content: employee => <Avatar employee={employee} />
+    },
+    { path: 'employee_id', label: 'Employee ID' },
+    { path: 'email', label: 'Email' },
+    { path: 'phone_number', label: 'Phone Number' },
+    { path: 'join_date', label: 'Join Date' },
+    { path: 'department', label: 'Department' },
+    {
+      key: 'Action',
+      label: 'Action',
+      content: employee => (
+        <ActionToggle
+          toggleEditModal={() => this.props.onEdit(employee)}
+          toggleDeleteModal={this.props.onDelete}
+        />
+      )
+    }
+  ];
 
-  const getTableHeaders = () => {
-    if (!props.employees) return;
-    const tableHeaders = props.employees.slice(1);
-    return Object.keys(...tableHeaders);
+  handlePageChange = page => this.setState({ currentPage: page });
+
+  handlePageSizeChange = value => this.setState({ pageSize: Number(value) });
+
+  handleSort = sortColumn => this.setState({ sortColumn });
+
+  getPagedData = () => {
+    const { data } = this.props;
+    const { pageSize, currentPage } = this.state;
+    const departments = data && paginate(data, currentPage, pageSize);
+
+    return { totalCount: data.length, data: departments };
   };
 
-  // const formatDate = date => {
-  //   return dateFormat(date, 'dd/mm/yyyy');
-  // };
+  formatDate = date => {
+    return dateFormat(date, 'dd/mm/yyyy');
+  };
 
-  return (
-    <>
-      {props.loading ? (
-        <LoaderRing />
-      ) : (
-        <Table
-          className="align-items-center table-flush"
-          responsive
-          striped
-          bordered
-          style={{ background: '#fff', color: '#333' }}
-        >
-          <TableHeader headers={getTableHeaders} />
-          <TableBody
-            body={props.employees}
-            toggleEditModal={toggleEditModal}
-            toggleDeleteModal={toggleDeleteModal}
-          />
-        </Table>
-      )}
+  render() {
+    const { loading, data } = this.props;
+    const { start, end, pageSize, currentPage, sortColumn } = this.state;
+    const { totalCount, data: employees } = this.getPagedData();
 
-      <CustomModal
-        isOpen={editModalOpen}
-        toggle={toggleEditModal}
-        label="Edit Employee"
-      >
-        <EmployeeForm readOnly />
-      </CustomModal>
-
-      <DeleteModal
-        isOpen={deleteModalOpen}
-        toggle={toggleDeleteModal}
-        label="Delete Employee"
-      >
-        Are you sure you want to delete this employee?
-      </DeleteModal>
-    </>
-  );
-};
+    return (
+      <div className="table-wrapper">
+        {loading ? (
+          <LoaderRing />
+        ) : (
+          <>
+            <Table
+              className="align-items-center table-flush"
+              columns={this.columns}
+              headerData={data}
+              bodyData={employees}
+              sortColumn={sortColumn}
+              onSort={this.handleSort}
+            />
+            <Row className="align-items-baseline justify-content-lg-between mt-4">
+              <TableInfo start={start} end={end} total={totalCount} />
+              <Pagination
+                itemsCount={totalCount}
+                pageSize={pageSize}
+                onPageChange={this.handlePageChange}
+                currentPage={currentPage}
+                onPageSizeChange={this.handlePageSizeChange}
+              />
+            </Row>
+          </>
+        )}
+      </div>
+    );
+  }
+}
 
 export default EmployeeTable;

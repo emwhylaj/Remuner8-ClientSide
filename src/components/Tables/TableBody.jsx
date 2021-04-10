@@ -17,14 +17,14 @@ const TableBody = ({ data, columns }) => {
         data.map(item => (
           <tr key={item.id} role="row">
             {columns.map(column => (
-              <Cell key={createKey(item, column)} className="pl-4">
+              <Cell key={createKey(item, column)} className="px-4">
                 {renderCell(item, column)}
               </Cell>
             ))}
           </tr>
         ))
       ) : (
-        <tr>No departments found</tr>
+        <tr>No data</tr>
       )}
     </tbody>
   );
@@ -37,36 +37,3 @@ const Cell = styled.td`
     text-align: center;
   }
 `;
-
-// <tbody>
-//   {body
-//     ? body.map(
-//         ({
-//           id,
-//           name,
-//           employee_id,
-//           email,
-//           phone_number,
-//           join_date,
-//           department
-//         }) => (
-//           <tr key={id} role="row">
-//             <td style={{ paddingLeft: '15px' }}>
-//               <Avatar avatar={DummyImage} name={name} />
-//             </td>
-//             <td>{employee_id}</td>
-//             <td>{email}</td>
-//             <td>{phone_number}</td>
-//             <td>{formatDate(join_date)}</td>
-//             <td>{department}</td>
-//             <td>
-//               <ActionToggle
-//                 toggleEditModal={toggleEditModal}
-//                 toggleDeleteModal={toggleDeleteModal}
-//               />
-//             </td>
-//           </tr>
-//         )
-//       )
-//     : null}
-// </tbody>

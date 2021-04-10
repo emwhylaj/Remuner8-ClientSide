@@ -5,7 +5,6 @@ import { paginate } from 'utils/paginate';
 
 import Table from 'components/Tables/Table';
 import TableInfo from 'components/Tables/TableInfo';
-import TableLength from 'components/Tables/TableLength';
 import Pagination from 'components/Tables/Pagination';
 import ActionToggle from 'components/Custom-Buttons/ActionToggle';
 
@@ -27,9 +26,9 @@ class DepartmentsTable extends Component {
     {
       key: 'Action',
       label: 'Action',
-      content: departmentName => (
+      content: department => (
         <ActionToggle
-          toggleEditModal={() => this.props.onEdit(departmentName)}
+          toggleEditModal={() => this.props.onEdit(department)}
           toggleDeleteModal={this.props.onDelete}
         />
       )
@@ -57,11 +56,8 @@ class DepartmentsTable extends Component {
 
     return (
       <div className="table-wrapper">
-        <Row className="px-lg-4">
-          <TableLength togglePageSize={this.handlePageSizeChange} />
-        </Row>
-
         <Table
+          className="align-items-center my-3"
           columns={this.columns}
           headerData={data}
           bodyData={departments}
@@ -75,6 +71,7 @@ class DepartmentsTable extends Component {
             pageSize={pageSize}
             onPageChange={this.handlePageChange}
             currentPage={currentPage}
+            onPageSizeChange={this.handlePageSizeChange}
           />
         </Row>
       </div>

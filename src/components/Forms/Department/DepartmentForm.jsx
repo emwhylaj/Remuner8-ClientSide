@@ -9,7 +9,7 @@ const DepartmentForm = ({ data, toggle }) => {
   };
 
   return (
-    <CustomForm toggleModal={toggle} handleSubmit={handleSubmit}>
+    <CustomForm toggleModal={toggle} onSubmit={handleSubmit}>
       {data ? (
         data.map(({ id, departmentName }) => (
           <Col key={id}>
