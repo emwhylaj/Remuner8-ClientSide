@@ -2,6 +2,8 @@ import React from 'react';
 import { Col, FormGroup, Input } from 'reactstrap';
 import SelectBox from '../SelectBox';
 import CustomForm from 'components/Forms/CustomForm';
+import EmptyForm from './EmptyForm';
+import DatePicker from '../DatePicker';
 
 const departmentOptions = [
   'Select Department',
@@ -19,14 +21,12 @@ const jobOptions = [
   '.NET Developer'
 ];
 
-
 const EmployeeForm = ({ data, toggle, readOnly }) => {
   const handleSubmit = e => {
     e.preventDefault();
     toggle();
   };
-  
-  console.log(data)
+
   return (
     <CustomForm toggleModal={toggle} onSubmit={handleSubmit}>
       {data ? (
@@ -37,22 +37,14 @@ const EmployeeForm = ({ data, toggle, readOnly }) => {
                 <label className="col-form-label">
                   First Name <span className="text-danger">*</span>
                 </label>
-                <Input type="text" defaultValue={employee.firstName} required />
+                <Input type="text" defaultValue={employee.name} required />
               </FormGroup>
             </Col>
 
             <Col sm={6}>
               <FormGroup>
                 <label className="col-form-label">Last Name</label>
-                <Input type="text" defaultValue={employee.firstName} required />
-              </FormGroup>
-            </Col>
-            <Col sm={6}>
-              <FormGroup>
-                <label className="col-form-label">
-                  Username <span className="text-danger">*</span>
-                </label>
-                <Input type="text" defaultValue={employee.firstName} required />
+                <Input type="text" defaultValue={employee.name} required />
               </FormGroup>
             </Col>
 
@@ -61,7 +53,7 @@ const EmployeeForm = ({ data, toggle, readOnly }) => {
                 <label className="col-form-label">
                   Email <span className="text-danger">*</span>
                 </label>
-                <Input type="email" placeholder="johndoe@example.com" />
+                <Input type="email" defaultValue={employee.email} />
               </FormGroup>
             </Col>
 
@@ -70,7 +62,13 @@ const EmployeeForm = ({ data, toggle, readOnly }) => {
                 <label className="col-form-label">
                   Employee ID <span className="text-danger">*</span>
                 </label>
-                <Input type="text" defaultValue={employee.firstName} required readOnly={readOnly} placeholder="FT-0001" />
+                <Input
+                  type="text"
+                  defaultValue={employee.employee_id}
+                  required
+                  readOnly={readOnly}
+                  placeholder="FT-0001"
+                />
               </FormGroup>
             </Col>
             <Col sm={6}>
@@ -79,7 +77,7 @@ const EmployeeForm = ({ data, toggle, readOnly }) => {
                   Date Joined <span className="text-danger">*</span>
                 </label>
                 <div className="cal-icon">
-                  <Input className="" type="date" />
+                 <DatePicker date={employee.join_date} />
                 </div>
               </FormGroup>
             </Col>
@@ -87,10 +85,11 @@ const EmployeeForm = ({ data, toggle, readOnly }) => {
             <Col sm={6}>
               <FormGroup>
                 <label className="col-form-label">Phone </label>
-                <Input type="tel" placeholder="9876543210" />
+                <Input type="tel" defaultValue={employee.phone_number} />
               </FormGroup>
             </Col>
-            <Col sm={6}>
+
+            <Col md={6}>
               <FormGroup>
                 <label className="col-form-label">
                   Department <span className="text-danger">*</span>
@@ -98,9 +97,11 @@ const EmployeeForm = ({ data, toggle, readOnly }) => {
                 <SelectBox
                   label="Select Department"
                   options={departmentOptions}
+                  defaultValue={employee.department}
                 />
               </FormGroup>
             </Col>
+
             <Col md={6}>
               <FormGroup>
                 <label className="col-form-label">
@@ -109,13 +110,14 @@ const EmployeeForm = ({ data, toggle, readOnly }) => {
                 <SelectBox
                   label="Select Job Description"
                   options={jobOptions}
+                  defaultValue={employee.name}
                 />
               </FormGroup>
             </Col>
           </>
         ))
       ) : (
-        <p>No data</p>
+        <EmptyForm departments={departmentOptions} jobs={jobOptions} />
       )}
     </CustomForm>
   );

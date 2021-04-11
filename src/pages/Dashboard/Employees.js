@@ -133,7 +133,10 @@ class Employees extends Component {
           isOpen={addModalOpen}
           toggle={this.toggleAddModal}
         >
-          <EmployeeForm />
+          <EmployeeForm
+           // data={this.state.formData}
+            toggle={this.toggleAddModal}
+          />
         </CustomModal>
         <CustomModal
           label="Edit Employee"

@@ -45,6 +45,14 @@ class EmployeeTable extends Component {
     }
   ];
 
+  formatDates = data =>
+    data
+      ? data.map(data => {
+          data.join_date = dateFormat(data.join_date, 'dd/mm/yyyy');
+          return data;
+        })
+      : [];
+
   handlePageChange = page => this.setState({ currentPage: page });
 
   handlePrevious = page => this.setState({ currentPage: page - 1 });
@@ -58,19 +66,16 @@ class EmployeeTable extends Component {
   getPagedData = () => {
     const { data } = this.props;
     const { pageSize, currentPage } = this.state;
-    const departments = data && paginate(data, currentPage, pageSize);
+    const bodyData = data && paginate(data, currentPage, pageSize);
 
-    return { totalCount: data.length, data: departments };
-  };
-
-  formatDate = date => {
-    return dateFormat(date, 'dd/mm/yyyy');
+    return { totalCount: data.length, bodyData };
   };
 
   render() {
     const { loading, data } = this.props;
     const { start, end, pageSize, currentPage, sortColumn } = this.state;
-    const { totalCount, data: employees } = this.getPagedData();
+    const { totalCount, bodyData } = this.getPagedData();
+    const employees = this.formatDates(bodyData);
 
     return (
       <div className="table-wrapper">
