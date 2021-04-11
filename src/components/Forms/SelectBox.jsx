@@ -15,7 +15,7 @@ import {
   FocusLabel
 } from './SelectBox.styles';
 
-const SelectBox = ({ options, label, focusLabel }) => {
+const SelectBox = ({ options, label, focusLabel, defaultValue }) => {
   const [dropdownOpen, setDropdown] = useState(false);
   const toggle = () => setDropdown(!dropdownOpen);
   const [state, setState] = useState({
@@ -27,7 +27,7 @@ const SelectBox = ({ options, label, focusLabel }) => {
   useEffect(() => {
     setState(state => ({ ...state, outerText: options[0] }));
   }, [dropdownOpen, options]);
-  
+
   const spanContainer = useRef(null);
 
   const handleChange = event => {
@@ -73,9 +73,10 @@ const SelectBox = ({ options, label, focusLabel }) => {
               id="select2-kokx-container"
               role="textbox"
               aria-readonly="true"
+              value="ds"
               //title="Select Department"
             >
-              {value ? options[value] : label}
+              {defaultValue ? defaultValue : value ? options[value] : label}
             </SpanSelectRendered>
             <SpanSelectArrow role="presentation">
               <B open={dropdownOpen} role="presentation"></B>

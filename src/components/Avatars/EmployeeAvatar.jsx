@@ -2,38 +2,46 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const EmployeeAvatar = ({ avatar, name }) => {
+import DummyImage from 'assets/img/theme/team-1-800x800.jpg';
+
+const EmployeeAvatar = ({ employee }) => {
   return (
     <TableAvatar>
-      <Avatar to="/admin/employee-profile">
-        <Image src={avatar} />
+      <Avatar to="/admin/employees/profile">
+        <Image src={employee.avatar || DummyImage} />
       </Avatar>
-      <AvatarLink to="/admin/employee-profile">
-        {name}
-        <Job>{name}</Job>
+      <AvatarLink to="/admin/employees/profile">
+        {employee.name}
+        <Job>{employee.name}</Job>
       </AvatarLink>
     </TableAvatar>
   );
 };
 
+EmployeeAvatar.defaultProps = {
+  name: 'John Doe',
+  avatar: DummyImage
+};
+
 export default EmployeeAvatar;
 
 const TableAvatar = styled.h2`
-    display: inline-flex;
-    align-items: center;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
 `;
 
 const Avatar = styled(Link)`
   border-radius: 50%;
   display: inline-block;
   font-weight: 500;
-  height: 38px;
+  height: auto;
   line-height: 38px;
   margin: 0 10px 0 0;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
-  width: 38px;
+  width: auto;
   position: relative;
   white-space: nowrap;
 `;
@@ -48,7 +56,7 @@ const Image = styled.img`
   border-radius: 50%;
   display: block;
   overflow: hidden;
-  width: 100%;
+  height: 40px;
 `;
 
 const Job = styled.span`

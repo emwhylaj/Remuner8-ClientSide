@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import swal from '@sweetalert/with-react';
+
 import {
   Label,
   Button,
@@ -13,21 +15,18 @@ import {
 import 'assets/scss/forms.styles.scss';
 
 class RegistrationForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: {
-        email: '',
-        password: '',
-        confirmPassword: ''
-      },
-      errors: {},
-      showPassword: false,
-      showConfirmPassword: false,
-      loading: false
-    };
-  }
+  state = {
+    data: {
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    },
+    errors: {},
+    showPassword: false,
+    showConfirmPassword: false,
+    loading: false
+  };
 
   togglePassword = () => {
     const { showPassword } = this.state;
@@ -58,23 +57,30 @@ class RegistrationForm extends Component {
       data: { password, confirmPassword },
       errors
     } = this.state;
+
     if (password.length < 8 || password.length > 32)
       errors.password = 'Password must be 8 - 32 characters long.';
+
     if (confirmPassword !== password)
       errors.confirmPassword = 'Passwords must match.';
+
     return errors;
   };
 
   handleOnBlurEmail = () => {
     const {
-      data: { email },
+      data: { email, username },
       errors
     } = this.state;
+
     if (email === '') errors.email = 'Email cannot be blank';
-    if (!errors.email) {
+    if (username === email)
+      errors.username = 'Username cannot the same as your Email Address';
+
+    if (!errors.email && !errors.username) {
       errors.emailState = 'valid';
+      errors.usernameState = 'valid';
       this.setState({ errors });
-      // Call an api here
     } else this.setState({ errors });
   };
 
@@ -85,14 +91,15 @@ class RegistrationForm extends Component {
     } = this.state;
     if (password.length < 8 || password.length > 32)
       errors.password = 'Password must be 8 - 32 characters long.';
+
     if (
       !password.match(
         "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-`~()_=+{}\\|'.<>;:,/]).{8,33}$"
       )
-    ) {
+    )
       errors.password =
         'Password must be contain at least one lowercase and uppercase letter, a number and a special character';
-    }
+
     if (confirmPassword !== password)
       errors.confirmPassword = 'Passwords must match.';
 
@@ -103,48 +110,62 @@ class RegistrationForm extends Component {
     } else this.setState({ errors });
   };
 
-  handleSubmit = async e => {
-    e.preventDefault();
-    const formErrors = this.validate();
+  postUserToDb = async () => {
     const {
-      data: { email, confirmPassword },
-      errors: { emailState, confirmPasswordState },
-      loading
+      data: { username, email, password, confirmPassword }
     } = this.state;
-    if (emailState && confirmPasswordState) {
-      this.setState({ loading: !loading });
-
-      try {
-        const response = await fetch('https://localhost:44333/api/Register', {
+    try {
+      const response = await fetch(
+        'https://localhost:44333/api/account/register',
+        {
           method: 'POST',
           headers: {
             Accept: 'application/json',
             'Content-type': 'application/json'
           },
           body: JSON.stringify({
-            Email: email,
-            Password1: confirmPassword
+            userName: username,
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword
           })
-        });
-        const backendResponse = await response.json();
-        if (backendResponse.status === 'Error') alert(backendResponse.message);
-
-        switch (backendResponse.message) {
-          case 'User Already Exists':
-            this.props.history.push('/login');
-            break;
-          case 'User Created Successfully':
-            alert(backendResponse.message);
-            setTimeout(() => this.props.history.push('/admin/index'), 2000);
-            break;
-          default:
-            alert(backendResponse.message);
-            break;
         }
-      } catch (error) {
-        alert(error);
+      );
+      const backendResponse = await response.json();
+      console.log(backendResponse);
+      if (backendResponse.status === 'Error') swal(backendResponse.message);
+
+      switch (backendResponse.message) {
+        case 'User already exists':
+          swal(backendResponse.message, 'Proceed to Login', 'warning');
+         // alert(backendResponse.message);
+          this.props.history.push('/login');
+          break;
+        case 'You have successfully registered':
+          swal(backendResponse.message, 'Success', 'success');
+          setTimeout(() => this.props.history.push('/admin/index'), 2000);
+          break;
+        default:
+          swal(backendResponse.message);
+          break;
       }
-    } else this.setState({ formErrors });
+    } catch (error) {
+      swal(error, 'Something happened!', 'error');
+      console.log(error);
+    }
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const formErrors = this.validate();
+    const {
+      errors: { usernameState, emailState, confirmPasswordState },
+      loading
+    } = this.state;
+
+    if (emailState && confirmPasswordState && usernameState)
+      this.setState({ loading: !loading }, () => this.postUserToDb());
+    else this.setState({ formErrors });
   };
 
   render() {
@@ -162,11 +183,30 @@ class RegistrationForm extends Component {
         <Form onSubmit={this.handleSubmit} className="registration">
           <FormGroup>
             <Input
+              id="username"
+              name="username"
+              type="text"
+              className={errors.username ? 'has-danger' : null}
+              autoFocus
+              required
+              valid={errors.usernameState === 'valid' ? true : false}
+              invalid={errors.username ? true : false}
+              value={data.username}
+              onChange={e => this.handleChange(e)}
+            />
+            <Label htmlFor="username" className="label">
+              Enter Username
+            </Label>
+            <FormFeedback>{errors.username}</FormFeedback>
+          </FormGroup>
+
+          <FormGroup>
+            <Input
               id="email"
               name="email"
               type="email"
+              placeholder="Email Address"
               className={errors.email ? 'has-danger' : null}
-              autoFocus
               required
               valid={errors.emailState === 'valid' ? true : false}
               invalid={errors.email ? true : false}

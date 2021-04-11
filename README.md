@@ -13,11 +13,8 @@
 
 ### Have questions or comments, reach out to us 👇 ###
 
-* James Morgan (james.morgan@thebulb.africa) - admin
-* Abidemi Soetan
+* James Morgan 
 * Muyiwa Olalekan
-* Muiz Mabamidu
-* Matthew Igbo
 
 # This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app)
 

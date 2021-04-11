@@ -1,10 +1,10 @@
 import React from 'react';
 import { Form, Row, Button } from 'reactstrap';
 
-const CustomForm = ({ children, handleSubmit }) => {
+const CustomForm = ({ children, onSubmit }) => {
   
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={onSubmit}>
       <Row>{children}</Row>
       <Row className="justify-content-center">
         <Button

@@ -12,18 +12,30 @@ import DeleteModal from 'components/Modals/DeleteModal';
 class Departments extends Component {
   state = {
     loading: true,
+    formData: [],
     departments: [],
     addModalOpen: false,
     editModalOpen: false,
     deleteModalOpen: false
   };
 
+  _isMounted = false;
   toggleAddModal = () =>
     this.setState({ addModalOpen: !this.state.addModalOpen });
-  toggleEditModal = () =>
+
+  toggleEditModal = () => {
     this.setState({ editModalOpen: !this.state.editModalOpen });
+  };
+
   toggleDeleteModal = () =>
     this.setState({ deleteModalOpen: !this.state.deleteModalOpen });
+
+  handleEdit = object =>
+    this.setState({
+      formData: [object],
+      editModalOpen: !this.state.editModalOpen
+    });
+
   mockUrl = 'https://604529e6c0194f00170bca44.mockapi.io/api/departments';
   url = 'https://localhost:44333/api/departments';
 
@@ -41,7 +53,12 @@ class Departments extends Component {
   };
 
   componentDidMount() {
+    this._isMounted = true;
     this.fetchDepartments();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {
@@ -72,7 +89,12 @@ class Departments extends Component {
               {loading ? (
                 <LoaderRing />
               ) : (
-                <DepartmentsTable data={departments} />
+                <DepartmentsTable
+                  data={departments}
+                  onEdit={this.handleEdit}
+                  onDelete={this.toggleDeleteModal}
+                  setFormData={this.setFormData}
+                />
               )}
             </Col>
           </Row>
@@ -88,7 +110,10 @@ class Departments extends Component {
             isOpen={editModalOpen}
             toggle={this.toggleEditModal}
           >
-            <DepartmentForm />
+            <DepartmentForm
+              data={this.state.formData}
+              toggle={this.toggleEditModal}
+            />
           </CustomModal>
           <DeleteModal
             isOpen={deleteModalOpen}

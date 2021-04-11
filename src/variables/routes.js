@@ -2,7 +2,6 @@ import Index from 'pages/Dashboard/Index.js';
 import AdminProfile from 'pages/Dashboard/AdminProfile';
 import Employees from 'pages/Dashboard/Employees';
 import Departments from 'pages/Dashboard/Departments';
-import SalaryStructure from 'pages/Dashboard/SalaryStructure';
 import Payslip from 'pages/Dashboard/Payslip';
 import Payroll from 'pages/Dashboard/Payroll';
 import Leaves from 'pages/Dashboard/Leaves';
@@ -39,6 +38,13 @@ const routes = [
       name: 'Departments',
       icon: 'ni ni-building text-blue',
       component: Departments,
+      layout: '/admin'
+    },
+    {
+      path: '/jobdescriptions',
+      name: 'Job Descriptions',
+      icon: 'fas fa-suitcase text-blue',
+      component: Custom404,
       layout: '/admin'
     },
     // {
