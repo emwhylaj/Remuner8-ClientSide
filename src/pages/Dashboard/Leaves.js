@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Col, Card, Button, CardTitle, CardText } from 'reactstrap';
+import { Row, Col, Card, CardTitle, CardText } from 'reactstrap';
 
-//import LoaderRing from 'components/Loading/Loader';
+import LoaderRing from 'components/Loading/Loader';
 import PageHeader from 'components/Headers/PageHeader';
 import CustomButton from 'components/Custom-Buttons/Button';
 
@@ -10,11 +10,13 @@ import CustomModal from 'components/Modals/CustomModal';
 import DeleteModal from 'components/Modals/DeleteModal';
 import LeaveSearchRow from 'components/Sidebar/LeaveSearchRow';
 import LeaveForm from 'components/Forms/Leave/LeaveForm';
+import LeaveTable from 'components/Tables/LeaveTable';
 
 class Leaves extends Component {
   state = {
     loading: true,
-    departments: [],
+    formData: [],
+    leaves: [],
     addModalOpen: false,
     editModalOpen: false,
     deleteModalOpen: false
@@ -22,11 +24,20 @@ class Leaves extends Component {
 
   toggleAddModal = () =>
     this.setState({ addModalOpen: !this.state.addModalOpen });
+
   toggleEditModal = () =>
     this.setState({ editModalOpen: !this.state.editModalOpen });
+
   toggleDeleteModal = () =>
     this.setState({ deleteModalOpen: !this.state.deleteModalOpen });
-  //   mockUrl = 'https://604529e6c0194f00170bca44.mockapi.io/api/leaves';
+
+  handleEdit = object =>
+    this.setState({
+      formData: [object],
+      editModalOpen: !this.state.editModalOpen
+    });
+
+  mockUrl = 'https://6072ea32e4e0160017ddf097.mockapi.io/api/leaves';
   //   url = 'https://localhost:44333/api/leaves';
 
   fetchLeaves = async () => {
@@ -35,7 +46,7 @@ class Leaves extends Component {
 
       if (response.ok) {
         const data = await response.json();
-        this.setState({ loading: false, departments: data });
+        this.setState({ loading: false, leaves: data });
       }
     } catch (error) {
       console.log(error);
@@ -49,7 +60,7 @@ class Leaves extends Component {
   render() {
     const {
       loading,
-      departments,
+      leaves,
       addModalOpen,
       editModalOpen,
       deleteModalOpen
@@ -70,25 +81,25 @@ class Leaves extends Component {
             }
           />
           <Row>
-            <Col sm="3">
+            <Col md="3">
               <Card body style={{ borderRadius: 4 }}>
                 <CardTitle tag="h2">Today Presents</CardTitle>
                 <CardText tag="h3">12 / 60</CardText>
               </Card>
             </Col>
-            <Col sm="3">
-              <Card body style={{ borderRadius: 4 }}>
+            <Col md="3">
+              <Card body style={{ borderRadius: 4, marginBottom: '20px' }}>
                 <CardTitle tag="h2">Planned Leaves</CardTitle>
                 <CardText tag="h3">8 Today</CardText>
               </Card>
             </Col>
-            <Col sm="3">
+            <Col md="3">
               <Card body style={{ borderRadius: 4 }}>
                 <CardTitle tag="h2">Unplanned Leaves</CardTitle>
                 <CardText tag="h3">12 / 60</CardText>
               </Card>
             </Col>
-            <Col sm="3">
+            <Col md="3">
               <Card body style={{ borderRadius: 4 }}>
                 <CardTitle tag="h2">Pending Requests</CardTitle>
                 <CardText tag="h3">12</CardText>
@@ -99,11 +110,16 @@ class Leaves extends Component {
           <LeaveSearchRow />
           <Row>
             <Col md={12}>
-              {/* {loading ? (
-                // <LoaderRing />
+              {loading ? (
+                <LoaderRing />
               ) : (
-                <DepartmentsTable data={departments} />
-              )} */}
+                <LeaveTable
+                  data={leaves}
+                  onEdit={this.handleEdit}
+                  onDelete={this.toggleDeleteModal}
+                  // setFormData={this.setFormData}
+                />
+              )}
             </Col>
           </Row>
           <CustomModal
@@ -114,16 +130,16 @@ class Leaves extends Component {
             <LeaveForm toggle={this.toggleAddModal} />
           </CustomModal>
           <CustomModal
-            label="Edit Department"
+            label="Edit Leave"
             isOpen={editModalOpen}
             toggle={this.toggleEditModal}
           >
-            <LeaveForm />
+            <LeaveForm data={this.state.formData} />
           </CustomModal>
           <DeleteModal
             isOpen={deleteModalOpen}
             toggle={this.toggleDeleteModal}
-            label="Delete Department"
+            label="Delete Leave"
           >
             Are you sure you want to delete the leave?
           </DeleteModal>

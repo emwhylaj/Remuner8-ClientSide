@@ -30,10 +30,10 @@ const LeaveSearchRow = () => {
         ></SelectBox>
       </Col>
       <Col sm={6} md={5} lg={3} xl={2}>
-        <FormInput label="From" type="date" />
+        <FormInput label="From" type="date" focusLabel="From" />
       </Col>
       <Col sm={6} md={5} lg={3} xl={2}>
-        <FormInput label="To" type="date" />
+        <FormInput type="date" focusLabel="To" />
       </Col>
       <Col sm={6} md={5} lg={2}>
         <CustomButton className="btn btn-block" style={{}}>
