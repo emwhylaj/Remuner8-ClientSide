@@ -4,6 +4,7 @@ import { Row, Col } from 'reactstrap';
 import CustomButton from 'components/Custom-Buttons/Button';
 import FormInput from 'components/Forms/Input';
 import SelectBox from 'components/Forms/SelectBox';
+import DatePicker from 'components/Forms/DatePicker';
 
 const options = ['Pending', 'Approved', 'Rejected'];
 const roleOptions = ['Employee', 'Manager'];
@@ -19,18 +20,20 @@ const InputRow = () => {
           focusLabel="Job Description"
           label="--Select--"
           options={roleOptions}
+          adjustLabel
         ></SelectBox>
       </Col>
       <Col sm={6} md={5} lg={4} xl={3}>
         <SelectBox
           className="p-2"
-          focusLabel="Leave-Type"
-          label="Leave Type"
+          focusLabel="Leave Type"
+          label="Select Leave Type"
           options={options}
+          adjustLabel
         ></SelectBox>
       </Col>
       <Col sm={6} md={5} lg={3} xl={3}>
-        <FormInput label="From" type="date" />
+       <DatePicker label="From" adjustLabel/>
       </Col>
       <Col sm={6} md={5} lg={3} xl={3}>
         <FormInput label="To" type="date" />

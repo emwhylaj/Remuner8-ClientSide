@@ -15,7 +15,6 @@ const Payroll = () => {
       <div className="content container-fluid">
         <Header toggleModal={toggleModal} />
         <InputRow />
-        {/* <EmployeeTable/> */}
       </div>
       <AddSalaryModal isOpen={modalOpen} toggleModal={toggleModal} />
     </div>

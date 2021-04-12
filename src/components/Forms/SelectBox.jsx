@@ -15,7 +15,13 @@ import {
   FocusLabel
 } from './SelectBox.styles';
 
-const SelectBox = ({ options, label, focusLabel, defaultValue }) => {
+const SelectBox = ({
+  options,
+  label,
+  focusLabel,
+  defaultValue,
+  adjustLabel
+}) => {
   const [dropdownOpen, setDropdown] = useState(false);
   const toggle = () => setDropdown(!dropdownOpen);
   const [state, setState] = useState({
@@ -112,7 +118,9 @@ const SelectBox = ({ options, label, focusLabel, defaultValue }) => {
           </SelectDropdown>
         </DropdownContainer>
       </SpanContainer>
-      <FocusLabel htmlFor="select box">{focusLabel}</FocusLabel>
+      <FocusLabel adjustLabel={adjustLabel} htmlFor="select-box">
+        {focusLabel}
+      </FocusLabel>
     </>
   );
 };
