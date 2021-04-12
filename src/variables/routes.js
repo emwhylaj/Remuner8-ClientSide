@@ -5,6 +5,7 @@ import Departments from 'pages/Dashboard/Departments';
 import Payslip from 'pages/Dashboard/Payslip';
 import Payroll from 'pages/Dashboard/Payroll';
 import Leaves from 'pages/Dashboard/Leaves';
+import Overtime from 'pages/Dashboard/Overtime'
 
 import Custom404 from 'pages/404';
 
@@ -65,7 +66,7 @@ const routes = [
       path: '/overtime',
       name: 'Overtime and Bonuses',
       icon: 'fas fa-hourglass-end text-blue',
-      component: Custom404,
+      component: Overtime,
       layout: '/admin'
     },
     {
