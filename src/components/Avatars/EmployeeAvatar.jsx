@@ -11,8 +11,8 @@ const EmployeeAvatar = ({ employee }) => {
         <Image src={employee.avatar || DummyImage} />
       </Avatar>
       <AvatarLink to="/admin/employees/profile">
-        {employee.name}
-        <Job>{employee.name}</Job>
+        {employee.name || employee.employee}
+        <Job>{employee.name || employee.job}</Job>
       </AvatarLink>
     </TableAvatar>
   );

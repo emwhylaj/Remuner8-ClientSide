@@ -13,6 +13,7 @@ import Remuner8Logo from 'assets/img/brand/profile3.png';
 import routes from 'variables/routes';
 import Custom404 from 'pages/404';
 
+
 const Dashboard = props => {
   const mainContent = useRef(null);
   const location = useLocation();
