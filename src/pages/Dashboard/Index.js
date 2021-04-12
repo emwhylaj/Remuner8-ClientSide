@@ -1,188 +1,86 @@
-import React, { useState } from 'react';
-// node.js library that concatenates classes (strings)
-import classnames from 'classnames';
-// javascript plugin for creating charts
-import Chart from 'chart.js';
-// react plugin used to create charts
-import { Line, Bar } from 'react-chartjs-2';
-// reactstrap components
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  NavItem,
-  NavLink,
-  Nav,
-  Container,
-  Row,
-  Col
-} from 'reactstrap';
+import React, { useState, useEffect, useContext } from "react";
+import Chart from "chart.js";
+import { Container, Row, Col } from "reactstrap";
+import { AppContext } from "context/store";
 
 // core components
-import {
-  chartOptions,
-  parseOptions,
-  chartExample1,
-  chartExample2
-} from 'variables/charts.js';
+import { chartOptions, parseOptions } from "variables/charts.js";
 
-import Header from 'components/Headers/Header.js';
-import SummaryCards from 'components/Dashboard/SummaryCards';
-import EmployeeCard from 'components/Dashboard/EmployeeCard';
-import CustomModal from 'components/Modals/CustomModal';
-import DeleteModal from 'components/Modals/DeleteModal';
-import EmployeeForm from 'components/Employees/Components/EmployeeForm';
+import Header from "components/Dashboard/Header";
+import SummaryCards from "components/Dashboard/SummaryCards";
+import EmployeeCard from "components/Dashboard/EmployeeCard";
+import PerformanceChart from "components/Dashboard/PerformanceChart";
+import RevenueChart from "components/Dashboard/RevenueChart";
 
 const Index = () => {
-  const [activeNav, setActiveNav] = useState(1);
-  const [chartExample1Data, setChartExample1Data] = useState('data1');
-  const [editModalOpen, setEditModalState] = useState(false);
-  const [deleteModalOpen, setDeleteModalState] = useState(false);
-  const toggleEditModal = () => setEditModalState(!editModalOpen);
-  const toggleDeleteModal = () => setDeleteModalState(!editModalOpen);
+	const { state, events } = useContext(AppContext);
+	console.log(state, events);
+	// uncomment import of AppContext and the two above to
+	// view the states or retrieve reducer functions from the events
+	// the state and events are both objects so you can call their keys to retrieve their value pairs
 
-  if (window.Chart) parseOptions(Chart, chartOptions());
+	const [activeNav, setActiveNav] = useState(1);
+	const [chartExample1Data, setChartExample1Data] = useState("data1");
+	const [statistics, setStatistics] = useState({});
 
-  const toggleNavs = (e, index) => {
-    e.preventDefault();
-    setActiveNav(index);
-    setChartExample1Data('data' + index);
-  };
+	const url = "https://localhost:44333/api/statistics";
 
-  return (
-    <>
-      <Header />
-      {/* Page content */}
-      <Container className="mt--7" fluid>
-        <Row>
-          <Col className="mb-5 mb-xl-0" xl="8">
-            <Card className="bg-gradient-default shadow">
-              <CardHeader className="bg-transparent">
-                <Row className="align-items-center">
-                  <Col className="col">
-                    <h6 className="text-uppercase text-light ls-1 mb-1">
-                      Overview
-                    </h6>
-                    <h2 className="text-white mb-0">Total Revenue</h2>
-                  </Col>
-                  <Col>
-                    <Nav className="justify-content-end" pills>
-                      <NavItem>
-                        <NavLink
-                          className={classnames('py-2 px-3', {
-                            active: activeNav === 1
-                          })}
-                          href="#pablo"
-                          onClick={e => toggleNavs(e, 1)}
-                        >
-                          <span className="d-none d-md-block">Month</span>
-                          <span className="d-md-none">M</span>
-                        </NavLink>
-                      </NavItem>
-                      <NavItem>
-                        <NavLink
-                          className={classnames('py-2 px-3', {
-                            active: activeNav === 2
-                          })}
-                          data-toggle="tab"
-                          href="#pablo"
-                          onClick={e => toggleNavs(e, 2)}
-                        >
-                          <span className="d-none d-md-block">Week</span>
-                          <span className="d-md-none">W</span>
-                        </NavLink>
-                      </NavItem>
-                    </Nav>
-                  </Col>
-                </Row>
-              </CardHeader>
-              <CardBody>
-                {/* Chart */}
-                <div className="chart">
-                  <Line
-                    data={chartExample1[chartExample1Data]}
-                    options={chartExample1.options}
-                    getDatasetAtEvent={e => console.log(e)}
-                  />
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col xl="4">
-            <Card className="shadow">
-              <CardHeader className="bg-transparent">
-                <Row className="align-items-center">
-                  <div className="col">
-                    <h6 className="text-uppercase text-muted ls-1 mb-1">
-                      Performance
-                    </h6>
-                    <h2 className="mb-0">Total working hours</h2>
-                  </div>
-                </Row>
-              </CardHeader>
-              <CardBody>
-                {/* Chart */}
-                <div className="chart">
-                  <Bar
-                    data={chartExample2.data}
-                    options={chartExample2.options}
-                  />
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+	if (window.Chart) parseOptions(Chart, chartOptions());
 
-        <Row className="mt-5">
-          <Col md={12}>
-            <SummaryCards />
-          </Col>
-        </Row>
+	const toggleNavs = (e, index) => {
+		e.preventDefault();
+		setActiveNav(index);
+		setChartExample1Data("data" + index);
+	};
 
-        {/* Employee card with table */}
-        <Row className="mt-5 justify-content-center">
-          <Col className="mb-5 mb-xl-0">
-            <EmployeeCard
-              toggleEditModal={toggleEditModal}
-              toggleDeleteModal={toggleDeleteModal}
-            />
-          </Col>
-        </Row>
-      </Container>
-      <CustomModal
-        isOpen={editModalOpen}
-        toggle={toggleEditModal}
-        label="Edit Employee"
-      >
-        <EmployeeForm readOnly />
-      </CustomModal>
-      <DeleteModal
-        isOpen={deleteModalOpen}
-        toggle={toggleDeleteModal}
-        label="Delete Employee"
-      >
-        Are you sure you want to delete this employee?
-      </DeleteModal>
-    </>
-  );
+	useEffect(() => {
+		const fetchStatistics = async () => {
+			try {
+				const data = await fetch(url).then(res => res.json());
+				setStatistics(data);
+				console.log({ data });
+			} catch (error) {
+				console.log({ error });
+			}
+		};
+		fetchStatistics();
+	}, []);
+
+	const { departments, employees } = statistics;
+
+	return (
+		<>
+			<Header employeeCount={employees} departmentCount={departments} />
+			{/* Page content */}
+			<Container className='mt--7' fluid>
+				<Row>
+					<Col className='mb-5 mb-xl-0' xl='8'>
+						<RevenueChart
+							activeNav={activeNav}
+							chartExample1Data={chartExample1Data}
+							toggleNavs={toggleNavs}
+						/>
+					</Col>
+					<Col xl='4'>
+						<PerformanceChart />
+					</Col>
+				</Row>
+
+				<Row className='mt-5'>
+					<Col md={12}>
+						<SummaryCards overallEmployees={employees} />
+					</Col>
+				</Row>
+
+				{/* Employee card with table */}
+				<Row className='mt-5 justify-content-center'>
+					<Col className='mb-5 mb-xl-0'>
+						<EmployeeCard />
+					</Col>
+				</Row>
+			</Container>
+		</>
+	);
 };
 
 export default Index;
-
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/

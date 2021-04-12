@@ -1,0 +1,126 @@
+import React from 'react';
+import { Col, FormGroup, Input } from 'reactstrap';
+import SelectBox from '../SelectBox';
+import CustomForm from 'components/Forms/CustomForm';
+import EmptyForm from './EmptyForm';
+import DatePicker from '../DatePicker';
+
+const departmentOptions = [
+  'Select Department',
+  'Software Eng',
+  'IT Management',
+  'Marketing',
+  'Option 4'
+];
+
+const jobOptions = [
+  'Select Job Description',
+  'Web Designer',
+  'Web Developer',
+  'Android Developer',
+  '.NET Developer'
+];
+
+const EmployeeForm = ({ data, toggle, readOnly }) => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    toggle();
+  };
+
+  return (
+    <CustomForm toggleModal={toggle} onSubmit={handleSubmit}>
+      {data ? (
+        data.map(employee => (
+          <>
+            <Col sm={6}>
+              <FormGroup>
+                <label className="col-form-label">
+                  First Name <span className="text-danger">*</span>
+                </label>
+                <Input type="text" defaultValue={employee.name} required />
+              </FormGroup>
+            </Col>
+
+            <Col sm={6}>
+              <FormGroup>
+                <label className="col-form-label">Last Name</label>
+                <Input type="text" defaultValue={employee.name} required />
+              </FormGroup>
+            </Col>
+
+            <Col sm={6}>
+              <FormGroup>
+                <label className="col-form-label">
+                  Email <span className="text-danger">*</span>
+                </label>
+                <Input type="email" defaultValue={employee.email} />
+              </FormGroup>
+            </Col>
+
+            <Col sm={6}>
+              <FormGroup>
+                <label className="col-form-label">
+                  Employee ID <span className="text-danger">*</span>
+                </label>
+                <Input
+                  type="text"
+                  defaultValue={employee.employee_id}
+                  required
+                  readOnly={readOnly}
+                  placeholder="FT-0001"
+                />
+              </FormGroup>
+            </Col>
+            <Col sm={6}>
+              <FormGroup>
+                <label className="col-form-label">
+                  Date Joined <span className="text-danger">*</span>
+                </label>
+                <div className="cal-icon">
+                 <DatePicker date={employee.join_date} />
+                </div>
+              </FormGroup>
+            </Col>
+
+            <Col sm={6}>
+              <FormGroup>
+                <label className="col-form-label">Phone </label>
+                <Input type="tel" defaultValue={employee.phone_number} />
+              </FormGroup>
+            </Col>
+
+            <Col md={6}>
+              <FormGroup>
+                <label className="col-form-label">
+                  Department <span className="text-danger">*</span>
+                </label>
+                <SelectBox
+                  label="Select Department"
+                  options={departmentOptions}
+                  defaultValue={employee.department}
+                />
+              </FormGroup>
+            </Col>
+
+            <Col md={6}>
+              <FormGroup>
+                <label className="col-form-label">
+                  Job Description <span className="text-danger">*</span>
+                </label>
+                <SelectBox
+                  label="Select Job Description"
+                  options={jobOptions}
+                  defaultValue={employee.name}
+                />
+              </FormGroup>
+            </Col>
+          </>
+        ))
+      ) : (
+        <EmptyForm departments={departmentOptions} jobs={jobOptions} />
+      )}
+    </CustomForm>
+  );
+};
+
+export default EmployeeForm;

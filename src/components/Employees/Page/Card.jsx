@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { AvatarLink } from 'components/Employees/Table/EmployeeAvatar';
-import ActionToggle from 'components/Employees/Table/ActionToggle';
+import { AvatarLink } from 'components/Avatars/EmployeeAvatar';
+import ActionToggle from 'components/Custom-Buttons/ActionToggle';
 
 const Card = ({
   imgSrc,

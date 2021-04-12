@@ -1,18 +1,23 @@
 import React from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
+import styled from 'styled-components';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 const CustomModal = ({ isOpen, toggle, label, children }) => (
   <Modal keyboard isOpen={isOpen} toggle={toggle} centered>
-    <ModalHeader toggle={toggle} className="align-items-center">
+    <Header toggle={toggle}>
       <span style={{ fontSize: '1.25rem' }}>{label}</span>
-    </ModalHeader>
+    </Header>
     <ModalBody>{children}</ModalBody>
-    <ModalFooter className="justify-content-center">
-      <Button color="primary" style={{ minWidth: '200px' }} onClick={toggle}>
-        SAVE
-      </Button>
-    </ModalFooter>
   </Modal>
 );
 
 export default CustomModal;
+
+const Header = styled(ModalHeader)`
+  position: relative;
+  justify-content: center;
+  button {
+    right: 1.5rem;
+    position: absolute;
+  }
+`;

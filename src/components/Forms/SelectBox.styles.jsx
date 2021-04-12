@@ -5,6 +5,10 @@ const SpanSelectStyles = css`
   border-top-right-radius: 0;
 `;
 
+const labelStyles = css`
+  line-height: 50px;
+`;
+
 const getSpanSelectStyles = props => (props.open ? SpanSelectStyles : '');
 
 export const Select = styled.select`
@@ -17,6 +21,8 @@ export const Select = styled.select`
   position: absolute;
   width: 1px;
   white-space: nowrap;
+  height: 50px;
+  padding: 21px 12px 6px;
 `;
 
 export const SpanContainer = styled.span`
@@ -32,15 +38,23 @@ export const SpanContainer = styled.span`
 `;
 
 export const SpanSingleSelect = styled.span`
-  border: 1px solid #e3e3e3;
-  border-radius: 0.25rem;
-  height: 44px;
+  border: 1px solid #cad1d7;
+  border-radius: 0.375rem;
   background-color: #fff;
   cursor: pointer;
   display: block;
   user-select: none;
+  height: 50px;
+  padding: 4px 0 6px;
   ${getSpanSelectStyles}
 `;
+
+const getLineHeight = props =>
+  !props.focusLabel
+    ? labelStyles
+    : css`
+        line-height: 40px;
+      `;
 
 export const SpanSelectRendered = styled.span`
   overflow: hidden;
@@ -52,7 +66,7 @@ export const SpanSelectRendered = styled.span`
   color: #676767;
   font-size: 15px;
   font-weight: normal;
-  line-height: 42px;
+  ${getLineHeight}
   user-select: none;
   cursor: pointer;
 `;
@@ -61,7 +75,7 @@ export const SpanSelectArrow = styled.span`
   height: 42px;
   right: 7px;
   position: absolute;
-  top: 1px;
+  top: 3px;
   width: 20px;
 `;
 
@@ -72,7 +86,6 @@ export const B = styled.b`
   height: 0;
   left: 50%;
   margin-left: -10px;
-  margin-top: -2px;
   position: absolute;
   top: 50%;
   width: 0;
@@ -138,9 +151,7 @@ const highlightedStyles = css`
   color: white;
 `;
 
-const getSelectedStyles = props => {
-  return props.selected ? selectedStyles : null;
-};
+const getSelectedStyles = props => props.selected && selectedStyles;
 
 export const SelectOption = styled.li`
   user-select: none;
@@ -151,8 +162,27 @@ export const SelectOption = styled.li`
   border-radius: 4px;
   transition: all 0.15s ease-in-out;
   ${getSelectedStyles}
-  ${props => (props.ariaSelected ? highlightedStyles : null)}
-  &:focus {                     
+  ${props => props.ariaSelected && highlightedStyles}
+  &:focus {
     ${highlightedStyles}
   }
+`;
+
+export const FocusLabel = styled.label`
+  color: #1f1f1f;
+  transform: translate3d(0, 22px, 0) scale(1);
+  transform-origin: left top;
+  transition: 240ms;
+  left: 17px;
+  pointer-events: none;
+  position: absolute;
+  font-weight: 300;
+  top: -21px;
+  font-size: 12px;
+  z-index: 1;
+  ${props =>
+    props.adjustLabel &&
+    css`
+      left: 30px;
+    `}
 `;

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import swal from '@sweetalert/with-react';
 import {
   Button,
   Form,
   FormGroup,
-  FormText,
   FormFeedback,
   Input,
   Label
@@ -20,7 +20,6 @@ class LoginForm extends Component {
     this.state = {
       email: '',
       password: '',
-      formText: 'Your username is most likely your email address',
       validate: {
         emailState: '',
         isValid: false,
@@ -59,38 +58,37 @@ class LoginForm extends Component {
     const { email, password, loading } = this.state;
     this.setState({ loading: !loading });
     try {
-      const response = await fetch('https://localhost:44333/api/Login', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          Email: email,
-          Password1: password
-        })
-      });
+      const response = await fetch(
+        'https://localhost:44333/api/account/login',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password
+          })
+        }
+      );
       const backendResponse = await response.json();
-      backendResponse.status === 'Success'
-        ? setTimeout(() => this.props.history.push('/admin/index'), 2000)
-        : this.setState({ loading: false }, () =>
-            alert(backendResponse.message)
-          );
+      console.log(backendResponse);
+      if (backendResponse.status === 'Success') {
+        swal(backendResponse.message, 'success');
+        setTimeout(() => this.props.history.push('/admin/index'), 2000);
+      } else {
+        this.setState({ loading: false }, () => swal(backendResponse.message));
+      }
     } catch (error) {
-      alert(error.message);
+      swal(error.message, 'Something happened!', 'error');
       console.log(error);
     }
   };
 
   render() {
-    const {
-      email,
-      validate,
-      formText,
-      password,
-      showPassword,
-      loading
-    } = this.state;
+    const { email, validate, password, showPassword, loading } = this.state;
+
     return (
       <>
         <p className="text-muted text-center mb-5">
@@ -102,7 +100,7 @@ class LoginForm extends Component {
               type="email"
               name="email"
               id="email"
-              title="Username"
+              title="Email Address"
               autoComplete="username"
               required
               autoFocus
@@ -112,10 +110,9 @@ class LoginForm extends Component {
               onChange={e => this.handleChange(e)}
             />
             <Label htmlFor="email" className="label">
-              Username
+              Email Address
             </Label>
-            <FormFeedback>Invalid Username/Email Address</FormFeedback>
-            <FormText>{formText}</FormText>
+            <FormFeedback>Invalid Email Address</FormFeedback>
           </FormGroup>
 
           <FormGroup>
@@ -160,7 +157,7 @@ class LoginForm extends Component {
             >
               {loading ? (
                 <span>
-                  <i className="fas fa-circle-o-notch fa-spin"></i> Loading
+                  <i className="fas fa-circle-o-notch fa-spin"></i> LOADING
                 </span>
               ) : (
                 'LOG IN'
