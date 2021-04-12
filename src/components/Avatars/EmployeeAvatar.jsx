@@ -41,7 +41,8 @@ const Avatar = styled(Link)`
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
-  width: auto;
+  width: 40px;
+  min-width: 40px;
   position: relative;
   white-space: nowrap;
 `;
@@ -57,6 +58,7 @@ const Image = styled.img`
   display: block;
   overflow: hidden;
   height: 40px;
+  width: inherit;
 `;
 
 const Job = styled.span`

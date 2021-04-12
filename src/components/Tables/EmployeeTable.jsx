@@ -65,6 +65,7 @@ class EmployeeTable extends Component {
 
   getPagedData = () => {
     const { data } = this.props;
+    if (!data) return null;
     const { pageSize, currentPage } = this.state;
     const bodyData = data && paginate(data, currentPage, pageSize);
 
@@ -73,38 +74,34 @@ class EmployeeTable extends Component {
 
   render() {
     const { loading, data } = this.props;
+
+    if (loading) return <LoaderRing />;
+
     const { start, end, pageSize, currentPage, sortColumn } = this.state;
     const { totalCount, bodyData } = this.getPagedData();
     const employees = this.formatDates(bodyData);
-
     return (
       <div className="table-wrapper">
-        {loading ? (
-          <LoaderRing />
-        ) : (
-          <>
-            <Table
-              className="align-items-center table-flush"
-              columns={this.columns}
-              headerData={data}
-              bodyData={employees}
-              sortColumn={sortColumn}
-              onSort={this.handleSort}
-            />
-            <Row className="align-items-baseline justify-content-lg-between mt-4">
-              <TableInfo start={start} end={end} total={totalCount} />
-              <Pagination
-                itemsCount={totalCount}
-                pageSize={pageSize}
-                onPageChange={this.handlePageChange}
-                currentPage={currentPage}
-                onPageSizeChange={this.handlePageSizeChange}
-                onPrevious={this.handlePrevious}
-                onNext={this.handleNext}
-              />
-            </Row>
-          </>
-        )}
+        <Table
+          className="align-items-center table-flush"
+          columns={this.columns}
+          headerData={data}
+          bodyData={employees}
+          sortColumn={sortColumn}
+          onSort={this.handleSort}
+        />
+        <Row className="align-items-baseline justify-content-lg-between mt-4">
+          <TableInfo start={start} end={totalCount < 10 ? totalCount : end} total={totalCount} />
+          <Pagination
+            itemsCount={totalCount}
+            pageSize={pageSize}
+            onPageChange={this.handlePageChange}
+            currentPage={currentPage}
+            onPageSizeChange={this.handlePageSizeChange}
+            onPrevious={this.handlePrevious}
+            onNext={this.handleNext}
+          />
+        </Row>
       </div>
     );
   }

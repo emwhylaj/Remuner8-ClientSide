@@ -15,7 +15,7 @@ import AdminImage from '../../assets/img/theme/adminImage.jfif';
 
 const AdminNavbar = props => (
   <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
-    <Container fluid>
+    <Container className="justify-content-end justify-content-lg-between" fluid>
       <span className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block">
         {props.brandText}
       </span>

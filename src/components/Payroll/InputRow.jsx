@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, FormGroup } from 'reactstrap';
 
 import CustomButton from 'components/Custom-Buttons/Button';
 import FormInput from 'components/Forms/Input';
@@ -12,36 +12,41 @@ const roleOptions = ['Employee', 'Manager'];
 const InputRow = () => {
   return (
     <Row className="mb-3 justify-content-around">
-      <Col sm={6} md={5} lg={3} xl={3}>
+      <Col sm={6} md={5} lg={3} xl={2}>
         <FormInput label="Employee Name" type="text" />
       </Col>
-      <Col sm={6} md={5} lg={4} xl={3}>
-        <SelectBox
-          focusLabel="Job Description"
-          label="--Select--"
-          options={roleOptions}
-          adjustLabel
-        ></SelectBox>
+      <Col sm={6} md={5} lg={3} xl={2}>
+        <FormGroup>
+          <SelectBox
+            focusLabel="Job Description"
+            label="--Select--"
+            options={roleOptions}
+          />
+        </FormGroup>
       </Col>
-      <Col sm={6} md={5} lg={4} xl={3}>
+      <Col sm={6} md={5} lg={3} xl={3}>
         <SelectBox
           className="p-2"
           focusLabel="Leave Type"
           label="Select Leave Type"
           options={options}
           adjustLabel
-        ></SelectBox>
+        />
       </Col>
       <Col sm={6} md={5} lg={3} xl={3}>
-       <DatePicker label="From" adjustLabel/>
+        <FormGroup>
+          <DatePicker label="From" />
+        </FormGroup>
       </Col>
       <Col sm={6} md={5} lg={3} xl={3}>
-        <FormInput label="To" type="date" />
+        <FormGroup>
+          <DatePicker label="To" />
+        </FormGroup>
       </Col>
-      <Col sm={6} md={5} lg={2}>
-        <CustomButton className="btn btn-block" style={{}}>
-          Search
-        </CustomButton>
+      <Col sm={6} md={5} lg={3} xl={2}>
+        <FormGroup>
+          <CustomButton className="btn btn-block">Search</CustomButton>
+        </FormGroup>
       </Col>
     </Row>
   );

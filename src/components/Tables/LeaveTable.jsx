@@ -60,9 +60,9 @@ class LeaveTable extends Component {
 
   handlePageChange = page => this.setState({ currentPage: page });
 
-  handlePrevious = page => this.setState({ currentPage: page-- });
+  handlePrevious = page => this.setState({ currentPage: page - 1 });
 
-  handleNext = page => this.setState({ currentPage: page++ });
+  handleNext = page => this.setState({ currentPage: page + 1 });
 
   handlePageChange = page => this.setState({ currentPage: page });
 

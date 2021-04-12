@@ -17,12 +17,24 @@ const DepartmentForm = ({ data, toggle }) => {
               <label className="col-form-label">
                 Department Name <span className="text-danger">*</span>
               </label>
-              <Input type="text" autoFocus required defaultValue={departmentName} />
+              <Input
+                type="text"
+                autoFocus
+                required
+                defaultValue={departmentName}
+              />
             </FormGroup>
           </Col>
         ))
       ) : (
-        <p>No data</p>
+        <Col>
+          <FormGroup>
+            <label className="col-form-label">
+              Department Name <span className="text-danger">*</span>
+            </label>
+            <Input type="text" autoFocus required />
+          </FormGroup>
+        </Col>
       )}
     </CustomForm>
   );
