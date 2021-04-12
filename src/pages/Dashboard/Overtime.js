@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 import LoaderRing from 'components/Loading/Loader';
 import PageHeader from 'components/Headers/PageHeader';
@@ -8,12 +8,12 @@ import CustomButton from 'components/Custom-Buttons/Button';
 import CustomModal from 'components/Modals/CustomModal';
 
 import DeleteModal from 'components/Modals/DeleteModal';
-import LeaveSearchRow from 'components/Sidebar/LeaveSearchRow';
+
 import LeaveForm from 'components/Forms/Leave/LeaveForm';
-import LeaveTable from 'components/Tables/LeaveTable';
+import OvertimeTable from 'components/Tables/OvertimeTable';
 import '../../assets/css/Leave.css';
 
-class Leaves extends Component {
+class Overtime extends Component {
   state = {
     loading: true,
     formData: [],
@@ -38,7 +38,7 @@ class Leaves extends Component {
       editModalOpen: !this.state.editModalOpen
     });
 
-  mockUrl = 'https://6072ea32e4e0160017ddf097.mockapi.io/api/leaves';
+  mockUrl = 'https://6072ea32e4e0160017ddf097.mockapi.io/api/overtime';
   //   url = 'https://localhost:44333/api/leaves';
 
   fetchLeaves = async () => {
@@ -77,44 +77,48 @@ class Leaves extends Component {
                 onClick={this.toggleAddModal}
                 style={{ padding: '0.625rem 0.25rem' }}
               >
-                <i className="fa fa-plus"></i> Add Leave
+                <i className="fa fa-plus"></i> Add Overtime
               </CustomButton>
             }
           />
           <Row>
             <Col md="3">
               <div className="stats-info">
-                <h6>Today Presents</h6>
-                <h4>12 / 60</h4>
+                <h6>Overtime Employee</h6>
+                <h4>
+                  12 <span>this month</span>
+                </h4>
               </div>
             </Col>
             <Col md="3">
               <div className="stats-info">
-                <h6>Planned Leaves</h6>
-                <h4>8  <span>Today</span></h4>
+                <h6>Overtime Hours</h6>
+                <h4>
+                  118 <span>this month</span>
+                </h4>
               </div>
             </Col>
             <Col md="3">
               <div className="stats-info">
-                <h6>Unplanned Leaves</h6>
-                <h4>0 <span>Today</span></h4>
+                <h6>Pending Request</h6>
+                <h4>23</h4>
               </div>
             </Col>
             <Col md="3">
               <div className="stats-info">
-                <h6>Pending Requests</h6>
-                <h4>12</h4>
+                <h6>Rejected</h6>
+                <h4>5</h4>
               </div>
             </Col>
           </Row>
           <br></br>
-          <LeaveSearchRow />
+
           <Row>
             <Col md={12}>
               {loading ? (
                 <LoaderRing />
               ) : (
-                <LeaveTable
+                <OvertimeTable
                   data={leaves}
                   onEdit={this.handleEdit}
                   onDelete={this.toggleDeleteModal}
@@ -124,14 +128,14 @@ class Leaves extends Component {
             </Col>
           </Row>
           <CustomModal
-            label="Add Leave"
+            label="Add Overtime"
             isOpen={addModalOpen}
             toggle={this.toggleAddModal}
           >
             <LeaveForm toggle={this.toggleAddModal} />
           </CustomModal>
           <CustomModal
-            label="Edit Leave"
+            label="Edit Overtime"
             isOpen={editModalOpen}
             toggle={this.toggleEditModal}
           >
@@ -140,7 +144,7 @@ class Leaves extends Component {
           <DeleteModal
             isOpen={deleteModalOpen}
             toggle={this.toggleDeleteModal}
-            label="Delete Leave"
+            label="Delete Overtime"
           >
             Are you sure you want to delete the leave?
           </DeleteModal>
@@ -150,4 +154,4 @@ class Leaves extends Component {
   }
 }
 
-export default Leaves;
+export default Overtime;
