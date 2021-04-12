@@ -4,6 +4,7 @@ import { Row, Col } from 'reactstrap';
 import CustomButton from 'components/Custom-Buttons/Button';
 import FormInput from 'components/Forms/Input';
 import SelectBox from 'components/Forms/SelectBox';
+import DatePicker from 'components/Forms/DatePicker';
 
 const options = ['Pending', 'Approved', 'Rejected'];
 const roleOptions = ['Casual Leave', 'Medical Leave', 'Loss of Pay'];
@@ -30,13 +31,13 @@ const LeaveSearchRow = () => {
         ></SelectBox>
       </Col>
       <Col sm={6} md={5} lg={3} xl={2}>
-        <FormInput label="From" type="date" focusLabel="From" />
+        <DatePicker label="From" />
       </Col>
       <Col sm={6} md={5} lg={3} xl={2}>
-        <FormInput type="date" focusLabel="To" />
+        <DatePicker label="To" />
       </Col>
       <Col sm={6} md={5} lg={2}>
-        <CustomButton className="btn btn-block" style={{}}>
+        <CustomButton className="btn btn-block">
           Search
         </CustomButton>
       </Col>

@@ -8,6 +8,7 @@ import Table from 'components/Tables/Table';
 import TableInfo from 'components/Tables/TableInfo';
 import Pagination from 'components/Tables/Pagination';
 import ActionToggle from 'components/Custom-Buttons/ActionToggle';
+import StatusDropDown from 'components/Forms/Leave/StatusDropdown';
 
 class LeaveTable extends Component {
   constructor(props) {
@@ -23,16 +24,20 @@ class LeaveTable extends Component {
 
   columns = [
     {
-        path: 'employee',
-        label: 'Employee',
-        content: employee => <Avatar employee={employee} />
-      },
+      path: 'employee',
+      label: 'Employee',
+      content: employee => <Avatar employee={employee} />
+    },
     { path: 'leaveType', label: 'Leave Type' },
     { path: 'from', label: 'From' },
     { path: 'to', label: 'To' },
     { path: 'days', label: 'No Of Days' },
     { path: 'reason', label: 'Reason' },
-    { path: 'status', label: 'Status' },
+    {
+      path: 'status',
+      label: 'Status',
+      content: leave => <StatusDropDown leave={leave} />
+    },
     {
       key: 'Action',
       label: 'Action',
@@ -45,22 +50,20 @@ class LeaveTable extends Component {
     }
   ];
   formatDates = data =>
-  data
-    ? data.map(data => {
-        data.from = dateFormat(data.from, 'dd mmm yyyy');
-        data.to = dateFormat(data.to, 'dd mmm yyyy');
-        return data;
-      })
-    : [];
+    data
+      ? data.map(data => {
+          data.from = dateFormat(data.from, 'dd mmm yyyy');
+          data.to = dateFormat(data.to, 'dd mmm yyyy');
+          return data;
+        })
+      : [];
 
-handlePageChange = page => this.setState({ currentPage: page });
+  handlePageChange = page => this.setState({ currentPage: page });
 
-handlePrevious = page => this.setState({ currentPage: page - 1 });
+  handlePrevious = page => this.setState({ currentPage: page-- });
 
-handleNext = page => this.setState({ currentPage: page + 1 });
+  handleNext = page => this.setState({ currentPage: page++ });
 
-
- 
   handlePageChange = page => this.setState({ currentPage: page });
 
   handlePageSizeChange = value => this.setState({ pageSize: Number(value) });
@@ -69,7 +72,7 @@ handleNext = page => this.setState({ currentPage: page + 1 });
 
   getPagedData = () => {
     const { data } = this.props;
-    if(!data) return null;
+    if (!data) return null;
     const { pageSize, currentPage } = this.state;
     const leaves = data && paginate(data, currentPage, pageSize);
 
@@ -85,7 +88,7 @@ handleNext = page => this.setState({ currentPage: page + 1 });
     return (
       <div className="table-wrapper">
         <Table
-          className="align-items-center my-3"
+          className="align-items-center mt-3"
           columns={this.columns}
           headerData={data}
           bodyData={formattedLeaves}
@@ -100,6 +103,8 @@ handleNext = page => this.setState({ currentPage: page + 1 });
             onPageChange={this.handlePageChange}
             currentPage={currentPage}
             onPageSizeChange={this.handlePageSizeChange}
+            onPrevious={this.handlePrevious}
+            onNext={this.handleNext}
           />
         </Row>
       </div>

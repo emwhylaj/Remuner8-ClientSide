@@ -82,27 +82,27 @@ class Leaves extends Component {
           />
           <Row>
             <Col md="3">
-              <Card body style={{ borderRadius: 4 }}>
-                <CardTitle tag="h2">Today Presents</CardTitle>
-                <CardText tag="h3">12 / 60</CardText>
+              <Card  className="text-center"  body style={{ borderRadius: 4,marginBottom:'20px' }}>
+                <CardTitle tag="h5">Today Presents</CardTitle>
+                <CardText tag="h4">12 / 60</CardText>
               </Card>
             </Col>
             <Col md="3">
-              <Card body style={{ borderRadius: 4, marginBottom: '20px' }}>
-                <CardTitle tag="h2">Planned Leaves</CardTitle>
-                <CardText tag="h3">8 Today</CardText>
+              <Card className="text-center" body style={{ borderRadius: 4, marginBottom: '20px' }}>
+                <CardTitle tag="h5">Planned Leaves</CardTitle>
+                <CardText tag="h4">8 Today</CardText>
               </Card>
             </Col>
             <Col md="3">
-              <Card body style={{ borderRadius: 4 }}>
-                <CardTitle tag="h2">Unplanned Leaves</CardTitle>
-                <CardText tag="h3">12 / 60</CardText>
+              <Card  className="text-center"  body style={{ borderRadius: 4, marginBottom:'20px' }}>
+                <CardTitle tag="h5">Unplanned Leaves</CardTitle>
+                <CardText tag="h4">12 / 60</CardText>
               </Card>
             </Col>
             <Col md="3">
-              <Card body style={{ borderRadius: 4 }}>
-                <CardTitle tag="h2">Pending Requests</CardTitle>
-                <CardText tag="h3">12</CardText>
+              <Card  className="text-center"  body style={{ borderRadius: 4, marginBottom:'20px' }}>
+                <CardTitle tag="h5">Pending Requests</CardTitle>
+                <CardText tag="h4">12</CardText>
               </Card>
             </Col>
           </Row>
