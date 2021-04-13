@@ -5,12 +5,14 @@ import Departments from 'pages/Dashboard/Departments';
 import Payslip from 'pages/Dashboard/Payslip';
 import Payroll from 'pages/Dashboard/Payroll';
 import Leaves from 'pages/Dashboard/Leaves';
-import Overtime from 'pages/Dashboard/Overtime'
+import Overtime from 'pages/Dashboard/Overtime';
+import Timesheet from 'pages/Dashboard/Timesheet';
 
 import Custom404 from 'pages/404';
 
 const routes = [
-  [ // dash routes
+  [
+    // dash routes
     {
       path: '/index',
       name: 'Dashboard',
@@ -26,7 +28,8 @@ const routes = [
       layout: '/admin'
     }
   ],
-  [ // employee routes
+  [
+    // employee routes
     {
       path: '/employees',
       name: 'Employees',
@@ -34,6 +37,7 @@ const routes = [
       component: Employees,
       layout: '/admin'
     },
+
     {
       path: '/departments',
       name: 'Departments',
@@ -70,14 +74,22 @@ const routes = [
       layout: '/admin'
     },
     {
-      path: '/approvals',
-      name: 'Approvals',
-      icon: 'fas fa-thumbs-up text-blue',
-      component: Custom404,
+      path: '/timesheet',
+      name: 'Timesheet',
+      icon: 'fas fa-user-clock text-blue',
+      component: Timesheet,
       layout: '/admin'
     }
+    // {
+    //   path: '/approvals',
+    //   name: 'Approvals',
+    //   icon: 'fas fa-thumbs-up text-blue',
+    //   component: Custom404,
+    //   layout: '/admin'
+    // }
   ],
-  [ // hr routes
+  [
+    // hr routes
     // {
     //   path: '/accounts',
     //   name: 'Accounts',
@@ -119,7 +131,7 @@ const routes = [
       icon: 'fas fa-money-bill-alt text-blue',
       component: Custom404,
       layout: '/admin'
-    },
+    }
     // {
     //   path: '/loan-deduction',
     //   name: 'Loan Deduction',
@@ -128,7 +140,8 @@ const routes = [
     //   layout: '/admin'
     // }
   ],
-  [ // admin routes
+  [
+    // admin routes
     // {
     //   path: '/activities',
     //   name: 'Activities',
