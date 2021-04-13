@@ -26,7 +26,6 @@ const InputRow = () => {
       </Col>
       <Col sm={6} md={5} lg={3} xl={3}>
         <SelectBox
-          className="p-2"
           focusLabel="Leave Type"
           label="Select Leave Type"
           options={options}

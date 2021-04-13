@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, FormGroup } from 'reactstrap';
 
 import CustomButton from 'components/Custom-Buttons/Button';
 import FormInput from 'components/Forms/Input';
@@ -16,15 +16,16 @@ const LeaveSearchRow = () => {
         <FormInput label="Employee Name" type="text" />
       </Col>
       <Col sm={6} md={5} lg={4} xl={2}>
-        <SelectBox
-          focusLabel="Leave Type"
-          label="--Select--"
-          options={roleOptions}
-        ></SelectBox>
+        <FormGroup>
+          <SelectBox
+            focusLabel="Leave Type"
+            label="--Select--"
+            options={roleOptions}
+          />
+        </FormGroup>
       </Col>
       <Col sm={6} md={5} lg={4} xl={2}>
         <SelectBox
-          className="p-2"
           focusLabel="Leave Status"
           label="--Select--"
           options={options}
@@ -37,9 +38,7 @@ const LeaveSearchRow = () => {
         <DatePicker label="To" />
       </Col>
       <Col sm={6} md={5} lg={2}>
-        <CustomButton className="btn btn-block">
-          Search
-        </CustomButton>
+        <CustomButton className="btn btn-block">Search</CustomButton>
       </Col>
     </Row>
   );

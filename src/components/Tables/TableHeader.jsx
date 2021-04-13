@@ -6,11 +6,11 @@ const TableHeader = ({ sortColumn, data, onSort, columns }) => {
   const sortData = (sortColumn, data) => {
     const { path, order } = sortColumn;
     if (order === 'asc') {
-      !path.includes('id') || typeof data[0][path] === 'string'
+      !path.includes('id')
         ? data.sort((a, b) => a[path].localeCompare(b[path]))
         : data.sort((a, b) => a[path] - b[path]);
     } else if (order === 'desc') {
-      !path.includes('id') || typeof data[0][path] === 'string'
+      !path.includes('id')
         ? data.sort((a, b) => b[path].localeCompare(a[path]))
         : data.sort((a, b) => b[path] - a[path]);
     } else return null;
@@ -25,9 +25,13 @@ const TableHeader = ({ sortColumn, data, onSort, columns }) => {
       sortColumnCopy.path = path;
       sortColumnCopy.order = 'asc';
     }
+
     onSort(sortColumnCopy);
     sortData(sortColumnCopy, data);
   };
+
+  const getSortText = sortColumn =>
+    sortColumn.order === 'asc' ? 'descending' : 'ascending';
 
   return (
     <thead>
@@ -41,11 +45,7 @@ const TableHeader = ({ sortColumn, data, onSort, columns }) => {
                   placement="top"
                   target={column.path}
                 >
-                  {!sortColumn.order
-                    ? 'Click to reset'
-                    : `Click to sort by ${
-                        sortColumn.order === 'asc' ? 'descending' : 'ascending'
-                      }`}
+                  {`Click to sort by ${sortColumn.path === column.path ? getSortText(sortColumn) : 'ascending'}`}
                 </UncontrolledTooltip>
               ) : null}
               <Th

@@ -3,11 +3,11 @@ import { FormGroup, Input } from 'reactstrap';
 import CustomForm from 'components/Forms/CustomForm';
 import DatePicker from '../DatePicker';
 import SelectBox from '../SelectBox';
-import EmptyForm from './EmptyForm';
+import EmptyForm from './EmptyForm.jsx';
 
 const employees = ['John Doe', 'Woro Master'];
 
-const OvertimeForm = ({ data, toggle }) => {
+const TimesheetForm = ({ data, toggle }) => {
   const handleSubmit = e => {
     e.preventDefault();
     toggle();
@@ -57,4 +57,4 @@ const OvertimeForm = ({ data, toggle }) => {
   );
 };
 
-export default OvertimeForm;
+export default TimesheetForm;

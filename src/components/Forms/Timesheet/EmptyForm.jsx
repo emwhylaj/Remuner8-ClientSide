@@ -1,6 +1,5 @@
 import React from 'react';
 import { Col, FormGroup, Input } from 'reactstrap';
-import DatePicker from '../DatePicker';
 import SelectBox from '../SelectBox';
 
 const EmptyForm = ({ employees }) => {

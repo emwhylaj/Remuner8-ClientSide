@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 import { paginate } from 'utils/paginate';
 
@@ -8,7 +8,7 @@ import TableInfo from 'components/Tables/TableInfo';
 import Pagination from 'components/Tables/Pagination';
 import ActionToggle from 'components/Custom-Buttons/ActionToggle';
 
-class DepartmentsTable extends Component {
+class TimesheetTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,13 +22,16 @@ class DepartmentsTable extends Component {
 
   columns = [
     { path: 'id', label: '#' },
-    { path: 'departmentName', label: 'Department' },
+    { path: 'employee', label: 'Employee' },
+    { label: 'Time In', key: 'timeIn', content: () => <Col>Hi</Col> },
+    { label: 'Time Out', key: 'timeOut', content: () => <Col>Hi</Col> },
+    { label: 'Hours Worked', key: 'hours', content: () => <Col>Hi</Col> },
     {
       key: 'Action',
       label: 'Action',
-      content: department => (
+      content: timesheet => (
         <ActionToggle
-          toggleEditModal={() => this.props.onEdit(department)}
+          toggleEditModal={() => this.props.onEdit(timesheet)}
           toggleDeleteModal={this.props.onDelete}
         />
       )
@@ -49,23 +52,23 @@ class DepartmentsTable extends Component {
     const { data } = this.props;
     if (!data) return { totalCount: 0, data: null };
     const { pageSize, currentPage } = this.state;
-    const pagedData = data && paginate(data, currentPage, pageSize);
+    const timesheet = data && paginate(data, currentPage, pageSize);
 
-    return { totalCount: data.length, departments: pagedData };
+    return { totalCount: data.length, data: timesheet };
   };
 
   render() {
     const { data } = this.props;
     const { start, end, pageSize, currentPage, sortColumn } = this.state;
-    const { totalCount, departments } = this.getPagedData();
-    
+    const { totalCount, data: timesheet } = this.getPagedData();
+
     return (
       <div className="table-wrapper">
         <Table
           className="align-items-center my-3 table-hover"
-          columns={this.columns} 
+          columns={this.columns}
           headerData={data}
-          bodyData={departments}
+          bodyData={timesheet}
           sortColumn={sortColumn}
           onSort={this.handleSort}
         />
@@ -86,4 +89,4 @@ class DepartmentsTable extends Component {
   }
 }
 
-export default DepartmentsTable;
+export default TimesheetTable;
