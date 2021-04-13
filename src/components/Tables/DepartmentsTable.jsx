@@ -47,6 +47,7 @@ class DepartmentsTable extends Component {
 
   getPagedData = () => {
     const { data } = this.props;
+    if (!data) return { totalCount: 0, data: null };
     const { pageSize, currentPage } = this.state;
     const departments = data && paginate(data, currentPage, pageSize);
 
@@ -61,7 +62,7 @@ class DepartmentsTable extends Component {
     return (
       <div className="table-wrapper">
         <Table
-          className="align-items-center my-3"
+          className="align-items-center my-3 table-hover"
           columns={this.columns}
           headerData={data}
           bodyData={departments}

@@ -20,7 +20,8 @@ const SelectBox = ({
   label,
   focusLabel,
   defaultValue,
-  adjustLabel
+  adjustLabel,
+  ...props
 }) => {
   const [dropdownOpen, setDropdown] = useState(false);
   const toggle = () => setDropdown(!dropdownOpen);
@@ -65,6 +66,7 @@ const SelectBox = ({
         onClick={toggle}
         tabIndex={0}
         ref={spanContainer}
+        {...props}
       >
         <span className="selection">
           <SpanSingleSelect

@@ -8,7 +8,6 @@ import Table from 'components/Tables/Table';
 import TableInfo from 'components/Tables/TableInfo';
 import Pagination from 'components/Tables/Pagination';
 import ActionToggle from 'components/Custom-Buttons/ActionToggle';
-import StatusDropDown from 'components/Forms/Leave/StatusDropdown';
 import OvertimeStatusButton from 'components/Forms/OvertimeStatusButton';
 
 class LeaveTable extends Component {
@@ -64,9 +63,9 @@ class LeaveTable extends Component {
 
   handlePageChange = page => this.setState({ currentPage: page });
 
-  handlePrevious = page => this.setState({ currentPage: page-- });
+  handlePrevious = page => this.setState({ currentPage: page - 1 });
 
-  handleNext = page => this.setState({ currentPage: page++ });
+  handleNext = page => this.setState({ currentPage: page + 1 });
 
   handlePageChange = page => this.setState({ currentPage: page });
 
