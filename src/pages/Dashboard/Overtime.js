@@ -8,10 +8,9 @@ import CustomButton from 'components/Custom-Buttons/Button';
 import CustomModal from 'components/Modals/CustomModal';
 
 import DeleteModal from 'components/Modals/DeleteModal';
-
-import LeaveForm from 'components/Forms/Leave/LeaveForm';
 import OvertimeTable from 'components/Tables/OvertimeTable';
 import '../../assets/css/Leave.css';
+import OvertimeForm from 'components/Forms/Overtime/OvertimeForm';
 
 class Overtime extends Component {
   state = {
@@ -132,14 +131,14 @@ class Overtime extends Component {
             isOpen={addModalOpen}
             toggle={this.toggleAddModal}
           >
-            <LeaveForm toggle={this.toggleAddModal} />
+            <OvertimeForm toggle={this.toggleAddModal} />
           </CustomModal>
           <CustomModal
             label="Edit Overtime"
             isOpen={editModalOpen}
             toggle={this.toggleEditModal}
           >
-            <LeaveForm data={this.state.formData} />
+            <OvertimeForm data={this.state.formData} />
           </CustomModal>
           <DeleteModal
             isOpen={deleteModalOpen}

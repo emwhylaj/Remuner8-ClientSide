@@ -8,10 +8,10 @@ import Table from 'components/Tables/Table';
 import TableInfo from 'components/Tables/TableInfo';
 import Pagination from 'components/Tables/Pagination';
 import ActionToggle from 'components/Custom-Buttons/ActionToggle';
-import StatusDropDown from 'components/Forms/Leave/StatusDropdown';
+
 import OvertimeStatusButton from 'components/Forms/OvertimeStatusButton';
 
-class LeaveTable extends Component {
+class OvertimeTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,9 +46,9 @@ class LeaveTable extends Component {
     {
       key: 'Action',
       label: 'Action',
-      content: leave => (
+      content: overtime => (
         <ActionToggle
-          toggleEditModal={() => this.props.onEdit(leave)}
+          toggleEditModal={() => this.props.onEdit(overtime)}
           toggleDeleteModal={this.props.onDelete}
         />
       )
@@ -78,16 +78,16 @@ class LeaveTable extends Component {
     const { data } = this.props;
     if (!data) return null;
     const { pageSize, currentPage } = this.state;
-    const leaves = data && paginate(data, currentPage, pageSize);
+    const overtime = data && paginate(data, currentPage, pageSize);
 
-    return { totalCount: data.length, data: leaves };
+    return { totalCount: data.length, data: overtime };
   };
 
   render() {
     const { data } = this.props;
     const { start, end, pageSize, currentPage, sortColumn } = this.state;
-    const { totalCount, data: leaves } = this.getPagedData();
-    const formattedLeaves = this.formatDates(leaves);
+    const { totalCount, data: overtime } = this.getPagedData();
+    const formattedOvertime = this.formatDates(overtime);
 
     return (
       <div className="table-wrapper">
@@ -95,7 +95,7 @@ class LeaveTable extends Component {
           className="align-items-center mt-3"
           columns={this.columns}
           headerData={data}
-          bodyData={formattedLeaves}
+          bodyData={formattedOvertime}
           sortColumn={sortColumn}
           onSort={this.handleSort}
         />
@@ -116,4 +116,4 @@ class LeaveTable extends Component {
   }
 }
 
-export default LeaveTable;
+export default OvertimeTable;
