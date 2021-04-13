@@ -87,7 +87,7 @@ const SelectBox = ({
               {defaultValue ? defaultValue : value ? options[value] : label}
             </SpanSelectRendered>
             <SpanSelectArrow role="presentation">
-              <B open={dropdownOpen} role="presentation"></B>
+              <B open={dropdownOpen} role="presentation" />
             </SpanSelectArrow>
           </SpanSingleSelect>
         </span>

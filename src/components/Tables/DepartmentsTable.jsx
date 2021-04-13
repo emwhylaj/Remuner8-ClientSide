@@ -49,21 +49,21 @@ class DepartmentsTable extends Component {
     const { data } = this.props;
     if (!data) return { totalCount: 0, data: null };
     const { pageSize, currentPage } = this.state;
-    const departments = data && paginate(data, currentPage, pageSize);
+    const pagedData = data && paginate(data, currentPage, pageSize);
 
-    return { totalCount: data.length, data: departments };
+    return { totalCount: data.length, departments: pagedData };
   };
 
   render() {
     const { data } = this.props;
     const { start, end, pageSize, currentPage, sortColumn } = this.state;
-    const { totalCount, data: departments } = this.getPagedData();
-
+    const { totalCount, departments } = this.getPagedData();
+    
     return (
       <div className="table-wrapper">
         <Table
           className="align-items-center my-3 table-hover"
-          columns={this.columns}
+          columns={this.columns} 
           headerData={data}
           bodyData={departments}
           sortColumn={sortColumn}
